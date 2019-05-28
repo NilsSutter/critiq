@@ -1,7 +1,7 @@
 class SurveysController < ApplicationController
   # get all surveys that belong to the logged in user
   def index
-    @surveys = Survey.where(id: current_user.id)
+    @surveys = Survey.where(user_id: current_user.id)
   end
 
   def new
@@ -9,5 +9,17 @@ class SurveysController < ApplicationController
   end
 
   def create
+    @survey = Survey.new(survey_params)
+    @survey.user = current_user
+    if @survey.save!
+      redirect_to surveys_path
+    else
+      rendern :new
+    end
+  end
+
+  private
+  def survey_params
+    params.require(:survey).permit(:title, :description)
   end
 end
