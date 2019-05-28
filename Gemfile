@@ -15,10 +15,17 @@ gem 'sassc-rails'
 gem 'simple_form'
 gem 'uglifier'
 gem 'webpacker'
+
+# OAuth Related:
 gem 'omniauth'
 gem 'omniauth-slack'
 gem "cocoon"
 
+
+# Bot Related:
+gem 'slack-ruby-bot'
+gem 'slack-ruby-client'
+gem 'celluloid-io'
 
 group :development do
   gem 'web-console', '>= 3.3.0'

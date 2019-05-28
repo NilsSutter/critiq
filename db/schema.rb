@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_27_145933) do
+ActiveRecord::Schema.define(version: 2019_05_28_143854) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,14 +34,32 @@ ActiveRecord::Schema.define(version: 2019_05_27_145933) do
   end
 
   create_table "responses", force: :cascade do |t|
-    t.string "slack_nickname"
+    t.string "slack_uid"
     t.string "content"
     t.bigint "question_id"
     t.bigint "choice_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "sent_question_id"
     t.index ["choice_id"], name: "index_responses_on_choice_id"
     t.index ["question_id"], name: "index_responses_on_question_id"
+    t.index ["sent_question_id"], name: "index_responses_on_sent_question_id"
+  end
+
+  create_table "sent_questions", force: :cascade do |t|
+    t.bigint "question_id"
+    t.string "recipent_slack_uid"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["question_id"], name: "index_sent_questions_on_question_id"
+  end
+
+  create_table "slackbotdevs", force: :cascade do |t|
+    t.string "slack_channel"
+    t.string "slack_user"
+    t.string "content"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "surveys", force: :cascade do |t|
@@ -75,5 +93,7 @@ ActiveRecord::Schema.define(version: 2019_05_27_145933) do
   add_foreign_key "questions", "surveys"
   add_foreign_key "responses", "choices"
   add_foreign_key "responses", "questions"
+  add_foreign_key "responses", "sent_questions"
+  add_foreign_key "sent_questions", "questions"
   add_foreign_key "surveys", "users"
 end
