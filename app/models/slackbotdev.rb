@@ -1,0 +1,2 @@
+class Slackbotdev < ApplicationRecord
+end
