@@ -17,6 +17,8 @@ gem 'uglifier'
 gem 'webpacker'
 gem 'omniauth'
 gem 'omniauth-slack'
+gem "cocoon"
+
 
 group :development do
   gem 'web-console', '>= 3.3.0'

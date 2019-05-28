@@ -12,7 +12,7 @@ class SurveysController < ApplicationController
     @survey = Survey.new(survey_params)
     @survey.user = current_user
     if @survey.save!
-      redirect_to surveys_path
+      redirect_to new_survey_question_path(@survey)
     else
       rendern :new
     end
