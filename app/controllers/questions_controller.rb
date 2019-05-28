@@ -4,18 +4,18 @@ class QuestionsController < ApplicationController
     @question = Question.new
     @survey = Survey.find(params[:survey_id])
     @boolean = @question.multiple_choice
+    # @question.choices.build
   end
 
   def create
     @question = Question.new(question_params)
     @survey = Survey.find(params[:survey_id])
     @question.survey = @survey
-    # @boolean = @question.multiple_choice
     if @question.save!
       if @question.question_type == "text"
-        redirect_to new_survey_question_path
+        redirect_to new_question_choice_path
       else
-        redirect_to survey_question_path(@question)
+        redirect_to survey_question_path(@survey, @question)
       end
     else
       render :new
@@ -32,6 +32,6 @@ class QuestionsController < ApplicationController
   end
 
   def question_params
-    require(:question).permit(:name, :question_type)
+    params.require(:question).permit(:name, :question_type, choices_attributes: [:name, :_destroy])
   end
 end
