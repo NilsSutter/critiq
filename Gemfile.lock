@@ -51,7 +51,6 @@ GEM
       msgpack (~> 1.0)
     builder (3.2.3)
     byebug (11.0.1)
-
     celluloid (0.17.4)
       celluloid-essentials
       celluloid-extras
@@ -73,9 +72,7 @@ GEM
       timers (>= 4.1.1)
     celluloid-supervision (0.20.6)
       timers (>= 4.1.1)
-
     cocoon (1.2.12)
-
     coderay (1.1.2)
     concurrent-ruby (1.1.5)
     crass (1.0.4)
