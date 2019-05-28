@@ -11,11 +11,14 @@ class Bot < SlackRubyBot::Bot
   # end
 end
 
+
+# Monkeypatch for the UNKNOWN COMMAND error, to instead save the response without a keyword
+
 class Unknown < SlackRubyBot::Commands::Base
   match(/^(?<bot>\S*)[\s]*(?<expression>.*)$/)
 
   def self.call(client, data, _match)
-    client.say(channel: data.channel, text: "::Monkeypatch::")
+    client.say(channel: data.channel, text: "DEBUG: Monkeypatch")
     entry = Slackbotdev.new(content: data.text, slack_channel: data.channel, slack_user: data.user)
     # binding.pry
     if entry.save!
