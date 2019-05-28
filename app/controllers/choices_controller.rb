@@ -1,10 +1,3 @@
 class ChoicesController < ApplicationController
-
-  def new
-    @choice = Choice.new
-    @question = Question.find(params[:question_id])
-  end
-
-  def create
-  end
+  # no new and create methods needed because of nested forms with cocoon gem
 end

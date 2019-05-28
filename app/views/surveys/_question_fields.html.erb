@@ -1,8 +1,10 @@
+<!-- rendered form for creating questions -->
 <div class="nested-fields">
   <%= f.input :name %>
+  <!-- nested form for creating choices -->
   <div id="choices">
   <%= f.simple_fields_for :choices do |f| %>
-      <%= render 'questions/choice_fields', f: f %>
+      <%= render 'choice_fields', f: f %>
     <% end %>
       <div class="links">
         <%= link_to_add_association 'add choices', f, :choices %>
