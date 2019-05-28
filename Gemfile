@@ -19,6 +19,8 @@ gem 'webpacker'
 # OAuth Related:
 gem 'omniauth'
 gem 'omniauth-slack'
+gem "cocoon"
+
 
 # Bot Related:
 gem 'slack-ruby-bot'

@@ -26,6 +26,7 @@ ActiveRecord::Schema.define(version: 2019_05_28_143854) do
   create_table "questions", force: :cascade do |t|
     t.string "name"
     t.boolean "multiple_choice"
+    t.string "question_type"
     t.bigint "survey_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
