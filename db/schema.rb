@@ -15,6 +15,45 @@ ActiveRecord::Schema.define(version: 2019_05_27_145933) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "choices", force: :cascade do |t|
+    t.bigint "question_id"
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["question_id"], name: "index_choices_on_question_id"
+  end
+
+  create_table "questions", force: :cascade do |t|
+    t.string "name"
+    t.boolean "multiple_choice"
+    t.bigint "survey_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["survey_id"], name: "index_questions_on_survey_id"
+  end
+
+  create_table "responses", force: :cascade do |t|
+    t.string "slack_nickname"
+    t.string "content"
+    t.bigint "question_id"
+    t.bigint "choice_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["choice_id"], name: "index_responses_on_choice_id"
+    t.index ["question_id"], name: "index_responses_on_question_id"
+  end
+
+  create_table "surveys", force: :cascade do |t|
+    t.string "title"
+    t.string "description"
+    t.string "channel_id"
+    t.boolean "published"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_surveys_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -31,4 +70,9 @@ ActiveRecord::Schema.define(version: 2019_05_27_145933) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "choices", "questions"
+  add_foreign_key "questions", "surveys"
+  add_foreign_key "responses", "choices"
+  add_foreign_key "responses", "questions"
+  add_foreign_key "surveys", "users"
 end
