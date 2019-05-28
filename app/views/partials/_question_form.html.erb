@@ -1,6 +1,9 @@
 <%=  simple_form_for [@survey, @question] do |f| %>
+  <%#= f.object %>
   <%= f.input :name %>
   <%= f.input :question_type, :collection => %w[text radio] %>
+  <%= f.simple_fields_for :choices do |c| %>
+    <%= render 'choice_form', c: c %>
+  <% end %>
   <%= f.submit %>
-
 <% end %>
