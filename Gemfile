@@ -26,6 +26,7 @@ gem "cocoon"
 gem 'slack-ruby-bot'
 gem 'slack-ruby-client'
 gem 'celluloid-io'
+gem 'httparty'
 
 group :development do
   gem 'web-console', '>= 3.3.0'
