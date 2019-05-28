@@ -1,0 +1,18 @@
+<h1>Index Page</h1>
+
+<!-- Display all surveys of the current user(controller) if surveys
+     have been created -->
+<% if !@surveys.size == 0 %>
+  <% @surveys.each do |survey| %>
+    <li> <%= survey.title %> </li>
+    <li> <%= survey.description %> </li>
+  <% end %>
+<% else %>
+  <h3> No surveys created so far </h3>
+<% end %>
+
+<!-- Button redirects to form for new survey -->
+<%= link_to "New CRITIQ", new_survey_path, class:"btn btn-primary" %>
+<!-- Button redirects back to dashboard -->
+<%= link_to "Back", root_path, class:"btn btn-danger" %>
+
