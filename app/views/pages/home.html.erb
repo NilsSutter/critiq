@@ -1,5 +1,4 @@
+<%= render 'shared/navbar' %>
 <h1>Pages#home</h1>
-
-
 
 <h1>Signed in as: <%= current_user.nickname.capitalize if user_signed_in? && !current_user.nickname.nil? %></h1>
