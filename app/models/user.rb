@@ -5,6 +5,8 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable,
          :omniauthable
 
+  has_many :surveys
+
   def email_required?
     super && provider.blank?
   end
