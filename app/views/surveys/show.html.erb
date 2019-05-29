@@ -1,3 +1,28 @@
-<h1>Survey detail page</h1>
+<div class="container">
+  <h1><%= @survey.title %></h1>
+  <p><%= @survey.description %></p>
+  <p> // display recipients here when controller is set up</p>
+  <!-- status of survey -->
+  <% if @survey.published %>
+    <p>status: published </p>
+  <% else %>
+    <p>status: pending</p>
+  <% end %>
+  <!-- when status pending: link to edit -->
+  <%# unless @survey.published == true %>
+    <%#= link_to "edit survey", edit_survey_path(@survey)  %>
+  <%# end %>
 
-<%= @survey.title %>
+  <%  @survey.questions.each do |question|%>
+    <p><%= question.name %></p>
+    <% question.choices.each do |choice| %>
+    <ul>
+      <li><em><%= choice.name %></em></li>
+    </ul>
+    <% end %>
+  <% end %>
+  <br>
+  <br>
+  <%= link_to "index", surveys_path, class:"btn btn-primary"  %>
+</div>
+
