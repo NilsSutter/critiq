@@ -2,7 +2,16 @@
   <h1><%= @survey.title %></h1>
   <p><%= @survey.description %></p>
   <p> // display recipients here when controller is set up</p>
-
+  <!-- status of survey -->
+  <% if @survey.published %>
+    <p>status: published </p>
+  <% else %>
+    <p>status: pending</p>
+  <% end %>
+  <!-- when status pending: link to edit -->
+  <% unless @survey.published == true %>
+    <%= link_to "edit survey", edit_survey_path(@survey)  %>
+  <% end %>
 
   <%  @survey.questions.each do |question|%>
     <p><%= question.name %></p>

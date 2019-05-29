@@ -11,7 +11,7 @@ class SurveysController < ApplicationController
   def create
     @survey = Survey.new(survey_params)
     @survey.user = current_user
-    if @survey.save!
+    if @survey.save
       redirect_to edit_survey_path(@survey)
     else
       render :new
@@ -28,7 +28,7 @@ class SurveysController < ApplicationController
 
   def update
     @survey = Survey.find(params[:id])
-    if @survey.update!(survey_params)
+    if @survey.update(survey_params)
       redirect_to survey_path(@survey)
     else
       render :edit
