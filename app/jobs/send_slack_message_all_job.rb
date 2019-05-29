@@ -21,9 +21,16 @@ class SendSlackMessageAllJob < ApplicationJob
                       token: ENV["SLACK_API_TOKEN"],
                       channel: survey.channel_id })
 
+
+    sender = "#{User.find(survey.user_id).first_name.capitalize} #{User.find(survey.user_id).last_name.capitalize}"
+    message_text = "Hi! #{sender} wants a Critiq. Just respond to me when you're ready to get started. All your responses will be anonymized, so really be honest with your thoughts. Here's the first question:\n"
+
     puts "> Beginning to iterate over member list..."
     member_list["channel"]["members"].each do |member_uid|
-      # .reject { |x| x == current_user.uid }
+      # Put this in the above line before '.each' to prevent critiq's from being sent to their creator
+      # .reject { |x| x == User.find(survey.user_id).uid }
+
+      send_message(member_uid, message_text)
 
       if question.multiple_choice
         send_message_multiple_choice(member_uid, question)

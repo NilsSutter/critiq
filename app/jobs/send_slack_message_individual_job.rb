@@ -10,6 +10,7 @@ class SendSlackMessageIndividualJob < ApplicationJob
     puts "> Finding Next Question after Question:id:#{args[0][:question_id]}"
     next_question = find_next_question(args[0][:question_id], args[0][:uid])
 
+    # Set Message text: if there are no more messages, send a thank you message
     if next_question.nil?
       question_text = "Thats all, thanks!"
     else
@@ -17,7 +18,7 @@ class SendSlackMessageIndividualJob < ApplicationJob
     end
 
 
-    if next_question != nil && next_question.multiple_choice 
+    if next_question != nil && next_question.multiple_choice
       send_message_multiple_choice(target_uid, next_question)
     else
       send_message(target_uid, question_text)
