@@ -13,7 +13,7 @@ class SendSlackMessageAllJob < ApplicationJob
     puts "> Finding Survey with id #{args[0][:survey_id]}"
     survey = Survey.find(args[0][:survey_id])
     puts "> Finding Question with id #{args[0][:question_id]}"
-    question_text = Question.find(args[0][:question_id]).name
+    question = Question.find(args[0][:question_id])
 
     puts "> Fetching member list from SLACK API"
     member_list = HTTParty.get("https://slack.com/api/channels.info",
@@ -25,14 +25,11 @@ class SendSlackMessageAllJob < ApplicationJob
     member_list["channel"]["members"].each do |member_uid|
       # .reject { |x| x == current_user.uid }
 
-      puts "> Sending message to #{member_uid}"
-      HTTParty.post("https://slack.com/api/chat.postMessage",
-        body: {
-          token: ENV["SLACK_API_TOKEN"],
-          as_user: true, # So it looks like the bot sent it
-          channel: member_uid, # Opens DM with user
-          text: question_text,
-          })
+      if question.multiple_choice
+        send_message_multiple_choice(member_uid, question)
+      else
+        send_message(member_uid, question.name)
+      end
 
       puts ">> Creating SentQuestion entry for Question: #{args[0][:question_id]}, User: #{member_uid}"
       SentQuestion.create!(question_id: args[0][:question_id], recipent_slack_uid: member_uid)
@@ -40,5 +37,30 @@ class SendSlackMessageAllJob < ApplicationJob
     end
     puts "Finished sending all messages!"
 
+  end
+
+  private
+
+  def send_message(target_uid, text)
+    puts "> Sending regular message to #{target_uid}"
+    HTTParty.post("https://slack.com/api/chat.postMessage",
+      body: {
+        token: ENV["SLACK_API_TOKEN"],
+        as_user: true, # So it looks like the bot sent it
+        channel: target_uid, # Opens DM with user
+        text: text,
+        })
+  end
+
+  def send_message_multiple_choice(target_uid, question)
+    puts "> Sending MC message to #{target_uid}"
+    question_text = "#{question.name}\n(Please respond with the number of your choice)"
+    send_message(target_uid, question_text)
+
+    question.choices.each_with_index do |choice, index|
+      puts "> Sending Choice no.#{index + 1}: '#{choice.name}'"
+      choice_text = "#{index + 1}: #{choice.name}"
+      send_message(target_uid, choice_text)
+    end
   end
 end
