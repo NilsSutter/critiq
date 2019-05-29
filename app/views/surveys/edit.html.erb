@@ -1,21 +1,31 @@
-<h1>Edit page</h1>
+<div class="container">
+  <h1 style="margin-top:30px;">Design your Critiq</h1>
+  <h3 style="margin-top:20px;"><%= @survey.title %></h3>
+  <h5 style="color: grey;""><%= @survey.description %></h5>
 
-<!-- Simple form for creating a new survey -->
-<%= simple_form_for @survey do |f| %>
-  <%= f.input :title %>
-  <%= f.input :description %>
-  <!-- nested form for creating questions -->
-  <div id="questions">
-    <%= f.simple_fields_for :questions do |f| %>
-      <%= render 'question_fields', f: f %>
-    <% end %>
-      <div class="links">
-        <%= link_to_add_association 'add questions', f, :questions %>
-      </div>
-  </div>
-  <%= f.input :published, :as => :hidden, :input_html => { :value => "true" } %>
-  <%= f.button :submit, class:"btn btn-primary" %>
-<% end %>
+  <!-- Simple form for creating a new survey -->
+  <%= simple_form_for @survey do |f| %>
+    <div class="wrapper-title-survey">
+      <%= f.input :title,
+                  wrapper_html: { class: 'title-input-text' }%>
+      <%= f.input :description,
+                  wrapper_html: { class: 'description-input-text' } %>
+    </div>
+    <!-- nested form for creating questions -->
+    <div id="questions">
+      <%= f.simple_fields_for :questions do |f| %>
+        <%= render 'question_fields', f: f %>
+      <% end %>
 
-<!-- Button which redirects to dashboard (index-page) -->
-<%= link_to "Back", surveys_path, class:"btn btn-danger" %>
+        <div class="links">
+          <%#= link_to_add_association 'add question', f, :questions, class:"btn btn-primary" %>
+           <%= link_to_add_association '<i class="fas fa-plus-circle"></i>'.html_safe, f, :questions, class:"question-icon" %>
+        </div>
+    </div>
+    <%= f.input :published, :as => :hidden, :input_html => { :value => "true" } %>
+    <%= f.button :submit, class:"btn btn-primary" %>
+  <% end %>
+
+  <!-- Button which redirects to dashboard (index-page) -->
+  <%= link_to "Back", surveys_path, class:"btn btn-light" %>
+</div>

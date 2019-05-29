@@ -1,0 +1,12 @@
+<!-- Simple form for creating a new survey -->
+<%= simple_form_for survey do |f| %>
+  <%= f.input :title,
+              placeholder: "give your critiq a name" %>
+  <%= f.input :description,
+              placeholder: "specify what this critiq is about"%>
+  <%= f.button :submit, class:"btn btn-primary" %>
+<% end %>
+
+
+<!-- Button which redirects to dashboard (index-page) -->
+<%#= link_to "Back", surveys_path, class:"btn btn-danger" %>

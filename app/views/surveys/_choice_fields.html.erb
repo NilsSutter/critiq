@@ -1,6 +1,8 @@
 <!-- form for creating choices -->
 <div class="nested-fields">
-  <%= f.input :name %>
-  <%= link_to_remove_association "remove choice", f, data: {:confirm => 'do you really want to do this?'} %>
+  <%= f.input :name,
+              label: "Multiple Choice Option",
+              wrapper_html: { class: 'choice-input-text' } %>
+  <%= link_to_remove_association '<i class="far fa-trash-alt"></i>'.html_safe, f, class:"delete-icon" %>
 </div>
 
