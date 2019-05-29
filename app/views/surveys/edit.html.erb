@@ -4,6 +4,7 @@
 <%= simple_form_for @survey do |f| %>
   <%= f.input :title %>
   <%= f.input :description %>
+  <!-- nested form for creating questions -->
   <div id="questions">
     <%= f.simple_fields_for :questions do |f| %>
       <%= render 'question_fields', f: f %>
@@ -14,18 +15,6 @@
   </div>
   <%= f.button :submit, class:"btn btn-primary" %>
 <% end %>
-
-
-
-
-
-
-
-
-
-
-
-
 
 <!-- Button which redirects to dashboard (index-page) -->
 <%= link_to "Back", surveys_path, class:"btn btn-danger" %>

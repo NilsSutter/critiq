@@ -1,5 +1,4 @@
 class SurveysController < ApplicationController
-
   # get all surveys that belong to the logged in user
   def index
     @surveys = Survey.where(user_id: current_user.id)
