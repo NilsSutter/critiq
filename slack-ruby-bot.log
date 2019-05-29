@@ -1,0 +1,132 @@
+# Logfile created on 2019-05-29 12:24:47 +0200 by logger.rb/61378
+I, [2019-05-29T12:24:59.150337 #25670]  INFO -- request: POST https://slack.com/api/rtm.start
+D, [2019-05-29T12:24:59.150501 #25670] DEBUG -- request: Accept: "application/json; charset=utf-8"
+User-Agent: "Slack Ruby Client/0.14.2"
+Content-Type: "application/x-www-form-urlencoded"
+I, [2019-05-29T12:24:59.460757 #25670]  INFO -- response: Status 200
+D, [2019-05-29T12:24:59.460925 #25670] DEBUG -- response: content-type: "application/json; charset=utf-8"
+content-length: "6276"
+connection: "close"
+date: "Wed, 29 May 2019 10:24:59 GMT"
+server: "Apache"
+expires: "Mon, 26 Jul 1997 05:00:00 GMT"
+x-accepted-oauth-scopes: "rtm:stream,client"
+x-content-type-options: "nosniff"
+cache-control: "private, no-cache, no-store, must-revalidate"
+x-oauth-scopes: "identify,read,post,client,apps"
+access-control-expose-headers: "x-slack-req-id"
+x-xss-protection: "0"
+x-slack-req-id: "5d11df02-94eb-4605-b2b3-d4fa4916fc40"
+vary: "Accept-Encoding"
+pragma: "no-cache"
+access-control-allow-headers: "slack-route, x-slack-version-ts"
+strict-transport-security: "max-age=31536000; includeSubDomains; preload"
+referrer-policy: "no-referrer"
+access-control-allow-origin: "*"
+x-via: "haproxy-www-rxzl"
+x-cache: "Miss from cloudfront"
+via: "1.1 b46ec6462593127fefb6ecac53956825.cloudfront.net (CloudFront)"
+x-amz-cf-id: "7-3lUkA0Qd1zfI4-8f6J7nsjVrgrwzNFW2ri8_Arj97I_HW6CkAaEg=="
+D, [2019-05-29T12:24:59.486361 #25670] DEBUG -- Slack::RealTime::Concurrency::Celluloid::Socket#connect!: WebSocket::Driver::Client
+D, [2019-05-29T12:24:59.823712 #25670] DEBUG -- Slack::RealTime::Concurrency::Celluloid::Socket#write: GET /websocket/o_yhzpbX9hcq2_kdZXqdDZmeA6s4L3eQdLz1hSozKYorO-ZU-xNYaBiNXXHJO4qqE506SXAYzmGhtjQ5JY8FyBMUBZm5szB4HtauTH8_3YA= HTTP/1.1
+Host: cerberus-xxxx.lb.slack-msgs.com
+Upgrade: websocket
+Connection: Upgrade
+Sec-WebSocket-Key: CsaR9TGT7P0Chlyd6k9Uew==
+Sec-WebSocket-Version: 13
+
+
+D, [2019-05-29T12:24:59.925647 #25670] DEBUG -- Slack::RealTime::Concurrency::Celluloid::Socket#handle_read: HTTP/1.1 101 Switching Protocols
+upgrade: websocket
+connection: upgrade
+sec-websocket-accept: st83cgSQJpdieX76eH3C/UZhIg8=
+X-Via: haproxy-lb-mp-lbcert-iad-hcpa
+
+
+D, [2019-05-29T12:24:59.927803 #25670] DEBUG -- SlackRubyBot::Client#run_loop: WebSocket::Driver::OpenEvent
+D, [2019-05-29T12:24:59.931867 #25670] DEBUG -- SlackRubyBot::Client#run_loop: WebSocket::Driver::MessageEvent, {"type": "hello"}
+D, [2019-05-29T12:24:59.931988 #25670] DEBUG -- SlackRubyBot::Client#dispatch: type=hello
+I, [2019-05-29T12:24:59.932073 #25670]  INFO -- : Successfully connected team Critiq (TK2V38Q07) to https://critiqworkspace.slack.com.
+I, [2019-05-29T12:27:30.726662 #26364]  INFO -- request: POST https://slack.com/api/rtm.start
+D, [2019-05-29T12:27:30.728399 #26364] DEBUG -- request: Accept: "application/json; charset=utf-8"
+User-Agent: "Slack Ruby Client/0.14.2"
+Content-Type: "application/x-www-form-urlencoded"
+I, [2019-05-29T12:27:31.030594 #26364]  INFO -- response: Status 200
+D, [2019-05-29T12:27:31.030871 #26364] DEBUG -- response: content-type: "application/json; charset=utf-8"
+content-length: "6271"
+connection: "close"
+date: "Wed, 29 May 2019 10:27:30 GMT"
+server: "Apache"
+expires: "Mon, 26 Jul 1997 05:00:00 GMT"
+x-accepted-oauth-scopes: "rtm:stream,client"
+x-content-type-options: "nosniff"
+cache-control: "private, no-cache, no-store, must-revalidate"
+x-oauth-scopes: "identify,read,post,client,apps"
+access-control-expose-headers: "x-slack-req-id"
+x-xss-protection: "0"
+x-slack-req-id: "3370d586-6a07-4b42-8919-8f785e4fd17b"
+vary: "Accept-Encoding"
+pragma: "no-cache"
+access-control-allow-headers: "slack-route, x-slack-version-ts"
+strict-transport-security: "max-age=31536000; includeSubDomains; preload"
+referrer-policy: "no-referrer"
+access-control-allow-origin: "*"
+x-via: "haproxy-www-reid"
+x-cache: "Miss from cloudfront"
+via: "1.1 d158c0069ebae5dc0d0401d105ee9c06.cloudfront.net (CloudFront)"
+x-amz-cf-id: "HhCUFngwUj9k8kazUZogFssMGRbFxX8kjnD59R6jETMSnp-zMCrahA=="
+D, [2019-05-29T12:27:31.061168 #26364] DEBUG -- Slack::RealTime::Concurrency::Celluloid::Socket#connect!: WebSocket::Driver::Client
+D, [2019-05-29T12:27:31.413535 #26364] DEBUG -- Slack::RealTime::Concurrency::Celluloid::Socket#write: GET /websocket/K0yWwwyAFZ6afC55MtCT9sjckdQiRNYd16sF6UThOkXoTcX7BpHbwYCmnZT3TMLhs9mUlYgL_azz7LK9Kx9LbJljenCfkK1yiCP07WYz9rA= HTTP/1.1
+Host: cerberus-xxxx.lb.slack-msgs.com
+Upgrade: websocket
+Connection: Upgrade
+Sec-WebSocket-Key: P0HFea8PlVxq11/aPH0CUw==
+Sec-WebSocket-Version: 13
+
+
+D, [2019-05-29T12:27:31.518527 #26364] DEBUG -- Slack::RealTime::Concurrency::Celluloid::Socket#handle_read: HTTP/1.1 101 Switching Protocols
+upgrade: websocket
+connection: upgrade
+sec-websocket-accept: M+O99Fr8t4DQWAglxoNDL1qWZ+M=
+X-Via: haproxy-lb-mp-lbcert-iad-w8pn
+
+
+D, [2019-05-29T12:27:31.521047 #26364] DEBUG -- SlackRubyBot::Client#run_loop: WebSocket::Driver::OpenEvent
+D, [2019-05-29T12:27:31.525906 #26364] DEBUG -- SlackRubyBot::Client#run_loop: WebSocket::Driver::MessageEvent, {"type": "hello"}
+D, [2019-05-29T12:27:31.526049 #26364] DEBUG -- SlackRubyBot::Client#dispatch: type=hello
+I, [2019-05-29T12:27:31.526158 #26364]  INFO -- : Successfully connected team Critiq (TK2V38Q07) to https://critiqworkspace.slack.com.
+D, [2019-05-29T12:28:31.056771 #26364] DEBUG -- SlackRubyBot::Client#send_json: {:type=>"ping", :id=>1}
+D, [2019-05-29T12:28:31.064756 #26364] DEBUG -- Slack::RealTime::Concurrency::Celluloid::Socket#send_data: {"type":"ping","id":1}
+D, [2019-05-29T12:28:31.174611 #26364] DEBUG -- SlackRubyBot::Client#run_loop: WebSocket::Driver::MessageEvent, {"type":"pong","reply_to":1}
+D, [2019-05-29T12:28:31.175034 #26364] DEBUG -- SlackRubyBot::Client#dispatch: reply_to=1, type=pong
+D, [2019-05-29T12:29:31.056851 #26364] DEBUG -- SlackRubyBot::Client#send_json: {:type=>"ping", :id=>2}
+D, [2019-05-29T12:29:31.063699 #26364] DEBUG -- Slack::RealTime::Concurrency::Celluloid::Socket#send_data: {"type":"ping","id":2}
+D, [2019-05-29T12:29:31.168084 #26364] DEBUG -- SlackRubyBot::Client#run_loop: WebSocket::Driver::MessageEvent, {"type":"pong","reply_to":2}
+D, [2019-05-29T12:29:31.168219 #26364] DEBUG -- SlackRubyBot::Client#dispatch: reply_to=2, type=pong
+D, [2019-05-29T12:30:31.062540 #26364] DEBUG -- SlackRubyBot::Client#send_json: {:type=>"ping", :id=>3}
+D, [2019-05-29T12:30:31.069962 #26364] DEBUG -- Slack::RealTime::Concurrency::Celluloid::Socket#send_data: {"type":"ping","id":3}
+D, [2019-05-29T12:30:31.173690 #26364] DEBUG -- SlackRubyBot::Client#run_loop: WebSocket::Driver::MessageEvent, {"type":"pong","reply_to":3}
+D, [2019-05-29T12:30:31.173827 #26364] DEBUG -- SlackRubyBot::Client#dispatch: reply_to=3, type=pong
+D, [2019-05-29T12:31:31.063967 #26364] DEBUG -- SlackRubyBot::Client#send_json: {:type=>"ping", :id=>4}
+D, [2019-05-29T12:31:31.064271 #26364] DEBUG -- Slack::RealTime::Concurrency::Celluloid::Socket#send_data: {"type":"ping","id":4}
+D, [2019-05-29T12:31:31.164428 #26364] DEBUG -- SlackRubyBot::Client#run_loop: WebSocket::Driver::MessageEvent, {"type":"pong","reply_to":4}
+D, [2019-05-29T12:31:31.164581 #26364] DEBUG -- SlackRubyBot::Client#dispatch: reply_to=4, type=pong
+I, [2019-05-29T12:32:25.774342 #26635]  INFO -- : Successfully connected team Critiq (TK2V38Q07) to https://critiqworkspace.slack.com.
+I, [2019-05-29T12:39:56.946445 #26968]  INFO -- : Successfully connected team Critiq (TK2V38Q07) to https://critiqworkspace.slack.com.
+I, [2019-05-29T12:44:11.230380 #27196]  INFO -- : Successfully connected team Critiq (TK2V38Q07) to https://critiqworkspace.slack.com.
+I, [2019-05-29T14:20:53.430425 #29791]  INFO -- : Successfully connected team Critiq (TK2V38Q07) to https://critiqworkspace.slack.com.
+I, [2019-05-29T14:24:14.763280 #30448]  INFO -- : Successfully connected team Critiq (TK2V38Q07) to https://critiqworkspace.slack.com.
+I, [2019-05-29T14:29:09.396172 #30934]  INFO -- : Successfully connected team Critiq (TK2V38Q07) to https://critiqworkspace.slack.com.
+I, [2019-05-29T14:30:56.157566 #31319]  INFO -- : Successfully connected team Critiq (TK2V38Q07) to https://critiqworkspace.slack.com.
+I, [2019-05-29T14:32:42.738119 #31614]  INFO -- : Successfully connected team Critiq (TK2V38Q07) to https://critiqworkspace.slack.com.
+I, [2019-05-29T14:35:45.447182 #31922]  INFO -- : Successfully connected team Critiq (TK2V38Q07) to https://critiqworkspace.slack.com.
+I, [2019-05-29T14:41:24.562423 #32317]  INFO -- : Successfully connected team Critiq (TK2V38Q07) to https://critiqworkspace.slack.com.
+I, [2019-05-29T14:42:26.882820 #32595]  INFO -- : Successfully connected team Critiq (TK2V38Q07) to https://critiqworkspace.slack.com.
+I, [2019-05-29T14:52:19.715916 #33056]  INFO -- : Successfully connected team Critiq (TK2V38Q07) to https://critiqworkspace.slack.com.
+I, [2019-05-29T14:59:33.997415 #33722]  INFO -- : Successfully connected team Critiq (TK2V38Q07) to https://critiqworkspace.slack.com.
+I, [2019-05-29T15:01:44.626982 #34012]  INFO -- : Successfully connected team Critiq (TK2V38Q07) to https://critiqworkspace.slack.com.
+I, [2019-05-29T15:05:07.889000 #34329]  INFO -- : Successfully connected team Critiq (TK2V38Q07) to https://critiqworkspace.slack.com.
+I, [2019-05-29T15:07:06.300251 #34617]  INFO -- : Successfully connected team Critiq (TK2V38Q07) to https://critiqworkspace.slack.com.
+I, [2019-05-29T15:09:28.860033 #34913]  INFO -- : Successfully connected team Critiq (TK2V38Q07) to https://critiqworkspace.slack.com.
+I, [2019-05-29T15:11:23.878267 #34913]  INFO -- : Successfully connected team Critiq (TK2V38Q07) to https://critiqworkspace.slack.com.
+I, [2019-05-29T15:13:06.561615 #35239]  INFO -- : Successfully connected team Critiq (TK2V38Q07) to https://critiqworkspace.slack.com.
