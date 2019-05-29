@@ -1,10 +1,8 @@
 <!-- rendered form for creating questions -->
 <div class="nested-fields">
   <%= f.input :name %>
-
   <%= f.input :question_type, as: :radio_buttons, collection: [['text', 'Open-Text'], ['radio', 'Multiple Choice']], label_method: :second, value_method: :first %>
   <!-- nested form for creating choices -->
-
   <div id="choices">
   <%= f.simple_fields_for :choices do |f| %>
       <%= render 'choice_fields', f: f %>
