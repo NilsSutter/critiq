@@ -13,6 +13,7 @@ class SurveysController < ApplicationController
     else
       @surveys = Survey.where(user_id: current_user.id)
     end
+    @survey = Survey.new
   end
 
   def new
