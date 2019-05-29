@@ -11,7 +11,7 @@ SentQuestion.delete_all
 Question.delete_all
 Survey.delete_all
 
-puts "Survey Create"
+puts "Create Survey"
 surv = Survey.new(title: "Test Survey A", description: "A Test Survey", channel_id: "CJPM6BA75", published: false, user_id: 1)
 surv.save!
 puts "Questions Create"
