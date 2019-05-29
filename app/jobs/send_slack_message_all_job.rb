@@ -1,9 +1,9 @@
-class SendSlackMessageJob < ApplicationJob
+class SendSlackMessageAllJob < ApplicationJob
   queue_as :default
 
   def perform(*args)
     puts ""
-    puts "* Inside SendSlackMessageJob *"
+    puts "* Inside SendSlackMessageAllJob *"
     # Args: ARRAY of a HASH: Question_ID & Survey_ID
 
     # Console Test:
@@ -34,7 +34,11 @@ class SendSlackMessageJob < ApplicationJob
           text: question_text,
           })
 
+      puts ">> Creating SentQuestion entry for Question: #{args[0][:question_id]}, User: #{member_uid}"
+      SentQuestion.create!(question_id: args[0][:question_id], recipent_slack_uid: member_uid)
+
     end
     puts "Finished sending all messages!"
+
   end
 end

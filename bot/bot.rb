@@ -18,7 +18,17 @@ class Unknown < SlackRubyBot::Commands::Base
   match(/^(?<bot>\S*)[\s]*(?<expression>.*)$/)
 
   def self.call(client, data, _match)
-    entry = Slackbotdev.new(content: data.text, slack_channel: data.channel, slack_user: data.user)
+    # Slackbotdev.create!(content: data.text, slack_channel: data.channel, slack_user: data.user)
+    attached_sent_question = SentQuestion.where(recipent_slack_uid: data.user).last
+    reply = Response.new(
+              content: data.text,
+              slack_uid: data.user,
+              sent_question_id: attached_sent_question.id,
+              question_id: attached_sent_question.question_id
+            )
+    
+    reply.save!
+
     # client.say(channel: data.channel, text: "DEBUG: Monkeypatch")
     # if !entry.id.nil?
     #   client.say(channel: data.channel, text: "DEBUG: Message ALREADY Saved")

@@ -6,6 +6,8 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 puts "Deleting Questions & Surveys"
+Response.delete_all
+SentQuestion.delete_all
 Question.delete_all
 Survey.delete_all
 
@@ -13,7 +15,8 @@ puts "Survey Create"
 surv = Survey.new(title: "Test Survey A", description: "A Test Survey", channel_id: "CJPM6BA75", published: false, user_id: 1)
 surv.save!
 puts "Questions Create"
-Question.create!(name: "Question 1", multiple_choice: false, question_type: "text", survey_id: surv.id)
-Question.create!(name: "Question 2", multiple_choice: false, question_type: "text", survey_id: surv.id)
+Question.create!(name: "Question 1?", multiple_choice: false, question_type: "text", survey_id: surv.id)
+Question.create!(name: "Question 2?", multiple_choice: false, question_type: "text", survey_id: surv.id)
+Question.create!(name: "Question 3?", multiple_choice: false, question_type: "text", survey_id: surv.id)
 
 surv.update(published: true)
