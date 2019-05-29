@@ -28,7 +28,7 @@ class SurveysController < ApplicationController
 
   def update
     @survey = Survey.find(params[:id])
-    if @survey.update(survey_params)
+    if @survey.update!(survey_params)
       redirect_to survey_path(@survey)
     else
       render :edit
@@ -37,6 +37,6 @@ class SurveysController < ApplicationController
 
   private
   def survey_params
-    params.require(:survey).permit(:title, :description, questions_attributes: [:name, :question_type, choices_attributes: [:name, :_destroy]])
+    params.require(:survey).permit(:title, :description, :published, questions_attributes: [:name, :question_type, choices_attributes: [:name, :_destroy]])
   end
 end

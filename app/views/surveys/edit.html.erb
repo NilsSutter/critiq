@@ -13,6 +13,7 @@
         <%= link_to_add_association 'add questions', f, :questions %>
       </div>
   </div>
+  <%= f.input :published, :as => :hidden, :input_html => { :value => "true" } %>
   <%= f.button :submit, class:"btn btn-primary" %>
 <% end %>
 

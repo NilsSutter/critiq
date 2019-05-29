@@ -9,9 +9,9 @@
     <p>status: pending</p>
   <% end %>
   <!-- when status pending: link to edit -->
-  <% unless @survey.published == true %>
-    <%= link_to "edit survey", edit_survey_path(@survey)  %>
-  <% end %>
+  <%# unless @survey.published == true %>
+    <%#= link_to "edit survey", edit_survey_path(@survey)  %>
+  <%# end %>
 
   <%  @survey.questions.each do |question|%>
     <p><%= question.name %></p>
