@@ -12,7 +12,6 @@ class User < ApplicationRecord
   end
 
   def self.from_omniauth(auth)
-    binding.pry
     where(provider: auth.provider, uid: auth.uid, team_id: auth.info.team_id).first_or_create! do |user|
       user.provider = auth.provider
       user.first_name = auth.info[:name].split.first
