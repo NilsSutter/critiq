@@ -1,7 +1,18 @@
 class SurveysController < ApplicationController
-  # get all surveys that belong to the logged in user
+
   def index
-    @surveys = Survey.where(user_id: current_user.id)
+    # search functionality => queries
+    if params[:query].present?
+      sql_query = " \
+        surveys.title ILIKE :query \
+        OR surveys.description ILIKE :query \
+        OR questions.name ILIKE :query \
+      "
+      # get surveys that belong to the current user AND fit the search params
+      @surveys = Survey.where(user_id: current_user.id).joins(:questions).where(sql_query, query: "%#{params["query"]}%")
+    else
+      @surveys = Survey.where(user_id: current_user.id)
+    end
   end
 
   def new

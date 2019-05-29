@@ -1,9 +1,16 @@
 class Question < ApplicationRecord
+  # include PG Search to look up models for database entries
   belongs_to :survey
-  #has_many :responses, -> { where multiple_choice: true }, through: :choices
-  #has_many :responses, -> { where multiple_choice: false }
+  # include PgSearch
+  # pg_search_scope :global_search,
+  #   against: [:name],
+  #   associated_against: {
+  #     survey: [:title, :description]
+  #   },
+  #   using: {
+  #     tsearch: { prefix: true }
+  #   }
   has_many :sent_questions
-  # has_many :responses, through: :choices, -> { where multiple_choice: true }
   has_many :responses
   has_many :choices
   accepts_nested_attributes_for :choices, reject_if: :all_blank, allow_destroy: true
