@@ -1,5 +1,5 @@
 <h1>Index Page</h1>
-<div class="container"></div>
+<div class="container">
   <!-- Display all surveys of the current user(controller) if surveys
        have been created -->
   <% if @surveys.count != 0 %>
@@ -17,6 +17,11 @@
         <% end %>
         <!-- date of survey -->
         <p> <%= survey.created_at.strftime("%A, %b %d") %></p>
+        <!-- % of responses as colored status bar (see Figma for) -->
+        <!-- when status pending: link to edit -->
+        <% unless survey.published == true %>
+          <%= link_to "edit survey", edit_survey_path(survey)  %>
+        <% end %>
       </div>
     <% end %>
   <% else %>
@@ -26,6 +31,7 @@
   <!-- Button redirects to form for new survey -->
   <%= link_to "New CRITIQ", new_survey_path, class:"btn btn-primary" %>
   <!-- Button redirects back to dashboard -->
-  <%= link_to "Back", root_path, class:"btn btn-danger" %>
+  <%#= link_to "Back", root_path, class:"btn btn-danger" %>
 </div>
+
 
