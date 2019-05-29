@@ -1,5 +1,7 @@
 <div class="container">
   <h1 style="margin-top:30px;">Design your Critiq</h1>
+  <h3 style="margin-top:20px;"><%= @survey.title %></h3>
+  <h5 style="color: grey;""><%= @survey.description %></h5>
 
   <!-- Simple form for creating a new survey -->
   <%= simple_form_for @survey do |f| %>
@@ -16,7 +18,8 @@
       <% end %>
 
         <div class="links">
-          <%= link_to_add_association 'add question', f, :questions, class:"btn btn-primary" %>
+          <%#= link_to_add_association 'add question', f, :questions, class:"btn btn-primary" %>
+           <%= link_to_add_association '<i class="fas fa-plus-circle"></i>'.html_safe, f, :questions, class:"question-icon" %>
         </div>
     </div>
     <%= f.input :published, :as => :hidden, :input_html => { :value => "true" } %>

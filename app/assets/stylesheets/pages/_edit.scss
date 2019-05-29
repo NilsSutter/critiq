@@ -8,12 +8,14 @@
   font-size:20px;
   font-weight: bold;
   color: black;
+  display: none;
 }
 
 .description-input-text {
   font-size: 18px;
   font-weight: lighter;
   color: grey;
+  display: none;
 }
 
 .choice-type-and-question {
@@ -32,21 +34,39 @@
   color: grey;
 }
 #questions {
-  display: flex;
-  position: relative;
+  // display: flex;
   margin-bottom: 80px;
 }
 
 .nested-fields {
+  position: relative;
   display: flex;
   flex-grow: 1;
+  margin-bottom: 20px;
+  align-items:center;
 }
 
 #choices {
-  position: absolute;
-  top: 100px;
+  padding-left: 160px;
+  border-bottom: 2.5px solid lightgrey;
+  padding-bottom: 30px;
 }
 
-.form-group-valid {
+.question-icon {
+  font-size: 30px;
+  padding-left: 20px;
+  padding-top: 31px;
+}
 
+#questions {
+}
+
+.delete-icon {
+  font-size: 20px;
+  padding-top: 14px;
+  padding-left: 12px;
+}
+
+.choice-input-text {
+  color:grey;
 }
