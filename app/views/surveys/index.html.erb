@@ -11,8 +11,12 @@
         <p> <%= survey.description %> </p>
         <!-- status of survey; sent out? -->
         <% if survey.published %>
+          <p>status: published </p>
         <% else %>
+          <p>status: pending</p>
         <% end %>
+        <!-- date of survey -->
+        <p> <%= survey.created_at.strftime("%A, %b %d") %></p>
       </div>
     <% end %>
   <% else %>
