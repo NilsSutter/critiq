@@ -66,7 +66,7 @@ ActiveRecord::Schema.define(version: 2019_05_29_084904) do
     t.string "title"
     t.string "description"
     t.string "channel_id"
-    t.boolean "published"
+    t.boolean "published", default: false
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

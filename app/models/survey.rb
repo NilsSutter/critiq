@@ -1,7 +1,7 @@
 class Survey < ApplicationRecord
   has_many :responses, through: :questions
+  has_many :questions, dependent: :destroy
   has_many :choices, through: :questions
-  has_many :questions
   belongs_to :user
   validates :title, presence: true
   accepts_nested_attributes_for :questions, reject_if: :all_blank, allow_destroy: true
@@ -23,5 +23,3 @@ class Survey < ApplicationRecord
     # send FIRST associated question to SendSlackMessageJob with Survey_ID
     SendSlackMessageJob.perform_later(survey_id: self.id, question_id: first_question_id.to_i)
   end
-
-end

@@ -11,7 +11,7 @@ class SurveysController < ApplicationController
   def create
     @survey = Survey.new(survey_params)
     @survey.user = current_user
-    if @survey.save!
+    if @survey.save
       redirect_to edit_survey_path(@survey)
     else
       render :new
@@ -35,8 +35,14 @@ class SurveysController < ApplicationController
     end
   end
 
+  def destroy
+    @survey = Survey.find(params[:id])
+    @survey.destroy
+    redirect_to surveys_path
+  end
+
   private
   def survey_params
-    params.require(:survey).permit(:title, :description, questions_attributes: [:name, :question_type, choices_attributes: [:name, :_destroy]])
+    params.require(:survey).permit(:title, :description, :published, questions_attributes: [:name, :question_type, choices_attributes: [:name, :_destroy]])
   end
 end
