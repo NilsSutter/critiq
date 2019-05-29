@@ -18,6 +18,8 @@
         <!-- date of survey -->
         <p> <%= survey.created_at.strftime("%A, %b %d") %></p>
         <!-- % of responses as colored status bar (see Figma for) -->
+        <!-- delete survey from index -->
+        <%= link_to "delete", survey_path(survey), method: :delete%>
       </div>
     <% end %>
   <% else %>

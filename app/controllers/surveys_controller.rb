@@ -35,6 +35,12 @@ class SurveysController < ApplicationController
     end
   end
 
+  def destroy
+    @survey = Survey.find(params[:id])
+    @survey.destroy
+    redirect_to surveys_path
+  end
+
   private
   def survey_params
     params.require(:survey).permit(:title, :description, :published, questions_attributes: [:name, :question_type, choices_attributes: [:name, :_destroy]])
