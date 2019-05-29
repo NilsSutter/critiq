@@ -28,6 +28,10 @@ gem 'slack-ruby-client'
 gem 'celluloid-io'
 gem 'httparty'
 
+# Async Job Handling
+gem 'sidekiq'
+gem 'sidekiq-failures', '~> 1.0'
+
 group :development do
   gem 'web-console', '>= 3.3.0'
 end
