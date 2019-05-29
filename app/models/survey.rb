@@ -23,3 +23,4 @@ class Survey < ApplicationRecord
     # send FIRST associated question to SendSlackMessageJob with Survey_ID
     SendSlackMessageJob.perform_later(survey_id: self.id, question_id: first_question_id.to_i)
   end
+end
