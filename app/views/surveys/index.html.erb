@@ -10,12 +10,11 @@
     %>
   <% end %>
 
-  <!-- Display all surveys of the current user(controller) if surveys
+  <!-- Display all surveys of the current user if surveys
        have been created -->
   <% if @surveys.count != 0 %>
     <% @surveys.each do |survey| %>
       <div>
-
         <!-- title of survey -->
         <h3><%= link_to survey.title, survey_path(survey)  %></h3>
         <!-- description of survey -->
@@ -65,4 +64,9 @@
   <!-- Button redirects back to dashboard -->
 
   <%#= link_to "Back", root_path, class:"btn btn-danger" %>
+
+  <!-- Create new survey -->
+  <%= link_to "New CRITIQ", new_survey_path, class:"btn btn-primary" %>
+</div>
+
 
