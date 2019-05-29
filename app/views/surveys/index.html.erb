@@ -1,20 +1,30 @@
-<h1>Index Page</h1>
+<div class="container">
+  <h1>Index Page</h1>
 
-<!-- Display all surveys of the current user(controller) if surveys
-     have been created -->
-<% if @surveys.count != 0 %>
-  <% @surveys.each do |survey| %>
-    <div>
-      <h3> <%= survey.title %> </h3>
-      <p> <%= survey.description %> </p>
-    </div>
+  <!-- Searchbar -->
+  <%= form_tag surveys_path, method: :get do %>
+    <%= text_field_tag :query,
+      params[:query],
+      class: "form-control",
+      placeholder: "Find a CRITIQ"
+    %>
   <% end %>
-<% else %>
-  <h3> No surveys created so far </h3>
-<% end %>
+  <!-- Display all surveys of the current user(controller) if surveys
+       have been created -->
+  <% if @surveys.count != 0 %>
+    <% @surveys.each do |survey| %>
+      <div>
+        <h3> <%= survey.title %> </h3>
+        <p> <%= survey.description %> </p>
+      </div>
+    <% end %>
+  <% else %>
+    <h3> No surveys created so far </h3>
+  <% end %>
 
-<!-- Button redirects to form for new survey -->
-<%= link_to "New CRITIQ", new_survey_path, class:"btn btn-primary" %>
-<!-- Button redirects back to dashboard -->
-<%= link_to "Back", root_path, class:"btn btn-danger" %>
+  <!-- Button redirects to form for new survey -->
+  <%= link_to "New CRITIQ", new_survey_path, class:"btn btn-primary" %>
+  <!-- Button redirects back to dashboard -->
+  <%= link_to "Back", root_path, class:"btn btn-danger" %>
+</div>
 
