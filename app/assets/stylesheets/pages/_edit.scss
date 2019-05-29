@@ -1,0 +1,52 @@
+.wrapper-title-survey {
+  margin-top: 20px;
+  padding-bottom: 40px;
+  border-bottom: 0.5px solid grey;
+}
+
+.title-input-text {
+  font-size:20px;
+  font-weight: bold;
+  color: black;
+}
+
+.description-input-text {
+  font-size: 18px;
+  font-weight: lighter;
+  color: grey;
+}
+
+.choice-type-and-question {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+  flex-grow: 1;
+}
+
+.survey_questions_name {
+  flex-grow: 1;
+  padding-left: 10px;
+}
+
+.question-input-text {
+  color: grey;
+}
+#questions {
+  display: flex;
+  position: relative;
+  margin-bottom: 80px;
+}
+
+.nested-fields {
+  display: flex;
+  flex-grow: 1;
+}
+
+#choices {
+  position: absolute;
+  top: 100px;
+}
+
+.form-group-valid {
+
+}

@@ -1,14 +1,19 @@
 <!-- rendered form for creating questions -->
 <div class="nested-fields">
-  <%= f.input :name %>
-  <%= f.input :question_type, as: :radio_buttons, collection: [['text', 'Open-Text'], ['radio', 'Multiple Choice']], label_method: :second, value_method: :first %>
+  <div class="choice-type-and-question">
+    <%= f.input :question_type, collection: [['text', 'Open-Text'], ['radio', 'Multiple Choice']], label_method: :second, value_method: :first, label: "Type", wrapper_html: {class: 'question-input-text'} %>
+    <%= f.input :name,
+                wrapper_html: { class: 'question-input-text' },
+                label: "Question" %>
+
+  </div>
   <!-- nested form for creating choices -->
   <div id="choices">
   <%= f.simple_fields_for :choices do |f| %>
       <%= render 'choice_fields', f: f %>
     <% end %>
       <div class="links">
-        <%= link_to_add_association 'add choices', f, :choices %>
+        <%= link_to_add_association 'add choices', f, :choices, class:"btn btn-light" %>
       </div>
     </div>
   <%= link_to_remove_association "remove question", f, data: {:confirm => 'do you really want to do this?'} %>
