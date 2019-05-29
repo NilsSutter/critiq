@@ -15,3 +15,5 @@ surv.save!
 puts "Questions Create"
 Question.create!(name: "Question 1", multiple_choice: false, question_type: "text", survey_id: surv.id)
 Question.create!(name: "Question 2", multiple_choice: false, question_type: "text", survey_id: surv.id)
+
+surv.update(published: true)
