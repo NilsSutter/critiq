@@ -9,7 +9,7 @@ class SurveysController < ApplicationController
         OR questions.name ILIKE :query
       "
       # get surveys that belong to the current user AND fit the search params
-      @surveys = current_user.surveys.left_outer_joins(:questions).where(sql_query, query: "%#{params[:query]}%")
+      @surveys = current_user.surveys.left_outer_joins(:questions).where(sql_query, query: "%#{params[:query]}%").distinct
     else
       @surveys = current_user.surveys
     end
