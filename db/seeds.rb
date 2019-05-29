@@ -12,6 +12,7 @@ SentQuestion.delete_all
 Question.delete_all
 Survey.delete_all
 
+
 puts "Regular Survey Create"
 surv = Survey.new(title: "Test Survey A", description: "A Test Survey", channel_id: "CJPM6BA75", published: false, user_id: 1)
 surv.save!
@@ -20,7 +21,7 @@ Question.create!(name: "Question 1?", multiple_choice: false, question_type: "te
 Question.create!(name: "Question 2?", multiple_choice: false, question_type: "text", survey_id: surv.id)
 Question.create!(name: "Question 3?", multiple_choice: false, question_type: "text", survey_id: surv.id)
 
-surv.update(published: true)
+# surv.update(published: true)
 
 puts "MC Survey Create"
 surv_mc = Survey.new(title: "Test Survey B", description: "A Test Survey with Multi Choice Questions", channel_id: "CJPM6BA75", published: false, user_id: 1)

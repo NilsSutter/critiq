@@ -6,12 +6,12 @@ class SurveysController < ApplicationController
       sql_query = " \
         surveys.title ILIKE :query \
         OR surveys.description ILIKE :query \
-        OR questions.name ILIKE :query \
+        OR questions.name ILIKE :query
       "
       # get surveys that belong to the current user AND fit the search params
-      @surveys = Survey.where(user_id: current_user.id).joins(:questions).where(sql_query, query: "%#{params["query"]}%")
+      @surveys = current_user.surveys.left_outer_joins(:questions).where(sql_query, query: "%#{params[:query]}%")
     else
-      @surveys = Survey.where(user_id: current_user.id)
+      @surveys = current_user.surveys
     end
   end
 
