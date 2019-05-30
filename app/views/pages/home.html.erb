@@ -28,7 +28,7 @@
 
       <!-- Reko -->
         <div class="company">
-        <img class="company-img" alt="company-avatar" src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/logo.png"/>
+        <%#= image_tag "reko.png", alt: "company-avatar", class:"company-img" %>
         <span>Reko</span>
       </div>
     </div>
@@ -72,10 +72,47 @@
 
   </div>
 </div>
+<!-- END feature card -->
 
 <!-- How to -->
-<div class="howto-wrapper">
-  <div class="cards">
+<div class="howto-wrapper" id="howto">
+  <div class="container">
+    <div class="description">
+      <!-- left: img -->
+      <div class="howto-img">
+        <%= image_tag "signslack.svg", alt: "alttext" %>
+      </div>
+      <!-- right: text -->
+      <div class="howto-text">
+        <h3>Sign in with your Slack account and create a survey</h3>
+      </div>
+    </div>
 
+    <div class="description">
+      <!-- left: text -->
+      <div class="howto-text">
+        <h3>
+          Questions will be asked via Slack<br><br>
+          Your colleagues can easily respond <br>without signing up
+        </h3>
+      </div>
+      <!-- right: img -->
+      <div class="howto-text">
+        <div class="howto-img">
+          <%= image_tag "chat.svg", alt: "alttext" %>
+        </div>
+      </div>
+    </div>
+
+    <div class="description">
+      <!-- left: img -->
+      <div class="howto-img">
+        <%= image_tag "dashboard.svg", alt: "alttext" %>
+      </div>
+      <!-- right: text -->
+      <div class="howto-text">
+        <h3>Go to your dashboard anytime and review your results</h3>
+      </div>
+    </div>
   </div>
 </div>
