@@ -38,22 +38,30 @@
          have been created -->
            <% if @surveys.count != 0 %>
            <% @surveys.each do |survey| %>
-           <div>
-            <!-- title of survey -->
-            <h3><%= link_to survey.title, survey_path(survey)  %></h3>
-            <!-- description of survey -->
-            <p> <%= survey.description %> </p>
-            <!-- status of survey; sent out? -->
-            <% if survey.published %>
-            <p>status: published </p>
-            <% else %>
-            <p>status: pending</p>
-            <% end %>
-            <!-- date of survey -->
-            <p> <%= survey.created_at.strftime("%A, %b %d") %></p>
-            <!-- % of responses as colored status bar (see Figma for) -->
-            <!-- delete survey from index -->
-            <%= link_to "delete", survey_path(survey), method: :delete%>
+           <div class="survey-card-index-wrapper">
+            <div class="survey-card-index-content">
+              <!-- title of survey -->
+              <div class="survey-card-index-info">
+                <h3><%= link_to survey.title, survey_path(survey)  %></h3>
+                <!-- description of survey -->
+                <% if survey.description.size > 80 %>
+                  <p> <%= survey.description.first(80).insert(-1, "...") %> </p>
+                <% end %>
+                <!-- status of survey; sent out? -->
+              </div>
+              <div class="survey-card-index-secondary">
+                <% if survey.published %>
+                <p>status: published </p>
+                <% else %>
+                <p>status: pending</p>
+                <% end %>
+                <!-- date of survey -->
+                <p> <%= survey.created_at.strftime("%A, %b %d") %></p>
+                <!-- % of responses as colored status bar (see Figma for) -->
+                <!-- delete survey from index -->
+                <%= link_to "delete", survey_path(survey), method: :delete%>
+              </div>
+            </div>
           </div>
           <% end %>
           <% else %>
@@ -65,7 +73,7 @@
       <div class="right-page">
         <div class="bot-on-index">
           <%= image_tag("robot.png")%>
-          <p>no critiq selected</p>
+          <p style="color: grey;">no critiq selected</p>
         </div>
       </div>
     </div>

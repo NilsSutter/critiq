@@ -45,11 +45,48 @@
 
 .bot-on-index > img {
   width: 180px;
+  margin-bottom: 10px;
 }
 
 .bot-on-index {
   position: absolute;
   top: 30%; left: 40%;
 }
+
+.survey-card-index-wrapper {
+  background: white;
+  // width: 90%;
+  height: 110px;
+  margin-bottom: 30px;
+}
+
+.survey-card-index-content {
+  padding-left: 10px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.survey-card-index-info {
+  flex-grow: 1;
+}
+
+.survey-card-index-info > h3 > a {
+  text-decoration: none;
+  color: #404040;
+  font-size: 20px;
+}
+
+.survey-card-index-info > h3 > p {
+  color: grey;
+}
+
+
+
+
+
+
+
+
+
 
 
