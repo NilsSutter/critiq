@@ -17,6 +17,7 @@ gem 'uglifier'
 gem 'webpacker'
 gem "pg_search"
 
+
 # OAuth Related:
 gem 'omniauth'
 gem 'omniauth-slack'

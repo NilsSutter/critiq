@@ -1,42 +1,64 @@
-<div class="container">
-  <h1>Index Page</h1>
+<div class="full-page">
+  <div class="sidebar-main">
+    <div class="user-info-sidebar">
+      <h3 style="color:#C9C9C9; font-size:80px;padding-top: 10px;">
+        <%= current_user.first_name.chars.first unless current_user.first_name.blank? %>
+      </h3>
+    </div>
+    <div class="create-survey-div">
+      <button type="button" class="create-survey-button"
+    data-toggle="modal" data-target="#exampleModalCenter">
+    NEW CRITIQ </button>
+    </div>
+    <div class="menu-buttons-content">
+      <div class="menu-button-div"><i class="fas fa-chart-line current"></i><%= link_to "Inbox", surveys_path, class:"sidebar-menu-item current" %></div>
+      <div class="menu-button-div"><i class="fas fa-users"></i><%= link_to "Groups", surveys_path, class:"sidebar-menu-item" %></div>
+      <div class="menu-button-div"><i class="fas fa-bullseye"></i><%= link_to "Goals", surveys_path, class:"sidebar-menu-item" %></div>
+      <div class="menu-button-div"><i class="far fa-user"></i><%= link_to "Profile", surveys_path, class:"sidebar-menu-item" %></div>
+    </div>
+    <div class="sidebar-footer">
+      <p>CRITIQ v1.9.2</p>
+    </div>
+  </div>
 
-  <!-- Searchbar -->
-  <%= form_tag surveys_path, method: :get do %>
-    <%= text_field_tag :query,
-      params[:query],
-      class: "form-control",
-      placeholder: "Find a CRITIQ"
-    %>
-  <% end %>
+<div class="survey-list">
 
-  <!-- Display all surveys of the current user if surveys
-       have been created -->
-  <% if @surveys.count != 0 %>
-    <% @surveys.each do |survey| %>
-      <div>
-        <!-- title of survey -->
-        <h3><%= link_to survey.title, survey_path(survey)  %></h3>
-        <!-- description of survey -->
-        <p> <%= survey.description %> </p>
-        <!-- status of survey; sent out? -->
-        <% if survey.published %>
-          <p>status: published </p>
-        <% else %>
-          <p>status: pending</p>
-        <% end %>
-        <!-- date of survey -->
-        <p> <%= survey.created_at.strftime("%A, %b %d") %></p>
-        <!-- % of responses as colored status bar (see Figma for) -->
-        <!-- delete survey from index -->
-        <%= link_to "delete", survey_path(survey), method: :delete%>
-      </div>
+    <h1>Dashboard</h1>
+
+    <!-- Searchbar -->
+    <%= form_tag surveys_path, method: :get do %>
+      <%= text_field_tag :query,
+        params[:query],
+        class: "form-control",
+        placeholder: "Find a CRITIQ"
+      %>
     <% end %>
-  <% else %>
-    <h3> No surveys created so far </h3>
-  <% end %>
 
-  <!-- Create new survey -->
-  <%= link_to "New CRITIQ", new_survey_path, class:"btn btn-primary" %>
+    <!-- Display all surveys of the current user if surveys
+         have been created -->
+    <% if @surveys.count != 0 %>
+      <% @surveys.each do |survey| %>
+        <div>
+          <!-- title of survey -->
+          <h3><%= link_to survey.title, survey_path(survey)  %></h3>
+          <!-- description of survey -->
+          <p> <%= survey.description %> </p>
+          <!-- status of survey; sent out? -->
+          <% if survey.published %>
+            <p>status: published </p>
+          <% else %>
+            <p>status: pending</p>
+          <% end %>
+          <!-- date of survey -->
+          <p> <%= survey.created_at.strftime("%A, %b %d") %></p>
+          <!-- % of responses as colored status bar (see Figma for) -->
+          <!-- delete survey from index -->
+          <%= link_to "delete", survey_path(survey), method: :delete%>
+        </div>
+      <% end %>
+    <% else %>
+      <h3> No surveys created so far </h3>
+    <% end %>
+    <%= render partial: "modal_create_survey" %>
+  </div>
 </div>
-

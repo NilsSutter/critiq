@@ -1,0 +1,78 @@
+.sidebar-main {
+  width: 11vw;
+  height: 100vh;
+  background: #424242;
+  position: sticky;
+  top: 0;
+  margin-right: 25px;
+}
+
+.full-page {
+  display: flex;
+}
+
+.user-info-sidebar {
+  height: 15vh;
+  width: 100%;
+  text-align: center;
+  background: #9F9F9F;
+}
+
+.create-survey-button {
+  border-radius: 22px;
+  width: 70%;
+  height: 40px;
+  margin:0 auto;
+  display:block;
+  background: #9F9F9F;
+  color: white;
+  border: none;
+  box-shadow: 0 0 2px grey;
+}
+
+.create-survey-button:hover {
+  background: #8e8e8e;
+}
+
+.create-survey-div {
+  margin-top: 42px;
+  margin-bottom: 42px;
+}
+
+.menu-buttons-content .current{
+  color: white;
+  font-weight: bold;
+}
+
+.menu-button-div {
+  margin-top: 33px;
+  margin-bottom: 33px;
+  padding-left: 20%;
+}
+
+.menu-button-div > a {
+  padding-left: 15px;
+  text-decoration: none;
+  color: #9F9F9F;
+  font-size: 18px;
+}
+
+.menu-button-div > i {
+  width: 20px;
+  font-weight: bold;
+  color: #9F9F9F;
+  font-size: 18px;
+}
+
+.menu-button-div:hover > a {
+  color: #c4c2c2
+}
+
+.sidebar-footer {
+  position: absolute;
+  bottom: 2px;
+  font-size: 10px;
+  color: white;
+  margin-left: 40%;
+  margin-right: 40%;
+}

@@ -1,12 +1,1 @@
-<h1>Create Survey Page</h1>
-
-<!-- Simple form for creating a new survey -->
-<%= simple_form_for @survey do |f| %>
-  <%= f.input :title %>
-  <%= f.input :description %>
-  <%= f.button :submit, class:"btn btn-primary" %>
-<% end %>
-
-
-<!-- Button which redirects to dashboard (index-page) -->
-<%= link_to "Back", surveys_path, class:"btn btn-danger" %>
+<%= render partial: 'new' %>

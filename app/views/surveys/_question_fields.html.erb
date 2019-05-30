@@ -1,15 +1,26 @@
 <!-- rendered form for creating questions -->
 <div class="nested-fields">
-  <%= f.input :name %>
-  <%= f.input :question_type, as: :radio_buttons, collection: [['text', 'Open-Text'], ['radio', 'Multiple Choice']], label_method: :second, value_method: :first %>
+  <div class="choice-type-and-question">
+    <%= f.input :question_type,
+          collection: [['text', 'Open-Text'], ['radio', 'Multiple Choice']],
+          selected: 1,
+          label_method: :second,
+          value_method: :first,
+          label: "Type",
+          wrapper_html: {class: 'question-input-text'} %>
+    <%= f.input :name,
+          wrapper_html: { class: 'question-input-text' },
+          label: "Question" %>
+  <%# <%= f.input :multiple_choice, :as => :hidden, :input_html => { :value => "true" } %> %>
+  <%= link_to_remove_association '<i class="fas fa-minus-circle"></i>'.html_safe, f,  class:"question-icon" %>
+  </div>
   <!-- nested form for creating choices -->
-  <div id="choices">
+</div>
+<div id="choices">
+  <div class="links">
+    <%= link_to_add_association 'add choices', f, :choices, class:"btn btn-light" %>
+  </div>
   <%= f.simple_fields_for :choices do |f| %>
-      <%= render 'choice_fields', f: f %>
-    <% end %>
-      <div class="links">
-        <%= link_to_add_association 'add choices', f, :choices %>
-      </div>
-    </div>
-  <%= link_to_remove_association "remove question", f, data: {:confirm => 'do you really want to do this?'} %>
+  <%= render 'choice_fields', f: f %>
+  <% end %>
 </div>
