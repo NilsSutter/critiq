@@ -1,12 +1,16 @@
 <!-- Simple form for creating a new survey -->
-<%= simple_form_for survey do |f| %>
-  <%= f.input :title,
-              placeholder: "give your critiq a name" %>
-  <%= f.input :description,
-              placeholder: "specify what this critiq is about"%>
-  <%= f.button :submit, class:"btn btn-primary" %>
-<% end %>
 
-
-<!-- Button which redirects to dashboard (index-page) -->
-<%#= link_to "Back", surveys_path, class:"btn btn-danger" %>
+<div class="wrapper-modal-survey">
+  <div class="survey-modal-content">
+    <%= simple_form_for survey do |f| %>
+      <%= f.input :title,
+                  placeholder: "" %>
+      <%= f.input :description,
+                  placeholder: ""%>
+      <%= f.button :submit, class:"btn btn-primary w-100" %>
+    <% end %>
+  </div>
+  <div class="survey-modal-picture">
+    <%= image_tag("bot.svg")%>
+  </div>
+</div>
