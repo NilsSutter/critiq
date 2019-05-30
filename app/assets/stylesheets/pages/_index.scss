@@ -55,19 +55,28 @@
 
 .survey-card-index-wrapper {
   background: white;
-  // width: 90%;
   height: 110px;
   margin-bottom: 30px;
+  border-radius: 3px;
+  border: 0.5px solid grey;
+  box-shadow: 0 0 7px lightgrey
 }
 
 .survey-card-index-content {
   padding-left: 10px;
   display: flex;
   justify-content: space-between;
+  min-height: 100%;
 }
 
 .survey-card-index-info {
   flex-grow: 1;
+  padding-right: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+  max-width: 89%;
 }
 
 .survey-card-index-info > h3 > a {
@@ -76,7 +85,28 @@
   font-size: 20px;
 }
 
-.survey-card-index-info > h3 > p {
+.survey-card-index-info > p {
+  color: grey;
+  margin-bottom: none;
+}
+
+.survey-card-index-secondary {
+  width: 50px;
+  text-align: center;
+  margin: auto 0;
+}
+
+.survey-card-index-secondary > p {
+  color: grey;
+  font-size: 12px;
+  font-weight: lighter;
+}
+
+.survey-card-index-secondary  i {
+  color: darkgreen;
+}
+
+.delete-index  i{
   color: grey;
 }
 

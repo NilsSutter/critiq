@@ -44,22 +44,26 @@
               <div class="survey-card-index-info">
                 <h3><%= link_to survey.title, survey_path(survey)  %></h3>
                 <!-- description of survey -->
-                <% if survey.description.size > 80 %>
-                  <p> <%= survey.description.first(80).insert(-1, "...") %> </p>
+                <% if survey.description.size > 120 %>
+                  <p> <%= survey.description.first(120).insert(-1, "...") %> </p>
+                <% else %>
+                  <p> <%= survey.description %> </p>
                 <% end %>
                 <!-- status of survey; sent out? -->
               </div>
               <div class="survey-card-index-secondary">
+                <p> <%= survey.created_at.strftime(" %e %b ") %></p>
                 <% if survey.published %>
-                <p>status: published </p>
+                  <p><i class="fas fa-check"></i></p>
                 <% else %>
-                <p>status: pending</p>
+                  <p><i class="fas fa-times"></i></p>
                 <% end %>
                 <!-- date of survey -->
-                <p> <%= survey.created_at.strftime("%A, %b %d") %></p>
                 <!-- % of responses as colored status bar (see Figma for) -->
                 <!-- delete survey from index -->
-                <%= link_to "delete", survey_path(survey), method: :delete%>
+                <div class="delete-index">
+                  <%= link_to '<i class="far fa-trash-alt"></i>'.html_safe, survey_path(survey), method: :delete%>
+                </div>
               </div>
             </div>
           </div>
