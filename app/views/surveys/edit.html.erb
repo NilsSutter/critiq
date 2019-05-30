@@ -11,6 +11,14 @@
       <%= f.input :description,
                   wrapper_html: { class: 'description-input-text' } %>
     </div>
+    <div class="slack-channels">
+      <h5>Send to:
+      <%= f.collection_select :channel_id,
+            @slackchannels,
+            ->(item) { item[:id] },
+            ->(item) { item[:name].capitalize }
+            %></h5>
+    </div>
     <!-- nested form for creating questions -->
     <div id="questions">
       <%= f.simple_fields_for :questions do |f| %>
