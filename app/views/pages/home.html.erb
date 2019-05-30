@@ -1,10 +1,118 @@
 <%= render 'shared/navbar' %>
-<h1>Pages#home</h1>
+<!-- <h1>Pages#home</h1> -->
 
-<h1>Signed in as: <%= current_user.nickname.capitalize if user_signed_in? && !current_user.nickname.nil? %></h1>
+<!-- <h1>Signed in as: <%#= current_user.nickname.capitalize if user_signed_in? && !current_user.nickname.nil? %></h1> -->
+<div class="full-screen-banner">
+  <div class="container mt-4">
+    <div class="d-flex justify-content-between banner">
+      <!-- value prop -->
+      <div class="banner-text">
+        <h1>Unconstrained</h1>
+        <h1>Anonymous</h1>
+        <h1>Feedback</h1>
+        <%= link_to "View surveys", surveys_path, class:"cta" %>
+      </div>
+      <!-- img -->
+      <div class="banner-img">
+        <%= image_tag "slack.svg", alt: "alttext" %>
+      </div>
+    </div>
+
+    <!-- partner companies -->
+    <div class="company-list">
+      <!-- LeWagon -->
+        <div class="company">
+        <img class="company-img" alt="company-avatar" src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/logo.png"/>
+        <span>Le Wagon</span>
+      </div>
+
+      <!-- Reko -->
+        <div class="company">
+        <%#= image_tag "reko.png", alt: "company-avatar", class:"company-img" %>
+        <span>Reko</span>
+      </div>
+    </div>
+  </div>
+</div>
 
 
+<div class="card-wrapper">
+<!-- feature cards -->
+  <div class="cards">
 
+    <div class="card">
+      <div class="image-padding-first">
+        <%= image_tag "survey.svg", alt: "survey", class:"card-img" %>
+      </div>
+      <div class="card-text">
+        <h4>Create surveys</h4>
+        <p>Ask more, know more</p>
+      </div>
+    </div>
 
-<!-- Link to surveys -->
-<%= link_to "View surveys", surveys_path, class:"btn btn-primary" %>
+    <div class="card">
+      <div class="image-padding">
+        <%= image_tag "bot.svg", alt: "survey", class:"card-img" %>
+      </div>
+      <div class="card-text">
+        <h4>Run via Slack</h4>
+        <p>Surveys get send and answered directly in slack.<br></p>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="image-padding">
+        <%= image_tag "analytics.svg", alt: "survey", class:"card-img" %>
+      </div>
+      <div class="card-text">
+        <h4>Analyze results</h4>
+        <p>See areas of improvement by searching your dashboard.</p>
+      </div>
+    </div>
+
+  </div>
+</div>
+<!-- END feature card -->
+
+<!-- How to -->
+<div class="howto-wrapper" id="howto">
+  <div class="container">
+    <div class="description">
+      <!-- left: img -->
+      <div class="howto-img">
+        <%= image_tag "signslack.svg", alt: "alttext" %>
+      </div>
+      <!-- right: text -->
+      <div class="howto-text">
+        <h3>Sign in with your Slack account and create a survey</h3>
+      </div>
+    </div>
+
+    <div class="description">
+      <!-- left: text -->
+      <div class="howto-text">
+        <h3>
+          Questions will be asked via Slack<br><br>
+          Your colleagues can easily respond <br>without signing up
+        </h3>
+      </div>
+      <!-- right: img -->
+      <div class="howto-text">
+        <div class="howto-img">
+          <%= image_tag "chat.svg", alt: "alttext" %>
+        </div>
+      </div>
+    </div>
+
+    <div class="description">
+      <!-- left: img -->
+      <div class="howto-img">
+        <%= image_tag "dashboard.svg", alt: "alttext" %>
+      </div>
+      <!-- right: text -->
+      <div class="howto-text">
+        <h3>Go to your dashboard anytime and review your results</h3>
+      </div>
+    </div>
+  </div>
+</div>
