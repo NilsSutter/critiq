@@ -3,7 +3,7 @@ class Response < ApplicationRecord
   belongs_to :choice, optional: true
 
   after_commit :send_next_question
-  
+
   private
 
   def send_next_question
