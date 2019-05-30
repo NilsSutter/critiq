@@ -36,6 +36,18 @@ class SurveysController < ApplicationController
 
   def edit
     @survey = Survey.find(params[:id])
+
+    fetch_slack_channels = GetSlackChannelsJob.perform_now
+    if fetch_slack_channels["ok"]
+      # Format for Select2. Very picky.
+      channel_array = []
+      fetch_slack_channels["channels"].each do |chan|
+        channel_array << {id: chan["id"], name: chan["name"]}
+      end
+      @slackchannels = channel_array
+    else
+      @slackchannels = {error: true}
+    end
   end
 
   def update
@@ -55,6 +67,6 @@ class SurveysController < ApplicationController
 
   private
   def survey_params
-    params.require(:survey).permit(:title, :description, :published, questions_attributes: [:name, :question_type, choices_attributes: [:name, :_destroy]])
+    params.require(:survey).permit(:title, :description, :published, :channel_id, questions_attributes: [:name, :question_type, choices_attributes: [:name, :_destroy]])
   end
 end
