@@ -18,7 +18,7 @@ class SendSlackMessageIndividualJob < ApplicationJob
     end
 
 
-    if next_question != nil && next_question.multiple_choice
+    if next_question != nil && next_question.question_type == 'radio'
       send_message_multiple_choice(target_uid, next_question)
     else
       send_message(target_uid, question_text)

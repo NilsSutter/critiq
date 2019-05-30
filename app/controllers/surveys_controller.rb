@@ -67,6 +67,6 @@ class SurveysController < ApplicationController
 
   private
   def survey_params
-    params.require(:survey).permit(:title, :description, :published, :channel_id, questions_attributes: [:name, :question_type, choices_attributes: [:name, :_destroy]])
+    params.require(:survey).permit(:title, :description, :published, :channel_id, questions_attributes: [:name, :question_type, :multiple_choice, choices_attributes: [:name, :_destroy]])
   end
 end
