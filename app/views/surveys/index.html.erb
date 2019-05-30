@@ -5,7 +5,7 @@
     </div>
     <div class="create-survey-div">
       <button type="button" class="create-survey-button"
-    data-toggle="modal" data-target="#exampleModalCenter">
+      data-toggle="modal" data-target="#exampleModalCenter">
     NEW CRITIQ </button>
     </div>
     <div class="menu-buttons-content">
@@ -18,45 +18,53 @@
       <p>CRITIQ v1.9.2</p>
     </div>
   </div>
-
-<div class="survey-list">
-
-    <h1>Dashboard</h1>
-
-    <!-- Searchbar -->
-    <%= form_tag surveys_path, method: :get do %>
-      <%= text_field_tag :query,
-        params[:query],
-        class: "form-control",
-        placeholder: "Find a CRITIQ"
-      %>
-    <% end %>
-
-    <!-- Display all surveys of the current user if surveys
-         have been created -->
-    <% if @surveys.count != 0 %>
-      <% @surveys.each do |survey| %>
-        <div>
-          <!-- title of survey -->
-          <h3><%= link_to survey.title, survey_path(survey)  %></h3>
-          <!-- description of survey -->
-          <p> <%= survey.description %> </p>
-          <!-- status of survey; sent out? -->
-          <% if survey.published %>
-            <p>status: published </p>
-          <% else %>
-            <p>status: pending</p>
-          <% end %>
-          <!-- date of survey -->
-          <p> <%= survey.created_at.strftime("%A, %b %d") %></p>
-          <!-- % of responses as colored status bar (see Figma for) -->
-          <!-- delete survey from index -->
-          <%= link_to "delete", survey_path(survey), method: :delete%>
+  <div class="survey-list">
+    <div class="index-title-section">
+      <h1 style="padding-left: 18px;">Dashboard</h1>
+    </div>
+    <div class="survey-wrapper">
+      <div class="left-page">
+        <div class="search-bar-index">
+          <%= form_tag surveys_path, method: :get do %>
+          <%= text_field_tag :query,
+          params[:query],
+          class: "form-control",
+            placeholder: "find critiq"
+            %>
+            <% end %>
         </div>
-      <% end %>
-    <% else %>
-      <h3> No surveys created so far </h3>
-    <% end %>
-    <%= render partial: "modal_create_survey" %>
+        <div class="all-surveys">
+        <!-- Display all surveys of the current user if surveys
+         have been created -->
+           <% if @surveys.count != 0 %>
+           <% @surveys.each do |survey| %>
+           <div>
+            <!-- title of survey -->
+            <h3><%= link_to survey.title, survey_path(survey)  %></h3>
+            <!-- description of survey -->
+            <p> <%= survey.description %> </p>
+            <!-- status of survey; sent out? -->
+            <% if survey.published %>
+            <p>status: published </p>
+            <% else %>
+            <p>status: pending</p>
+            <% end %>
+            <!-- date of survey -->
+            <p> <%= survey.created_at.strftime("%A, %b %d") %></p>
+            <!-- % of responses as colored status bar (see Figma for) -->
+            <!-- delete survey from index -->
+            <%= link_to "delete", survey_path(survey), method: :delete%>
+          </div>
+          <% end %>
+          <% else %>
+          <h3> No surveys created so far </h3>
+          <% end %>
+        </div>
+        <%= render partial: "modal_create_survey" %>
+      </div>
+      <div class="right-page">
+        <p>show survey details</p>
+      </div>
+    </div>
   </div>
 </div>
