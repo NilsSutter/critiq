@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
 
   protected
   # redirecting after log in enabled
-  # def after_sign_in_path_for(resource)
-  #   surveys_path
-  # end
+  def after_sign_in_path_for(resource)
+    surveys_path
+  end
 end
