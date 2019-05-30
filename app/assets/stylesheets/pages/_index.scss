@@ -77,6 +77,8 @@
   justify-content: center;
   height: 100%;
   max-width: 89%;
+  padding-top: 7px;
+  padding-left: 7px;
 }
 
 .survey-card-index-info > h3 > a {
@@ -88,6 +90,8 @@
 .survey-card-index-info > p {
   color: grey;
   margin-bottom: none;
+  font-weight: lighter;
+  font-size: 13px;
 }
 
 .survey-card-index-secondary {
@@ -108,6 +112,7 @@
 
 .delete-index  i{
   color: grey;
+  z-index: 30;
 }
 
 
