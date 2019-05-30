@@ -17,11 +17,11 @@
     <div class="sidebar-footer">
       <p>CRITIQ v1.9.2</p>
     </div>
-
   </div>
 
 <div class="survey-list">
-    <h1>Index Page</h1>
+
+    <h1>Dashboard</h1>
 
     <!-- Searchbar -->
     <%= form_tag surveys_path, method: :get do %>
@@ -60,13 +60,3 @@
     <%= render partial: "modal_create_survey" %>
   </div>
 </div>
-
-
-  <!-- Button redirects back to dashboard -->
-
-  <%#= link_to "Back", root_path, class:"btn btn-danger" %>
-
-  <!-- Create new survey -->
-  <%#= link_to "New CRITIQ", new_survey_path, class:"btn btn-primary" %>
-
-
