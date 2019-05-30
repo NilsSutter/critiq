@@ -26,16 +26,24 @@ class Unknown < SlackRubyBot::Commands::Base
               sent_question_id: attached_sent_question.id,
               question_id: attached_sent_question.question_id
             )
-    
-    reply.save!
 
-    # client.say(channel: data.channel, text: "DEBUG: Monkeypatch")
-    # if !entry.id.nil?
-    #   client.say(channel: data.channel, text: "DEBUG: Message ALREADY Saved")
-    # elsif entry.save!
-    #   client.say(channel: data.channel, text: "DEBUG: Message Saved")
-    # else
-    #   client.say(channel: data.channel, text: "DEBUG: Message NOT Saved!")
-    # end
+    if attached_sent_question.question.question_type == "radio"
+      # if data.text.to_i == 0 then they sent NaN, 0 is not a valid choice either
+      # Checks if the sent int is inside the range of choices available
+      if (1..attached_sent_question.question.choices.count).include?(data.text.to_i) && !data.text.to_i.zero?
+        choice = attached_sent_question.question.choices[(data.text.to_i - 1)]
+        reply.choice_id = choice.id
+        reply.save!
+      else
+        # Checks if there is already a reply to the last asked question
+        if attached_sent_question.question.responses.where(slack_uid: data.user).exists?
+          client.say(channel: data.channel, text: "I didn't say anything.")
+        else
+          client.say(channel: data.channel, text: "I don't think that was one of the options. Choose a different one?")
+        end
+      end
+    else
+      reply.save!
+    end
   end
 end
