@@ -1,64 +1,65 @@
-<div class="container">
-  <h1>Index Page</h1>
-
-  <!-- Searchbar -->
-  <%= form_tag surveys_path, method: :get do %>
-    <%= text_field_tag :query,
-      params[:query],
-      class: "form-control",
-      placeholder: "Find a CRITIQ"
-    %>
-  <% end %>
-
-  <!-- Display all surveys of the current user if surveys
-       have been created -->
-  <% if @surveys.count != 0 %>
-    <% @surveys.each do |survey| %>
-      <div>
-        <!-- title of survey -->
-        <h3><%= link_to survey.title, survey_path(survey)  %></h3>
-        <!-- description of survey -->
-        <p> <%= survey.description %> </p>
-        <!-- status of survey; sent out? -->
-        <% if survey.published %>
-          <p>status: published </p>
-        <% else %>
-          <p>status: pending</p>
-        <% end %>
-        <!-- date of survey -->
-        <p> <%= survey.created_at.strftime("%A, %b %d") %></p>
-        <!-- % of responses as colored status bar (see Figma for) -->
-        <!-- delete survey from index -->
-        <%= link_to "delete", survey_path(survey), method: :delete%>
-      </div>
-    <% end %>
-  <% else %>
-    <h3> No surveys created so far </h3>
-  <% end %>
-
-  <button type="button" class="btn btn-primary"
-  data-toggle="modal" data-target="#exampleModalCenter">
-  New Critiq
-</div>
-
-  <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h4 class="modal-title" id="exampleModalLongTitle">Create a Critiq!</h4>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <%= render partial: "new", locals: { survey: @survey }  %>
-        </div>
-        <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-      </div>
-      </div>
+<div class="full-page">
+  <div class="sidebar-main">
+    <div class="user-info-sidebar">
+      <h3 style="color:#C9C9C9; font-size:80px;padding-top: 10px;"><%= [current_user.nickname.to_s.split(".")][0][0][0].capitalize%><%= [current_user.nickname.to_s.split(".")][0][1][0].capitalize %> </h3>
     </div>
+    <div class="create-survey-div">
+      <button type="button" class="create-survey-button"
+    data-toggle="modal" data-target="#exampleModalCenter">
+    NEW CRITIQ </button>
+    </div>
+    <div class="menu-buttons-content">
+      <div class="menu-button-div"><i class="fas fa-chart-line current"></i><%= link_to "Inbox", surveys_path, class:"sidebar-menu-item current" %></div>
+      <div class="menu-button-div"><i class="fas fa-users"></i><%= link_to "Groups", surveys_path, class:"sidebar-menu-item" %></div>
+      <div class="menu-button-div"><i class="fas fa-bullseye"></i><%= link_to "Goals", surveys_path, class:"sidebar-menu-item" %></div>
+      <div class="menu-button-div"><i class="far fa-user"></i><%= link_to "Profile", surveys_path, class:"sidebar-menu-item" %></div>
+    </div>
+    <div class="sidebar-footer">
+      <p style="font-size: 10px; color: white;">CRITIQ v1.9.2</p>
+    </div>
+
   </div>
+
+<div class="survey-list">
+    <h1>Index Page</h1>
+
+    <!-- Searchbar -->
+    <%= form_tag surveys_path, method: :get do %>
+      <%= text_field_tag :query,
+        params[:query],
+        class: "form-control",
+        placeholder: "Find a CRITIQ"
+      %>
+    <% end %>
+
+    <!-- Display all surveys of the current user if surveys
+         have been created -->
+    <% if @surveys.count != 0 %>
+      <% @surveys.each do |survey| %>
+        <div>
+          <!-- title of survey -->
+          <h3><%= link_to survey.title, survey_path(survey)  %></h3>
+          <!-- description of survey -->
+          <p> <%= survey.description %> </p>
+          <!-- status of survey; sent out? -->
+          <% if survey.published %>
+            <p>status: published </p>
+          <% else %>
+            <p>status: pending</p>
+          <% end %>
+          <!-- date of survey -->
+          <p> <%= survey.created_at.strftime("%A, %b %d") %></p>
+          <!-- % of responses as colored status bar (see Figma for) -->
+          <!-- delete survey from index -->
+          <%= link_to "delete", survey_path(survey), method: :delete%>
+        </div>
+      <% end %>
+    <% else %>
+      <h3> No surveys created so far </h3>
+    <% end %>
+    <%= render partial: "modal_create_survey" %>
+  </div>
+</div>
 
 
   <!-- Button redirects back to dashboard -->
@@ -66,7 +67,6 @@
   <%#= link_to "Back", root_path, class:"btn btn-danger" %>
 
   <!-- Create new survey -->
-  <%= link_to "New CRITIQ", new_survey_path, class:"btn btn-primary" %>
-</div>
+  <%#= link_to "New CRITIQ", new_survey_path, class:"btn btn-primary" %>
 
 
