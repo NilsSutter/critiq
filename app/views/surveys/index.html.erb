@@ -40,7 +40,7 @@
         <!-- Display all surveys of the current user if surveys
          have been created -->
            <% if @surveys.count != 0 %>
-           <% @surveys.each do |survey| %>
+           <% @surveys.reverse.each do |survey| %>
            <div class="survey-card-index-wrapper">
             <div class="survey-card-index-content">
               <!-- title of survey -->
