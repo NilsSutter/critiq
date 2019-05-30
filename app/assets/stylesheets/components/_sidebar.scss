@@ -1,10 +1,9 @@
 .sidebar-main {
-  width: 11vw;
+  width: 14vw;
   height: 100vh;
   background: #424242;
   position: sticky;
   top: 0;
-  margin-right: 25px;
 }
 
 .full-page {
@@ -20,7 +19,7 @@
 
 .create-survey-button {
   border-radius: 22px;
-  width: 70%;
+  width: 77%;
   height: 40px;
   margin:0 auto;
   display:block;
@@ -50,6 +49,12 @@
   padding-left: 20%;
 }
 
+.menu-button-div-logout {
+  margin-top: 250px;
+  margin-bottom: 33px;
+  padding-left: 20%;
+}
+
 .menu-button-div > a {
   padding-left: 15px;
   text-decoration: none;
@@ -75,4 +80,13 @@
   color: white;
   margin-left: 40%;
   margin-right: 40%;
+}
+
+.sidebar-menu-item-logout {
+  margin-top: 200px;
+}
+
+
+#logout-button {
+  margin-top: 245px;
 }

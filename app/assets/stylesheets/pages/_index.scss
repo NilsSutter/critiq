@@ -1,2 +1,127 @@
 // Import page-specific CSS files here.
 @import "home";
+// CSS styling for index starting hereafter
+
+.index-title-section {
+  padding-top: 31px;
+  background: #F4F4F4;
+}
+
+.survey-list {
+  flex-grow: 1;
+  padding-right: 25px;
+}
+
+.survey-list {
+  padding: 25px;
+  width: 100%;
+  // height: 100vh;
+  overflow: scroll;
+}
+
+.left-page {
+  flex-basis: 50%;
+  padding: 20px;
+}
+
+.right-page {
+  flex-basis: 50%;
+  padding: 20px;
+  border-left: 0.1px solid lightgrey;
+  text-align: center;
+  position: relative;
+}
+
+.survey-wrapper {
+  display: flex;
+  height: 80vh;
+}
+
+.all-surveys {
+  height: 100%;
+  overflow: scroll;
+  padding-top: 30px;
+}
+
+.bot-on-index > img {
+  width: 180px;
+  margin-bottom: 10px;
+}
+
+.bot-on-index {
+  position: absolute;
+  top: 30%; left: 40%;
+}
+
+.survey-card-index-wrapper {
+  background: white;
+  height: 110px;
+  margin-bottom: 30px;
+  border-radius: 3px;
+  border: 0.5px solid grey;
+  box-shadow: 0 0 7px lightgrey
+}
+
+.survey-card-index-content {
+  padding-left: 10px;
+  display: flex;
+  justify-content: space-between;
+  min-height: 100%;
+}
+
+.survey-card-index-info {
+  flex-grow: 1;
+  padding-right: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+  max-width: 89%;
+  padding-top: 7px;
+  padding-left: 7px;
+}
+
+.survey-card-index-info > h3 > a {
+  text-decoration: none;
+  color: #404040;
+  font-size: 20px;
+}
+
+.survey-card-index-info > p {
+  color: grey;
+  margin-bottom: none;
+  font-weight: lighter;
+  font-size: 14px;
+}
+
+.survey-card-index-secondary {
+  width: 50px;
+  text-align: center;
+  margin: auto 0;
+}
+
+.survey-card-index-secondary > p {
+  color: grey;
+  font-size: 12px;
+  font-weight: lighter;
+}
+
+.survey-card-index-secondary  i {
+  color: darkgreen;
+}
+
+.delete-index  i{
+  color: grey;
+  z-index: 30;
+}
+
+
+
+
+
+
+
+
+
+
+
