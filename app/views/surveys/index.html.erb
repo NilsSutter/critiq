@@ -45,8 +45,8 @@
               <div class="survey-card-index-info">
                 <h3><%= link_to survey.title, survey_path(survey)  %></h3>
                 <!-- description of survey -->
-                <% if survey.description.size > 120 %>
-                  <p> <%= survey.description.first(120).insert(-1, "...") %> </p>
+                <% if survey.description.size > 130 %>
+                  <p> <%= survey.description.first(130).insert(-1, "...") %> </p>
                 <% else %>
                   <p> <%= survey.description %> </p>
                 <% end %>
