@@ -3,6 +3,8 @@ class SendSlackMessageAllJob < ApplicationJob
 
   def perform(*args)
     puts ""
+    puts "* Sending in 5s..."
+    sleep(5)
     puts "* Inside SendSlackMessageAllJob *"
     # Args: ARRAY of a HASH: Question_ID & Survey_ID
 
@@ -32,9 +34,11 @@ class SendSlackMessageAllJob < ApplicationJob
 
       send_message(member_uid, message_text)
 
-      if question.multiple_choice
+      if question.question_type == 'radio'
+        puts "> Question is MC"
         send_message_multiple_choice(member_uid, question)
       else
+        puts "> Question is NOT MC"
         send_message(member_uid, question.name)
       end
 
