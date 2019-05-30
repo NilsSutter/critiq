@@ -2,7 +2,11 @@
   <div class="sidebar-main">
     <div class="user-info-sidebar">
       <h3 style="color:#C9C9C9; font-size:80px;padding-top: 10px;">
-        <%= current_user.first_name.chars.first unless current_user.first_name.blank? %>
+        <% if !current_user.first_name.blank? %>
+          <%= current_user.first_name.chars.first %>
+        <% else %>
+          <%=  current_user.nickname.chars.first.capitalize%>
+        <% end %>
       </h3>
     </div>
     <div class="create-survey-div">
