@@ -12,7 +12,7 @@
           <%= text_field_tag :query,
           params[:query],
           class: "form-control",
-            placeholder: "find critiq"
+            placeholder: "Find Critiq"
             %>
             <% end %>
         </div>
@@ -25,7 +25,7 @@
             <div class="survey-card-index-content">
               <!-- title of survey -->
               <div class="survey-card-index-info">
-                <h3><%= link_to survey.title, survey_path(survey)  %></h3>
+                <h3><%= link_to survey.title, surveys_path(id: survey.id) %></h3>
                 <!-- description of survey -->
                 <% if survey.description.size > 130 %>
                   <p> <%= survey.description.first(130).insert(-1, "...") %> </p>
@@ -61,10 +61,7 @@
         <%= render partial: "modal_create_survey" %>
       </div>
       <div class="right-page">
-        <div class="bot-on-index">
-          <%= image_tag("robot.png")%>
-          <p style="color: grey;">no critiq selected</p>
-        </div>
+        <%= render partial: "question_responses", locals: {all_questions: @questions} %>
       </div>
     </div>
   </div>
