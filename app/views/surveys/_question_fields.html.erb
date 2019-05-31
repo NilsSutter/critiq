@@ -11,7 +11,7 @@
     <%= f.input :name,
           wrapper_html: { class: 'question-input-text' },
           label: "Question" %>
-  <%# <%= f.input :multiple_choice, :as => :hidden, :input_html => { :value => "true" } %> %>
+  <%# <%= f.input :multiple_choice, :as => :hidden, :input_html => { :value => "true" } %>
   <%= link_to_remove_association '<i class="fas fa-minus-circle"></i>'.html_safe, f,  class:"question-icon" %>
   </div>
   <!-- nested form for creating choices -->

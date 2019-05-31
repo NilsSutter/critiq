@@ -1,30 +1,6 @@
 <div class="full-page">
-  <div class="sidebar-main">
-    <div class="user-info-sidebar">
-      <h3 style="color:#C9C9C9; font-size:80px;padding-top: 10px;">
-        <% if !current_user.first_name.blank? %>
-          <%= current_user.first_name.chars.first %>
-        <% else %>
-          <%=  current_user.nickname.chars.first.capitalize%>
-        <% end %>
-      </h3>
-    </div>
-    <div class="create-survey-div">
-      <button type="button" class="create-survey-button"
-      data-toggle="modal" data-target="#exampleModalCenter">
-    NEW CRITIQ </button>
-    </div>
-    <div class="menu-buttons-content">
-      <div class="menu-button-div"><i class="fas fa-chart-line current"></i><%= link_to "Inbox", surveys_path, class:"sidebar-menu-item current" %></div>
-      <div class="menu-button-div"><i class="fas fa-users"></i><%= link_to "Groups", surveys_path, class:"sidebar-menu-item" %></div>
-      <div class="menu-button-div"><i class="fas fa-bullseye"></i><%= link_to "Goals", surveys_path, class:"sidebar-menu-item" %></div>
-      <div class="menu-button-div"><i class="far fa-user"></i><%= link_to "Profile", surveys_path, class:"sidebar-menu-item" %></div>
-    </div>
-    <div class="menu-button-div"><i class="fas fa-sign-out-alt" id="logout-button"></i><%= link_to "Logout", destroy_user_session_path, method: :delete, class:"sidebar-menu-item" %></div>
-    <div class="sidebar-footer">
-      <p>CRITIQ v1.9.2</p>
-    </div>
-  </div>
+  <!-- render goes here -->
+  <%= render partial: "shared/sidebar" %>
   <div class="survey-list">
     <div class="index-title-section">
       <h1 style="padding-left: 18px;">Dashboard</h1>
@@ -56,6 +32,9 @@
                 <% else %>
                   <p> <%= survey.description %> </p>
                 <% end %>
+                <% if survey.published == false %>
+                  <p style="color:grey;margin-bottom: none;font-weight:lighter; font-size:10px;">Attention! Survey has NOT been sent out. <%= link_to "Send now?", edit_survey_path(survey), class: 'survey-card-index-resend' %></p>
+                <% end %>
                 <!-- status of survey; sent out? -->
               </div>
               <div class="survey-card-index-secondary">
@@ -63,7 +42,7 @@
                 <% if survey.published %>
                   <p><i class="fas fa-check"></i></p>
                 <% else %>
-                  <p><i class="fas fa-times"></i></p>
+                  <p><i class="fas fa-times" style="color: darkred;"></i></p>
                 <% end %>
                 <!-- date of survey -->
                 <!-- % of responses as colored status bar (see Figma for) -->
