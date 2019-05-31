@@ -19,6 +19,17 @@ class Survey < ApplicationRecord
   accepts_nested_attributes_for :questions, reject_if: :all_blank, allow_destroy: true
   after_update :send_first_question
 
+  def display_responses
+    survey = Survey.find(self.id)
+    if survey.questions.last.responses.count > ((survey.questions.first.sent_question_ids.count - 1) * 0.7).round
+      return survey.questions
+    else
+      stripped_questions = []
+      survey.questions.each { |x| stripped_questions << {name: x.name, question_type: x.question_type, responses: [], choices: x.choices} }
+      return stripped_questions
+    end
+  end
+
   private
 
   def send_first_question
@@ -32,4 +43,9 @@ class Survey < ApplicationRecord
     # send FIRST associated question to SendSlackMessageJob with Survey_ID
     SendSlackMessageAllJob.perform_later(survey_id: self.id, question_id: first_question_id.to_i)
   end
+
+
+
+
+
 end
