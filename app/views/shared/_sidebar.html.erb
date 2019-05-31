@@ -14,7 +14,12 @@
     NEW CRITIQ </button>
     </div>
     <div class="menu-buttons-content">
-      <div class="menu-button-div"><i class="fas fa-chart-line current"></i><%= link_to "Inbox", surveys_path, class:"sidebar-menu-item current" %></div>
+      <!-- quick fix: if on inbox will display as active; otherwise not -->
+      <% if current_page?(surveys_path) %>
+        <div class="menu-button-div"><i class="fas fa-chart-line current"></i><%= link_to "Dashboard", surveys_path, class:"sidebar-menu-item current" %></div>
+      <% else %>
+        <div class="menu-button-div"><i class="fas fa-chart-line"></i><%= link_to "Dashboard", surveys_path, class:"sidebar-menu-item" %></div>
+      <% end %>
       <div class="menu-button-div"><i class="fas fa-users"></i><%= link_to "Groups", surveys_path, class:"sidebar-menu-item" %></div>
       <div class="menu-button-div"><i class="fas fa-bullseye"></i><%= link_to "Goals", surveys_path, class:"sidebar-menu-item" %></div>
       <div class="menu-button-div"><i class="far fa-user"></i><%= link_to "Profile", surveys_path, class:"sidebar-menu-item" %></div>
