@@ -26,6 +26,14 @@
   }
 }
 
+.card h4 {
+  font-family: $card-header-font;
+}
+
+.card p {
+  font-family: $card-body-font;
+}
+
 .card-img {
   width: 250px;
   max-height: 200px;
