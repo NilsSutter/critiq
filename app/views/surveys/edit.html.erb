@@ -14,7 +14,7 @@
           <%= f.input :description,
                       wrapper_html: { class: 'description-input-text' } %>
         <div class="slack-channels">
-          <h5>Send to:
+          <h5>Get Critiq from your colleagues in:
           <%= f.collection_select :channel_id,
                 @slackchannels,
                 ->(item) { item[:id] },
@@ -42,3 +42,13 @@
     <%#= link_to "Back", surveys_path, class:"btn btn-light" %>
   </div>
 </div>
+<%= content_for :after_js do %>
+  <script>
+    const clickPlus = () => {
+      document.querySelector('.question-icon').click()
+    }
+    $( document ).ready(function(){
+      clickPlus();
+    })
+  </script>
+<% end %>
