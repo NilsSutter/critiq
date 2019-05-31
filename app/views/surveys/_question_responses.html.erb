@@ -5,6 +5,7 @@
   </div>
 <% else %>
   <% all_questions.each_with_index do |question, q_index| %>
+  <div class="response-card">
     <p><%= q_index + 1 %>. <%= question[:name] %></p>
     <ul>
       <% if question[:question_type] == "text" %>
@@ -34,5 +35,6 @@
         <% end %>
       <% end %>
     </ul>
+    </div>
   <% end %>
 <% end %>
