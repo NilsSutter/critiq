@@ -10,10 +10,3 @@
 .navbar-lewagon .navbar-brand img {
   width: 40px;
 }
-
-.move-down {
-  target ~ #howto  {
-  -webkit-transform: translateY( -1000px);
-  transform: translateY( -1000px );
-  }
-}
