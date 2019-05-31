@@ -1,4 +1,5 @@
 <!-- rendered form for creating questions -->
+
 <div class="nested-fields">
   <div class="choice-type-and-question">
     <%= f.input :question_type,
@@ -12,7 +13,7 @@
           wrapper_html: { class: 'question-input-text' },
           label: "Question" %>
   <%# <%= f.input :multiple_choice, :as => :hidden, :input_html => { :value => "true" } %>
-  <%= link_to_remove_association '<i class="fas fa-minus-circle"></i>'.html_safe, f,  class:"question-icon" %>
+  <%= link_to_remove_association '<i class="fas fa-minus-circle"></i>'.html_safe, f,  class:"question-icon clickme" %>
   </div>
   <!-- nested form for creating choices -->
 </div>
