@@ -11,5 +11,5 @@ $(() => {
   });
 });
 
-scrollTo()
+scrollTo();
 
