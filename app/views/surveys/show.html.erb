@@ -30,7 +30,6 @@
 
 
   <div class="bottom-box">
-
       <% @questions.each_with_index do |question, q_index| %>
         <p><%= q_index + 1 %>. <%= question[:name] %></p>
         <ul>
@@ -62,14 +61,5 @@
           <% end %>
         </ul>
       <% end %>
-
-
-
-
-
-
-
-
-
   </div>
 </div>

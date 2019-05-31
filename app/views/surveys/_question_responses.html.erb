@@ -1,0 +1,38 @@
+<% if all_questions.nil? %>
+  <div class="bot-on-index">
+    <%= image_tag("robot.png")%>
+    <p style="color: grey;">No Critiq Selected</p>
+  </div>
+<% else %>
+  <% all_questions.each_with_index do |question, q_index| %>
+    <p><%= q_index + 1 %>. <%= question[:name] %></p>
+    <ul>
+      <% if question[:question_type] == "text" %>
+
+        <% if !question[:responses].nil? && question[:responses].empty? %>
+          <li>Not Enough Responses Yet</li>
+        <% else %>
+          <% question.responses.each do |response| %>
+            <li><%= response.content %></li>
+          <% end %>
+        <% end %>
+
+      <% else %>
+
+        <% if !question[:responses].nil? && question[:responses].empty? %>
+          <% question[:choices].each do |choice| %>
+            <li><%= choice.name %></li>
+          <% end %>
+
+        <% else %>
+
+          <% question.choices.each_with_index do |choice, c_index| %>
+            <li><%= choice.name %></li>
+            <%= " * " * question.responses.select { |x| x.content.to_i == (c_index + 1) }.count %>
+          <% end %>
+
+        <% end %>
+      <% end %>
+    </ul>
+  <% end %>
+<% end %>

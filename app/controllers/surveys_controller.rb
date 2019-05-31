@@ -18,6 +18,11 @@ class SurveysController < ApplicationController
       @surveys = current_user.surveys
     end
     @survey = Survey.new
+    if params[:id].present?
+      @questions = Survey.find(params[:id]).display_responses
+    else
+      @questions = nil
+    end
   end
 
   def new
