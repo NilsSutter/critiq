@@ -12,7 +12,16 @@
 }
 
 .howto-text {
+  h4 {
   font-family: $card-header-font;
+  font-weight: 400;
+  }
+  p {
+  font-family: $card-header-font;
+  font-weight: 300;
+  font-size: 20px;
+  color: rgb(130, 130, 130);
+  }
 }
 
 .description {
