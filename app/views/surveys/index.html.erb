@@ -32,6 +32,9 @@
                 <% else %>
                   <p> <%= survey.description %> </p>
                 <% end %>
+                <% if survey.published == false %>
+                  <p style="color:grey;margin-bottom: none;font-weight:lighter; font-size:10px;">Attention! Survey has NOT been sent out yet. <%= link_to "Send now?", edit_survey_path(survey), class: 'survey-card-index-resend' %></p>
+                <% end %>
                 <!-- status of survey; sent out? -->
               </div>
               <div class="survey-card-index-secondary">
@@ -39,7 +42,7 @@
                 <% if survey.published %>
                   <p><i class="fas fa-check"></i></p>
                 <% else %>
-                  <p><i class="fas fa-times"></i></p>
+                  <p><i class="fas fa-times" style="color: darkred;"></i></p>
                 <% end %>
                 <!-- date of survey -->
                 <!-- % of responses as colored status bar (see Figma for) -->
