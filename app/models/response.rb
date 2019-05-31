@@ -2,7 +2,7 @@ class Response < ApplicationRecord
   belongs_to :question
   belongs_to :choice, optional: true
 
-  after_commit :send_next_question
+  after_commit :send_next_question, on: :create
 
   private
 

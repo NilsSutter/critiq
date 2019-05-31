@@ -10,11 +10,11 @@ class Question < ApplicationRecord
   #   using: {
   #     tsearch: { prefix: true }
   #   }
-  has_many :sent_questions
 
   # has_many :responses, through: :choices, -> { where multiple_choice: true }
-  has_many :responses, dependent: :destroy
   has_many :choices, dependent: :destroy
+  has_many :sent_questions, dependent: :destroy
+  has_many :responses, dependent: :destroy
 
 
   accepts_nested_attributes_for :choices, reject_if: :all_blank, allow_destroy: true
