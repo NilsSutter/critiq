@@ -1,7 +1,7 @@
 <div class="full-page">
   <%= render partial: "shared/sidebar" %>
-  <div class="container">
-      <h1 style="margin-top:30px;">Design your Critiq</h1>
+  <div class="main-content-edit">
+      <h1 style="margin-top:30px; padding-top: 31px;">Design your Critiq</h1>
       <h3 style="margin-top:20px;"><%= @survey.title %></h3>
       <h5 style="color: grey;"><%= @survey.description %></h5>
 
@@ -13,7 +13,6 @@
                       wrapper_html: { class: 'title-input-text' }%>
           <%= f.input :description,
                       wrapper_html: { class: 'description-input-text' } %>
-        </div>
         <div class="slack-channels">
           <h5>Send to:
           <%= f.collection_select :channel_id,
@@ -21,6 +20,7 @@
                 ->(item) { item[:id] },
                 ->(item) { item[:name].capitalize }
                 %></h5>
+        </div>
         </div>
         <!-- nested form for creating questions -->
         <div id="questions">

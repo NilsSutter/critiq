@@ -7,9 +7,13 @@ import scrollTo from '../components/smooth_scroll'
 
 $(() => {
   $('#survey_channel_id').select2({
-    theme: "bootstrap"
+    theme: "classic"
   });
 });
+
+// $( "#slack-channels" ).select2({
+//     theme: "bootstrap"
+// });
 
 scrollTo();
 
