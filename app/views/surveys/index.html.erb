@@ -33,7 +33,7 @@
                   <p> <%= survey.description %> </p>
                 <% end %>
                 <% if survey.published == false %>
-                  <p style="color:grey;margin-bottom: none;font-weight:lighter; font-size:10px;">Attention! Survey has NOT been sent out yet. <%= link_to "Send now?", edit_survey_path(survey), class: 'survey-card-index-resend' %></p>
+                  <p style="color:grey;margin-bottom: none;font-weight:lighter; font-size:10px;">Attention! Survey has NOT been sent out. <%= link_to "Send now?", edit_survey_path(survey), class: 'survey-card-index-resend' %></p>
                 <% end %>
                 <!-- status of survey; sent out? -->
               </div>

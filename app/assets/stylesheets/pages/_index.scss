@@ -95,10 +95,18 @@
 }
 
 .survey-card-index-resend {
-  color: grey;
+  color: black;
   margin-bottom: none;
   font-weight: lighter;
   font-size: 10px;
+}
+
+.survey-card-index-resend:hover {
+  // color: black;
+  margin-bottom: none;
+  font-weight: lighter;
+  font-size: 10px;
+  text-decoration: none;
 }
 
 .survey-card-index-secondary {
@@ -123,14 +131,3 @@
   color: grey;
   z-index: 30;
 }
-
-
-
-
-
-
-
-
-
-
-
