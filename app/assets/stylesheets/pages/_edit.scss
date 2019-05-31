@@ -35,7 +35,7 @@
 }
 #questions {
   // display: flex;
-  margin-bottom: 80px;
+  margin-bottom: 30px;
 }
 
 .nested-fields {
@@ -69,4 +69,13 @@
 
 .choice-input-text {
   color:grey;
+}
+
+.all-questions {
+  // height: 100vh;
+  // overflow: scroll;
+}
+
+.create-survey-button-edit {
+  margin-bottom:40px;
 }
