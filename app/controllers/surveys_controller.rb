@@ -1,6 +1,5 @@
 class SurveysController < ApplicationController
 
-
   def index
     # search functionality => queries
     if params[:query].present?
@@ -81,6 +80,4 @@ class SurveysController < ApplicationController
   def survey_params
     params.require(:survey).permit(:title, :description, :published, :channel_id, questions_attributes: [:name, :question_type, :multiple_choice, choices_attributes: [:name, :_destroy]])
   end
-
-
 end

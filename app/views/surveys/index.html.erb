@@ -7,15 +7,14 @@
     </div>
     <div class="survey-wrapper">
       <div class="left-page">
+        <!-- START searchbar -->
         <div class="search-bar-index">
           <%= form_tag surveys_path, method: :get do %>
-          <%= text_field_tag :query,
-          params[:query],
-          class: "form-control",
-            placeholder: "Find Critiq"
-            %>
-            <% end %>
+            <%= text_field_tag :query, params[:query], class: "form-control",
+            placeholder: "Find Critiq"%>
+          <% end %>
         </div>
+        <!-- END searchbar -->
         <div class="all-surveys">
         <!-- Display all surveys of the current user if surveys
          have been created -->
