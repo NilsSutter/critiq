@@ -20,48 +20,67 @@
          have been created -->
            <% if @surveys.count != 0 %>
            <% @surveys.reverse.each do |survey| %>
-           <div class="survey-card-index-wrapper">
-            <div class="survey-card-index-content">
-              <!-- title of survey -->
-              <div class="survey-card-index-info">
-                <h3><%= link_to survey.title, surveys_path(id: survey.id) %></h3>
-                <!-- description of survey -->
-                <% if survey.description.size > 130 %>
-                  <p> <%= survey.description.first(130).insert(-1, "...") %> </p>
-                <% else %>
-                  <p> <%= survey.description %> </p>
-                <% end %>
-                <% if survey.published == false %>
-                  <p style="color:grey;margin-bottom: none;font-weight:lighter; font-size:10px;">Attention! Survey has NOT been sent out. <%= link_to "Send now?", edit_survey_path(survey), class: 'survey-card-index-resend' %></p>
-                <% end %>
-                <!-- status of survey; sent out? -->
-              </div>
-              <div class="survey-card-index-secondary">
-                <p> <%= survey.created_at.strftime(" %e %b ") %></p>
-                <% if survey.published %>
-                  <p><i class="fas fa-check"></i></p>
-                <% else %>
-                  <p><i class="fas fa-times" style="color: darkred;"></i></p>
-                <% end %>
-                <!-- date of survey -->
-                <!-- % of responses as colored status bar (see Figma for) -->
-                <!-- delete survey from index -->
-                <div class="delete-index">
-                  <%= link_to '<i class="far fa-trash-alt"></i>'.html_safe, survey_path(survey), method: :delete%>
+              <div class="card">
+                <div class="card-body">
+                  <div class="row align-items-center">
+
+                    <div class="col ml-n2">
+                      <!-- survey title -->
+                      <h4 class="card-title mb-1 name">
+                        <h3><%= link_to survey.title, surveys_path(id: survey.id) %></h3>
+                      </h4>
+                        <!-- survey description -->
+                      <% if survey.description.size > 130 %>
+                        <p class="card-text small text-muted mb-1"> <%= survey.description.first(130).insert(-1, "...") %> </p>
+                      <% else %>
+                        <p class="card-text small text-muted mb-1"> <%= survey.description %> </p>
+                      <% end %>
+
+                      <div class="row align-items-center no-gutters">
+                        <div class="col-auto">
+
+                          <div class="small mr-2">29%</div>
+
+                        </div>
+                        <div class="col">
+                          <!-- START progess bar -->
+                          <div class="progress progress-sm">
+                            <div class="progress-bar" role="progressbar" style="width: 10%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
+                          </div>
+                          <!-- END progress bar -->
+
+                          <!-- START survey sent status -->
+                          <% if survey.published == false %>
+                            <p style="color:grey;margin-bottom: none;font-weight:lighter; font-size:10px;">Attention! Survey has NOT been sent out. <%= link_to "Send now?", edit_survey_path(survey), class: 'survey-card-index-resend' %></p>
+                          <% end %>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-auto">
+                      <p> <%= survey.created_at.strftime(" %e %b ") %></p>
+                      <% if survey.published %>
+                        <p><i class="fas fa-check"></i></p>
+                      <% else %>
+                        <p><i class="fas fa-times" style="color: darkred;"></i></p>
+                      <% end %>
+                      <!-- END survey sent status -->
+                      <div class="delete-index">
+                        <%= link_to '<i class="far fa-trash-alt"></i>'.html_safe, survey_path(survey), method: :delete%>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
-            </div>
+            <% end %>
+            <% else %>
+              <h3> No surveys created so far </h3>
+            <% end %>
           </div>
-          <% end %>
-          <% else %>
-          <h3> No surveys created so far </h3>
-          <% end %>
+          <%= render partial: "modal_create_survey" %>
         </div>
-        <%= render partial: "modal_create_survey" %>
-      </div>
-      <div class="right-page">
+        <div class="right-page">
         <%= render partial: "question_responses", locals: {all_questions: @questions} %>
+      </div>
       </div>
     </div>
   </div>
-</div>
