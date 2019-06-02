@@ -15,9 +15,9 @@
 
         <p class="card-text small text-muted mb-1">
           <% if survey.description.size > 130 %>
-            <p> <%= survey.description.first(130).insert(-1, "...") %> </p>
+            <%= survey.description.first(130).insert(-1, "...") %>
           <% else %>
-            <p> <%= survey.description %> </p>
+            <%= survey.description %>
           <% end %>
         </p>
 
@@ -32,10 +32,11 @@
             <div class="progress progress-sm">
               <% total_respondees = survey.questions.first.sent_questions.count %>
               <% respondees_finished = survey.questions.last.responses.count %>
+              <% percent_bar = ((respondees_finished.to_f / total_respondees) * 100).to_i unless total_respondees.zero? %>
 
 
               <div class="progress-bar" role="progressbar"
-              style="width: <%= ((respondees_finished.to_f / total_respondees) * 100).to_i %>%"
+              style="width: <%= percent_bar %>%"
               aria-valuenow="<%= respondees_finished %>"
               aria-valuemin="0"
               aria-valuemax="<%= total_respondees %>"></div>
