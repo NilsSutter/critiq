@@ -42,25 +42,30 @@
 
   <!-- LEFT and RIGHT panes -->
   <div class="container-fluid d-flex overflow-a">
-
-    <h3 style="margin-top:20px;"><%= @survey.title %></h3>
-    <h5 style="color: grey;"><%= @survey.description %></h5>
-
-
     <div class="all-questions">
+      <div class="title_and_description mb-5">
+        <h1 style="margin-top:20px;"><%= @survey.title %></h1>
+        <h3 style="color: grey;"><%= @survey.description %></h3>
+      </div>
       <%= simple_form_for @survey do |f| %>
         <div class="wrapper-title-survey">
           <%= f.input :title,
                       wrapper_html: { class: 'title-input-text' }%>
           <%= f.input :description,
                       wrapper_html: { class: 'description-input-text' } %>
-        <div class="slack-channels">
-          <h5>Get Critiq from your colleagues in:
-          <%= f.collection_select :channel_id,
-                @slackchannels,
-                ->(item) { item[:id] },
-                ->(item) { item[:name].capitalize }
-                %></h5>
+        <div class="slack-channels d-flex">
+          <div class="w-50">
+            <h5>Get Critiq from your colleagues in:</h5>
+          </div>
+          <div class="w-50">
+
+            <%= f.collection_select :channel_id,
+                  @slackchannels,
+                  ->(item) { item[:id] },
+                  ->(item) { item[:name].capitalize }
+                  %>
+
+          </div>
         </div>
         </div>
         <!-- nested form for creating questions -->
@@ -75,7 +80,10 @@
             </div>
         </div>
         <%= f.input :published, :as => :hidden, :input_html => { :value => "true" } %>
-        <%= f.button :submit, class:"btn btn-primary create-survey-button-edit" %>
+        <div class="form-create-footer text-right px-5">
+          <%= f.submit "Submit Critiq", class:"btn btn-primary create-survey-button-edit" %>
+          <%# <%= f.button :submit, class:"btn btn-primary create-survey-button-edit" %>
+        </div>
       <% end %>
     </div>
 
@@ -91,9 +99,24 @@
   <script>
     const clickPlus = () => {
       document.querySelector('.question-icon').click()
-    }
+    };
+
     $( document ).ready(function(){
       clickPlus();
+
+      const mcFormDropdown = document.querySelector('.form-control.select.optional');
+
+      mcFormDropdown.addEventListener('change', function (event) {
+        if (this.value === "radio"){
+          document.querySelector('.mc-form-create-link').classList.remove("mc-hidden");
+          document.querySelector('.create-form-choices').classList.add("mc-choice-bump-height");
+        } else {
+          document.querySelector('.mc-form-create-link').classList.add("mc-hidden");
+          document.querySelector('.create-form-choices').classList.remove("mc-choice-bump-height");
+        };
+      });
+
     })
+
   </script>
 <% end %>

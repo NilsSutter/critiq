@@ -1,7 +1,41 @@
+.form-create-footer {
+   position: absolute;
+   bottom: 0;
+   left: 0;
+   width: 100%;
+   height: 60px;   /* Height of the footer */
+}
+
+.mc-choice-bump-height {
+  min-height: 143px;
+}
+
+.select2-container--classic .select2-selection--single {
+  height: 45px !important;
+}
+
+.mc-form-create-link {
+  position: absolute;
+}
+
+.mc-hidden {
+  display: none;
+}
+
+.create-form-choices {
+  display: grid;
+  position: relative;
+  grid-template-columns: 1fr 1fr 1fr;
+  padding-left: 144px;
+  border-bottom: 1px solid #E3EBF6;
+  padding-bottom: 30px;
+}
+
+
 .wrapper-title-survey {
   margin-top: 20px;
   padding-bottom: 40px;
-  border-bottom: 0.5px solid grey;
+  border-bottom: 1px solid #E3EBF6;
 }
 
 .title-input-text {
@@ -46,19 +80,10 @@
   align-items:center;
 }
 
-#choices {
-  padding-left: 160px;
-  border-bottom: 2.5px solid lightgrey;
-  padding-bottom: 30px;
-}
-
 .question-icon {
   font-size: 30px;
   padding-left: 20px;
   padding-top: 31px;
-}
-
-#questions {
 }
 
 .delete-icon {
@@ -69,11 +94,12 @@
 
 .choice-input-text {
   color:grey;
+  width: 80%;
 }
 
 .all-questions {
-  // height: 100vh;
-  // overflow: scroll;
+  width: 100%;
+  overflow: scroll;
 }
 
 .create-survey-button-edit {
@@ -87,6 +113,3 @@
   height: 95vh;
   overflow: scroll;
 }
-
-
-
