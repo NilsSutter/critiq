@@ -1,9 +1,9 @@
 import "bootstrap";
 
+import '../components/dashkit';
 import '../components/autosize';
 import '../components/charts-dark';
 import '../components/charts';
-import '../components/dashkit';
 // import '../components/demo';
 import '../components/dropdowns';
 import '../components/dropzone';

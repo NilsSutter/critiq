@@ -4,20 +4,30 @@
     <p style="color: grey;">No Critiq Selected</p>
   </div>
 <% else %>
+
   <% all_questions.each_with_index do |question, q_index| %>
-  <div class="response-card">
-    <p><%= q_index + 1 %>. <%= question[:name] %></p>
-    <ul>
+
+  <div class="card">
+    <h5 class="card-header"><%= q_index + 1 %>. <%= question[:name] %></h5>
+    <div class="card-body" style="text-align: left;">
       <% if question[:question_type] == "text" %>
 
         <% if !question[:responses].nil? && question[:responses].empty? %>
-          <li>Not Enough Responses Yet</li>
+        <h5 class="card-title">
+          We'll send you a slack message when there are enough responses.
+        </h5>
         <% else %>
-          <% question.responses.each do |response| %>
-            <li><%= response.content %></li>
+          <% question.responses.each_with_index do |response, index| %>
+          <h5 class="card-title">
+            Response no.<%= index + 1 %>
+          </h5>
+          <p class="card-text" style="padding-left: 10px;">
+            <%= response.content %>
+          </p>
           <% end %>
+        </div>
+      </div>
         <% end %>
-
       <% else %>
 
         <% if !question[:responses].nil? && question[:responses].empty? %>
@@ -31,10 +41,26 @@
             <li><%= choice.name %></li>
             <%= " * " * question.responses.select { |x| x.content.to_i == (c_index + 1) }.count %>
           <% end %>
+          <div class="chart">
+  <canvas id="devicesChart" class="chart-canvas" data-toggle="legend" data-target="#devicesChartLegend"></canvas>
+</div>
+
+<div id="devicesChartLegend" class="chart-legend"></div>
+
+<script>
+new Chart('devicesChart', {
+  type: 'doughnut',
+  data: {
+    labels: ['Desktop', 'Tablet', 'Mobile'],
+    datasets: [{
+      data: [60, 25, 15]
+    }]
+  }
+});
+</script>
 
         <% end %>
       <% end %>
-    </ul>
-    </div>
+
   <% end %>
 <% end %>
