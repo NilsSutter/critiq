@@ -1,0 +1,82 @@
+<div class="surv-card card id-<%= survey.title.gsub(/[^\w]/,"").downcase.slice(0..15) %>">
+  <div class="card-body">
+    <div class="row align-items-center">
+      <div class="col-auto surv-date-box">
+        <p class="card-text small text-muted mb-1">
+          <%= survey.created_at.strftime(" %e %b ") %>
+        </p>
+        <!-- Adds some padding to the right. When you want to add an icon, do it inside this div -->
+      </div>
+      <div class="col ml-n2">
+
+        <h4 class="card-title mb-1 name">
+          <%= link_to survey.title, surveys_path(id: survey.id) %>
+        </h4>
+
+        <p class="card-text small text-muted mb-1">
+          <% if survey.description.size > 130 %>
+            <p> <%= survey.description.first(130).insert(-1, "...") %> </p>
+          <% else %>
+            <p> <%= survey.description %> </p>
+          <% end %>
+        </p>
+
+        <div class="row align-items-center no-gutters">
+          <!-- <div class="col-auto">
+
+            <div class="small mr-2">Responses: </div>
+
+          </div> -->
+          <div class="col">
+
+            <div class="progress progress-sm">
+              <% total_respondees = survey.questions.first.sent_questions.count %>
+              <% respondees_finished = survey.questions.last.responses.count %>
+
+
+              <div class="progress-bar" role="progressbar"
+              style="width: <%= ((respondees_finished.to_f / total_respondees) * 100).to_i %>%"
+              aria-valuenow="<%= respondees_finished %>"
+              aria-valuemin="0"
+              aria-valuemax="<%= total_respondees %>"></div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+      <div class="col-auto">
+
+        <div class="dropdown">
+          <a href="#!" class="dropdown-ellipses dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fe fe-more-vertical"></i>
+          </a>
+          <div class="dropdown-menu dropdown-menu-right">
+            <%= link_to survey_path(survey), class: "dropdown-item", method: :delete do %>
+             <i class="far fa-trash-alt"></i><span class="pl-4">Delete</span>
+            <% end %>
+            <!-- <a href="#!" class="dropdown-item">
+              Another action
+            </a>
+            <a href="#!" class="dropdown-item">
+              Something else here
+            </a> -->
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<%= content_for :after_js do %>
+  <script type="text/javascript">
+    $('.id-<%= survey.title.gsub(/[^\w]/,"").downcase.slice(0..15) %>').click( function(event) {
+        const click_<%= survey.title.gsub(/[^\w]/,"").downcase.slice(0..15) %> = () => {
+          document.querySelector('.id-<%= survey.title.gsub(/[^\w]/,"").downcase.slice(0..15) %>').classList.toggle("surv-card-active");
+        };
+
+        click_<%= survey.title.gsub(/[^\w]/,"").downcase.slice(0..15) %>();
+    });
+  </script>
+<% end %>
