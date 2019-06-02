@@ -12,13 +12,13 @@
     <%= f.input :name,
           wrapper_html: { class: 'question-input-text' },
           label: "Question" %>
-  <%# <%= f.input :multiple_choice, :as => :hidden, :input_html => { :value => "true" } %>
+
   <%= link_to_remove_association '<i class="fas fa-minus-circle"></i>'.html_safe, f,  class:"question-icon clickme" %>
   </div>
   <!-- nested form for creating choices -->
 </div>
-<div id="choices">
-  <div class="links">
+<div id="choices" class="create-form-choices">
+  <div class="links mc-form-create-link mc-hidden">
     <%= link_to_add_association 'add choices', f, :choices, class:"btn btn-light" %>
   </div>
   <%= f.simple_fields_for :choices do |f| %>
