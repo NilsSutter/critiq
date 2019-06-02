@@ -2,6 +2,17 @@
 @import "home";
 // CSS styling for index starting hereafter
 
+.overflow-a {
+  overflow: hidden;
+  height: 90vh;
+
+}
+
+.no-b-margin {
+  margin-bottom: 0px !important;
+}
+
+
 .index-title-section {
   padding-top: 31px;
   background: #F4F4F4;
