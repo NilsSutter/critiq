@@ -1,4 +1,4 @@
-<div class="surv-card card id-<%= survey.title.gsub(/[^\w]/,"").downcase.slice(0..15) %>">
+<div class="surv-card card surv-id-<%= survey.id %>">
   <div class="card-body">
     <div class="row align-items-center">
       <div class="col-auto surv-date-box">
@@ -74,12 +74,12 @@
 
 <%= content_for :after_js do %>
   <script type="text/javascript">
-    $('.id-<%= survey.title.gsub(/[^\w]/,"").downcase.slice(0..15) %>').click( function(event) {
-        const click_<%= survey.title.gsub(/[^\w]/,"").downcase.slice(0..15) %> = () => {
-          document.querySelector('.id-<%= survey.title.gsub(/[^\w]/,"").downcase.slice(0..15) %>').classList.toggle("surv-card-active");
+    $('.surv-id-<%= survey.id %>').click( function(event) {
+        const clickSurvId<%= survey.id %> = () => {
+          document.querySelector('.surv-id-<%= survey.id %>').classList.toggle("surv-card-active");
         };
 
-        click_<%= survey.title.gsub(/[^\w]/,"").downcase.slice(0..15) %>();
+        clickSurvId<%= survey.id %>();
     });
   </script>
 <% end %>
