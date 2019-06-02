@@ -13,8 +13,11 @@
     padding-bottom: 0px;
   }
 
-}
+  .navbar-vertical.navbar-expand-md .navbar-brand-img {
+      max-height: 5rem !important;
+    }
 
+}
 
 // .sidebar-main {
 //   width: 14vw;
