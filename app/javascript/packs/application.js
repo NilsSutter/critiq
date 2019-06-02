@@ -1,4 +1,16 @@
 import "bootstrap";
+import "chart.js";
+import "@shopify/draggable";
+import "autosize";
+import "dropzone";
+import "flatpickr";
+import "highlight.js";
+import "highlightjs";
+import "jquery-mask-plugin";
+import "list.js";
+import "popper.js";
+import "quill";
+
 
 import '../components/dashkit';
 import '../components/autosize';
