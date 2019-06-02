@@ -30,9 +30,11 @@
           <div class="col">
 
             <div class="progress progress-sm">
-              <% total_respondees = survey.questions.first.sent_questions.count %>
-              <% respondees_finished = survey.questions.last.responses.count %>
-              <% percent_bar = ((respondees_finished.to_f / total_respondees) * 100).to_i unless total_respondees.zero? %>
+              <% unless survey.questions.empty?  %>
+                <% total_respondees = survey.questions.first.sent_questions.count %>
+                <% respondees_finished = survey.questions.last.responses.count %>
+                <% percent_bar = ((respondees_finished.to_f / total_respondees) * 100).to_i unless total_respondees.zero? %>
+              <% end %>
 
 
               <div class="progress-bar" role="progressbar"

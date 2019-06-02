@@ -1,11 +1,52 @@
-<div class="full-page">
-  <%= render partial: "shared/sidebar" %>
-  <div class="main-content-edit">
-      <h1 style="margin-top:30px; padding-top: 31px;">Design your Critiq</h1>
-      <h3 style="margin-top:20px;"><%= @survey.title %></h3>
-      <h5 style="color: grey;"><%= @survey.description %></h5>
+<%= render partial: "shared/sidebar" %>
+<div class="main-content">
 
-    <!-- Simple form for creating a new survey -->
+  <!-- This partial containes stuff that was in the template but I have no -->
+  <!-- idea what its for, so it's commented out -->
+  <%#= render partial: "shared/dashkit_top_navbar" %>
+
+  <!-- HEADER -->
+  <div class="header no-b-margin">
+    <div class="container-fluid">
+
+      <!-- Body -->
+      <div class="header-body">
+        <div class="row align-items-end">
+          <div class="col-8">
+
+            <!-- Pretitle -->
+            <h6 class="header-pretitle">
+              CRITIQ
+            </h6>
+
+            <!-- Title -->
+            <h1 class="header-title">
+              Create
+            </h1>
+
+          </div>
+          <div class="col-4">
+
+            <!-- Button -->
+
+
+          </div>
+        </div>
+        <!-- / .row -->
+      </div>
+      <!-- / .header-body -->
+
+    </div>
+  </div>
+  <!-- / .header -->
+
+  <!-- LEFT and RIGHT panes -->
+  <div class="container-fluid d-flex overflow-a">
+
+    <h3 style="margin-top:20px;"><%= @survey.title %></h3>
+    <h5 style="color: grey;"><%= @survey.description %></h5>
+
+
     <div class="all-questions">
       <%= simple_form_for @survey do |f| %>
         <div class="wrapper-title-survey">
@@ -38,10 +79,14 @@
       <% end %>
     </div>
 
-    <!-- Button which redirects to dashboard (index-page) -->
-    <%#= link_to "Back", surveys_path, class:"btn btn-light" %>
+
+
   </div>
 </div>
+
+
+
+<!-- END  -->
 <%= content_for :after_js do %>
   <script>
     const clickPlus = () => {

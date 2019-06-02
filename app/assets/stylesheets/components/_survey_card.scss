@@ -7,16 +7,16 @@
 
 
 .surv-card:hover {
-    background-color: rgba(249, 251, 253, 0.5);
+    background-color: hsla(210, 50%, 94%, 1);;
 }
 
 
 .surv-card-active {
-  background-color: #546b8a;
+  background-color: #3271c3;
   color: #f9fbfd;
 }
 
 .surv-card-active:hover {
-  background-color: #546b8a !important;
+  background-color: hsla(214, 59%, 40%, 1) !important;
   color: #f9fbfd !important;
 }
