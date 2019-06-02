@@ -1,67 +1,62 @@
-<div class="full-page">
-  <!-- render goes here -->
-  <%= render partial: "shared/sidebar" %>
-  <div class="survey-list">
-    <div class="index-title-section">
-      <h1 style="padding-left: 18px;">Dashboard</h1>
-    </div>
-    <div class="survey-wrapper">
-      <div class="left-page">
-        <!-- START searchbar -->
-        <div class="search-bar-index">
-          <%= form_tag surveys_path, method: :get do %>
-            <%= text_field_tag :query, params[:query], class: "form-control",
-            placeholder: "Find Critiq"%>
-          <% end %>
-        </div>
-        <!-- END searchbar -->
-        <div class="all-surveys">
-        <!-- Display all surveys of the current user if surveys
-         have been created -->
-           <% if @surveys.count != 0 %>
-           <% @surveys.reverse.each do |survey| %>
-           <div class="survey-card-index-wrapper">
-            <div class="survey-card-index-content">
-              <!-- title of survey -->
-              <div class="survey-card-index-info">
-                <h3><%= link_to survey.title, surveys_path(id: survey.id) %></h3>
-                <!-- description of survey -->
-                <% if survey.description.size > 130 %>
-                  <p> <%= survey.description.first(130).insert(-1, "...") %> </p>
-                <% else %>
-                  <p> <%= survey.description %> </p>
-                <% end %>
-                <% if survey.published == false %>
-                  <p style="color:grey;margin-bottom: none;font-weight:lighter; font-size:10px;">Attention! Survey has NOT been sent out. <%= link_to "Send now?", edit_survey_path(survey), class: 'survey-card-index-resend' %></p>
-                <% end %>
-                <!-- status of survey; sent out? -->
-              </div>
-              <div class="survey-card-index-secondary">
-                <p> <%= survey.created_at.strftime(" %e %b ") %></p>
-                <% if survey.published %>
-                  <p><i class="fas fa-check"></i></p>
-                <% else %>
-                  <p><i class="fas fa-times" style="color: darkred;"></i></p>
-                <% end %>
-                <!-- date of survey -->
-                <!-- % of responses as colored status bar (see Figma for) -->
-                <!-- delete survey from index -->
-                <div class="delete-index">
-                  <%= link_to '<i class="far fa-trash-alt"></i>'.html_safe, survey_path(survey), method: :delete%>
-                </div>
-              </div>
-            </div>
+<%= render partial: "shared/sidebar" %>
+<div class="main-content">
+  
+  <!-- This partial containes stuff that was in the template but I have no -->
+  <!-- idea what its for, so it's commented out -->
+  <%#= render partial: "shared/dashkit_top_navbar" %>
+
+  <!-- HEADER -->
+  <div class="header no-b-margin">
+    <div class="container-fluid">
+
+      <!-- Body -->
+      <div class="header-body">
+        <div class="row align-items-end">
+          <div class="col-8">
+
+            <!-- Pretitle -->
+            <h6 class="header-pretitle">
+              CRITIQ
+            </h6>
+
+            <!-- Title -->
+            <h1 class="header-title">
+              Dashboard
+            </h1>
+
           </div>
-          <% end %>
-          <% else %>
-          <h3> No surveys created so far </h3>
-          <% end %>
+          <div class="col-4">
+
+            <!-- Button -->
+            <%= form_tag surveys_path, method: :get do %>
+              <%= text_field_tag :query, params[:query], class: "form-control form-control-rounded",
+              placeholder: "Find Critiq"%>
+            <% end %>
+
+          </div>
         </div>
-        <%= render partial: "modal_create_survey" %>
+        <!-- / .row -->
       </div>
-      <div class="right-page">
-        <%= render partial: "question_responses", locals: {all_questions: @questions} %>
-      </div>
+      <!-- / .header-body -->
+
+    </div>
+  </div>
+  <!-- / .header -->
+
+  <!-- LEFT and RIGHT panes -->
+  <div class="container-fluid d-flex overflow-a">
+    <div class="left-page">
+         <% unless @surveys.empty? %>
+           <% @surveys.reverse.each do |survey| %>
+             <%= render partial: "survey_card", locals: {survey: survey} %>
+          <% end %>
+        <% else %>
+          <h3> Ask your coleagues for a Critiq! </h3>
+        <% end %>
+      <%= render partial: "modal_create_survey" %>
+    </div>
+    <div class="right-page">
+      <%= render partial: "question_responses", locals: {all_questions: @questions} %>
     </div>
   </div>
 </div>
