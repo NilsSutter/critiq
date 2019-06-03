@@ -63,23 +63,34 @@ class SurveysController < ApplicationController
   # updates and sends out survey
   def update
     @survey = Survey.find(params[:id])
-    if @survey.update(survey_params)
-      redirect_to survey_path(@survey)
-    else
-      render :edit
+    if params[:commit] == "Send"
+      # update and send
+      if @survey.update(survey_params)
+        @survey.send_first_question
+        redirect_to survey_path(@survey)
+      else
+        render :edit
+      end
+    elsif params[:commit] == "Save"
+      # only save
+      if @survey.update(survey_params)
+        redirect_to survey_path(@survey)
+      else
+        render :edit
+      end
     end
   end
 
   # new route for only save action
-  def update_and_send
-    @survey = Survey.find(params[:id])
-    if @survey.update(survey_params)
-      @survey.send_first_question
-      redirect_to survey_path(@survey)
-    else
-      render :edit
-    end
-  end
+  # def update_and_send
+  #   @survey = Survey.find(params[:id])
+  #   if @survey.update(survey_params)
+  #     @survey.send_first_question
+  #     redirect_to survey_path(@survey)
+  #   else
+  #     render :edit
+  #   end
+  # end
 
   def destroy
     @survey = Survey.find(params[:id])
