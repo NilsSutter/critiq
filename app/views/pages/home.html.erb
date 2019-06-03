@@ -1,7 +1,6 @@
-<%= render 'shared/navbar' %>
-<!-- <h1>Pages#home</h1> -->
+<div class="poly-background">
+<%= render 'shared/navbar_keep' %>
 
-<!-- <h1>Signed in as: <%#= current_user.nickname.capitalize if user_signed_in? && !current_user.nickname.nil? %></h1> -->
 <div class="full-screen-banner">
   <div class="container">
     <div class="d-flex justify-content-between banner">
@@ -15,7 +14,7 @@
 
       <!-- img -->
       <div class="banner-img">
-        <%= image_tag "slack.svg", alt: "alttext" %>
+        <%= image_tag "slack.png", alt: "alttext" %>
       </div>
     </div>
 
@@ -52,7 +51,7 @@
       <div class="image-padding">
         <%= image_tag "bot.svg", alt: "survey", class:"lp-card-img" %>
       </div>
-      <div class="card-text">
+      <div class="lp-card-text">
         <h4>Talk to Tinker</h4>
         <p>Our slackbot, Tinker, sends automated messages to collect anonymous feedback.</p>
       </div>

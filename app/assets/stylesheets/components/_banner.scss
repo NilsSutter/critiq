@@ -4,27 +4,30 @@
   background-color: rgb(250, 250, 250);
   font-family: 'Oswald';
   font-weight: 700;
+  position: relative;
 }
 
 .banner {
   padding-top: 100px;
   h1 {
     text-align: right;
+    font-size: 30px;
   }
 }
 
 .banner-img {
   height: 500px;
   width: 700px;
+  z-index: 2;
   img {
     max-height: 100%;
     max-width: 100%;
-    background-color: rgb(250, 250, 250);
   }
 }
 
 .banner-text {
-  margin-top: 20px;
+  margin-top: 38px;
+  padding-left: 27px;
   text-align: right;
 }
 
