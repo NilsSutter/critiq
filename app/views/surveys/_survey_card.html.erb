@@ -6,6 +6,11 @@
           <%= survey.created_at.strftime(" %e %b ") %>
         </p>
         <!-- Adds some padding to the right. When you want to add an icon, do it inside this div -->
+        <% if survey.published == false %>
+          <p style="margin-bottom: 0 !important;"><i class="fas fa-exclamation-triangle" data-toggle="tooltip" data-html="true" title="Survey has not been sent out"id="warning-icon"></i></p>
+        <% else %>
+           <p style="margin-bottom: 0 !important; visibility: hidden;"><i class="fas fa-exclamation-triangle"></i></p>
+        <% end %>
       </div>
       <div class="col ml-n2">
 
@@ -14,8 +19,8 @@
         </h4>
 
         <p class="card-text small text-muted mb-1">
-          <% if survey.description.size > 130 %>
-            <%= survey.description.first(130).insert(-1, "...") %>
+          <% if survey.description.size > 180 %>
+            <%= survey.description.first(180).insert(-1, "...") %>
           <% else %>
             <%= survey.description %>
           <% end %>
@@ -27,7 +32,7 @@
             <div class="small mr-2">Responses: </div>
 
           </div> -->
-          <div class="col">
+          <div class="col pt-3">
 
             <div class="progress progress-sm">
               <% unless survey.questions.empty?  %>
@@ -58,15 +63,13 @@
             <%= link_to survey_path(survey), class: "dropdown-item", method: :delete do %>
              <i class="far fa-trash-alt"></i><span class="pl-4">Delete</span>
             <% end %>
-            <!-- <a href="#!" class="dropdown-item">
-              Another action
-            </a>
-            <a href="#!" class="dropdown-item">
-              Something else here
-            </a> -->
+            <% unless survey.published == true %>
+              <%= link_to edit_survey_path(survey), class: "dropdown-item" do  %>
+              <i class="fas fa-edit"></i><span class="pl-4">Edit</span>
+              <% end %>
+            <% end %>
           </div>
         </div>
-
       </div>
     </div>
   </div>
@@ -102,5 +105,6 @@
 
         clickSurvId<%= survey.id %>();
     });
+    // $('#warning-icon').tooltip()
   </script>
 <% end %>
