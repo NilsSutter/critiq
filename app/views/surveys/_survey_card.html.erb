@@ -86,7 +86,7 @@
           Rails.ajax({
             url: "/surveys/<%= survey.id %>",
             type: "get",
-            data: "script",
+            data: "ajax=1",
             success: function(data) {
               Rails.$('.right-page')[0].innerHTML = data.html
               // SCRIPT TAG not evaluated on innerHTML injection
