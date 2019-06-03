@@ -9,7 +9,7 @@
         <% if survey.published == false %>
           <p style="margin-bottom: 0 !important;"><i class="fas fa-exclamation-triangle"></i></p>
         <% else %>
-          <p style="margin-bottom: 0 !important; visibility: hidden;"><i class="fas fa-exclamation-triangle"></i></p>
+           <p style="margin-bottom: 0 !important; visibility: hidden;"><i class="fas fa-exclamation-triangle"></i></p>
         <% end %>
       </div>
       <div class="col ml-n2">
@@ -19,8 +19,8 @@
         </h4>
 
         <p class="card-text small text-muted mb-1">
-          <% if survey.description.size > 130 %>
-            <%= survey.description.first(130).insert(-1, "...") %>
+          <% if survey.description.size > 180 %>
+            <%= survey.description.first(180).insert(-1, "...") %>
           <% else %>
             <%= survey.description %>
           <% end %>
@@ -32,7 +32,7 @@
             <div class="small mr-2">Responses: </div>
 
           </div> -->
-          <div class="col">
+          <div class="col pt-3">
 
             <div class="progress progress-sm">
               <% unless survey.questions.empty?  %>
