@@ -13,17 +13,21 @@
 }
 
 
+.surv-card {
+  transition: ease-in 0.05s;
+}
+
 .surv-card:hover {
-    background-color: hsla(210, 50%, 94%, 1);;
+  background-color: hsla(210, 50%, 96%, 1);
+  border: 1px solid hsla(214, 59%, 83%, 1);
 }
 
 
 .surv-card-active {
-  background-color: #3271c3;
-  color: #f9fbfd;
+  border: 1px solid hsla(214, 59%, 83%, 1);
+  background-color: hsla(210, 50%, 96%, 1);
 }
 
 .surv-card-active:hover {
-  background-color: hsla(214, 59%, 40%, 1) !important;
-  color: #f9fbfd !important;
+  background-color: hsla(210, 50%, 96%, 1);
 }
