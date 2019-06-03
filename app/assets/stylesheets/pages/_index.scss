@@ -31,6 +31,15 @@
   width: 100%;
 }
 
+.no-scrollbar {
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none;  /* IE 10+ */
+}
+.no-scrollbar::-webkit-scrollbar { /* WebKit */
+    width: 0;
+    height: 0;
+}
+
 .left-page {
   flex-basis: 50%;
   overflow: scroll;

@@ -40,6 +40,7 @@ class SurveysController < ApplicationController
 
   def show
     @questions = Survey.find(params[:id]).display_responses
+    # render json: @questions_json
     render json: { html: render_to_string(partial: "question_responses", locals: {all_questions: @questions}) }
     # redirect_to surveys_path(id: params[:id])
   end

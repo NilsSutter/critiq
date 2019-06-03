@@ -80,22 +80,24 @@
           document.querySelector('.surv-id-<%= survey.id %>').classList.add("surv-card-active");
 
           // AJAX Loader:
-          Rails.ajax({
+          $.ajax({
             url: "/surveys/<%= survey.id %>",
             type: "get",
-            data: "",
+            data: "script",
             success: function(data) {
+              console.log(data.html)
               Rails.$('.right-page')[0].innerHTML = data.html
+              // SCRIPT TAG not evaluated on innerHTML injection
+              // eval() does that below
+              document.querySelectorAll('.exec-chart-js').forEach(function(element) {
+                eval(element.firstElementChild.innerHTML)
+              })
+
             },
             error: function(data) {
               alert("Failed to Load Critiq id: <%= survey.id %> :(")
             }
           })
-
-
-
-
-
         };
 
         clickSurvId<%= survey.id %>();

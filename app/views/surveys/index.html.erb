@@ -45,7 +45,7 @@
 
   <!-- LEFT and RIGHT panes -->
   <div class="container-fluid d-flex overflow-a">
-    <div class="left-page">
+    <div class="left-page no-scrollbar">
          <% unless @surveys.empty? %>
            <% @surveys.reverse.each do |survey| %>
              <%= render partial: "survey_card", locals: {survey: survey} %>
@@ -55,7 +55,7 @@
         <% end %>
       <%= render partial: "modal_create_survey" %>
     </div>
-    <div class="right-page">
+    <div class="right-page no-scrollbar">
       <%= render partial: "question_responses", locals: {all_questions: @questions} %>
     </div>
   </div>
