@@ -6,6 +6,9 @@
           <%= survey.created_at.strftime(" %e %b ") %>
         </p>
         <!-- Adds some padding to the right. When you want to add an icon, do it inside this div -->
+        <% unless survey.published == true %>
+          <p style="margin-bottom: 0 !important;"><i class="fas fa-exclamation-triangle"></i></p>
+        <% end %>
       </div>
       <div class="col ml-n2">
 
@@ -58,12 +61,11 @@
             <%= link_to survey_path(survey), class: "dropdown-item", method: :delete do %>
              <i class="far fa-trash-alt"></i><span class="pl-4">Delete</span>
             <% end %>
-            <!-- <a href="#!" class="dropdown-item">
-              Another action
-            </a>
-            <a href="#!" class="dropdown-item">
-              Something else here
-            </a> -->
+            <% unless survey.published == true %>
+              <%= link_to edit_survey_path(survey), class: "dropdown-item" do  %>
+              <i class="fas fa-edit"></i><span class="pl-4">Edit</span>
+              <% end %>
+            <% end %>
           </div>
         </div>
 
