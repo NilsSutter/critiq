@@ -7,6 +7,7 @@
     </div>
     <div class="survey-wrapper">
       <div class="left-page">
+
         <!-- START searchbar -->
         <div class="search-bar-index">
           <%= form_tag surveys_path, method: :get do %>
@@ -15,11 +16,13 @@
           <% end %>
         </div>
         <!-- END searchbar -->
+
         <div class="all-surveys">
         <!-- Display all surveys of the current user if surveys
          have been created -->
            <% if @surveys.count != 0 %>
            <% @surveys.reverse.each do |survey| %>
+            <%= link_to surveys_path(id: survey.id) do %>
               <div class="card">
                 <div class="card-body">
                   <div class="row align-items-center">
@@ -71,6 +74,7 @@
                   </div>
                 </div>
               </div>
+            <% end %>
             <% end %>
             <% else %>
               <h3> No surveys created so far </h3>
