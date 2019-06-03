@@ -1,0 +1,26 @@
+.navbar-lewagon {
+  justify-content: space-between;
+  z-index: 3;
+  color: black;
+}
+
+.navbar-lewagon .navbar-collapse {
+  flex-grow: 0;
+}
+
+.navbar-lewagon .navbar-brand img {
+  width: 40px;
+}
+
+#black-font-color {
+  color: black;
+  font-weight: bold;
+}
+
+.navbar {
+  z-index: 2;
+  a {
+    color: white;
+    font-weight: bold;
+  }
+}
