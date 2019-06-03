@@ -74,6 +74,8 @@ class SurveysController < ApplicationController
     elsif params[:commit] == "Save"
       # only save
       if @survey.update(survey_params)
+        @survey.published = false
+        @survey.save
         redirect_to survey_path(@survey)
       else
         render :edit
