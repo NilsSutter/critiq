@@ -59,7 +59,7 @@ class SurveysController < ApplicationController
       @slackchannels = {error: true}
     end
   end
-
+  # updates and sends out survey
   def update
     @survey = Survey.find(params[:id])
     if @survey.update(survey_params)
