@@ -12,6 +12,15 @@
   width: 40px;
 }
 
+#black-font-color {
+  color: black;
+  font-weight: bold;
+}
+
 .navbar {
   z-index: 2;
+  a {
+    color: white;
+    font-weight: bold;
+  }
 }
