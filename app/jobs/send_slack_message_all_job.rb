@@ -23,7 +23,7 @@ class SendSlackMessageAllJob < ApplicationJob
                       token: ENV["SLACK_API_TOKEN"],
                       channel: survey.channel_id })
 
-    member_list["channel"]["members"].each do |uid|
+    member_list["channel"]["members"].reject { |x| x == User.find(survey.user_id).uid }.each do |uid|
       GetSlackUserInfoJob.perform_later(uid: uid, surv_id: args[0][:survey_id])
     end
 
