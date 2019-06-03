@@ -23,6 +23,10 @@ class SendSlackMessageAllJob < ApplicationJob
                       token: ENV["SLACK_API_TOKEN"],
                       channel: survey.channel_id })
 
+    member_list["channel"]["members"].each do |uid|
+      GetSlackUserInfoJob.perform_later(uid: uid, surv_id: args[0][:survey_id])
+    end
+
 
     sender = "#{User.find(survey.user_id).first_name.capitalize} #{User.find(survey.user_id).last_name.capitalize}"
     others = member_list["channel"]["members"].count - 1
