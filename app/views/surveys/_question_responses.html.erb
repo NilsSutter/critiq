@@ -6,6 +6,23 @@
 <% else %>
 
   <% all_questions.each_with_index do |question, q_index| %>
+  <div class="card">
+    <div class="card-header">
+      <h4 class="card-header-title"> Card title </h4>
+    </div>
+    <div class="card-body">
+      <% survey = Survey.find(params[:id]) %>
+      <% recipients = survey.recipients.each do |recipient| %>
+        <% unless recipient.first_name == "tinker" %>
+          <%= recipient.first_name %>
+        <% end %>
+        <% unless recipient.last_name.nil? %>
+          <%= recipient.last_name %>
+        <% end %>
+      <% end %>
+
+    </div>
+  </div>
 
   <div class="card">
     <h5 class="card-header"><%= q_index + 1 %>. <%= question[:name] %></h5>

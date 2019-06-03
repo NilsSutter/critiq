@@ -12,5 +12,4 @@ class GetSlackUserInfoJob < ApplicationJob
       Recipient.create(survey_id: args[0][:surv_id], uid: args[0][:uid], first_name: info["user"]["real_name"].split(" ")[0], last_name: info["user"]["real_name"].split(" ")[1])
     end
   end
-
 end
