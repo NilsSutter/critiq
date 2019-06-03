@@ -18,7 +18,7 @@ class Survey < ApplicationRecord
   validates :title, presence: true
   # validates :channel_id, presence: true ( GetSlackChannelsJob.perform_now)
   accepts_nested_attributes_for :questions, reject_if: :all_blank, allow_destroy: true
-  after_update :send_first_question
+  # after_update :send_first_question
 
   def display_responses
     survey = Survey.find(self.id)
@@ -32,8 +32,6 @@ class Survey < ApplicationRecord
       end
     end
   end
-
-  private
 
   def send_first_question
     # Get FIRST question ID

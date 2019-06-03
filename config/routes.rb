@@ -7,6 +7,8 @@ Rails.application.routes.draw do
     resources :questions, only: [:new, :create, :show]
   end
 
+  patch '/surveys/:id', to: 'survey#update_and_send', as: :send;
+
   # Sidekiq Web UI, only for admins.
  require "sidekiq/web"
  authenticate :user, lambda { |u| u.admin } do
