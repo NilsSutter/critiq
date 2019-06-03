@@ -84,14 +84,11 @@
             </div>
         </div>
         <%= f.input :published, :as => :hidden, :input_html => { :value => "true" } %>
-        <!-- save & send (currently) -->
         <div class="form-create-footer text-right px-5">
-          <%= f.submit "Submit Critiq", class:"btn btn-primary create-survey-button-edit" %>
+          <%= f.submit "Send & Save Critiq", class:"btn btn-primary create-survey-button-edit" %>
+          <%= link_to 'Save Critiq', send_path(@survey), class:"btn btn-white create-survey-button-edit"   %>
         </div>
-        <!-- only save action; do not send! -->
-        <div class="form-create-footer text-right px-20">
-          <%= f.submit "Save Critiq", class:"btn btn-primary create-survey-button-edit" %>
-        </div>
+
       <% end %>
     </div>
 
@@ -99,8 +96,6 @@
 
   </div>
 </div>
-
-
 
 <!-- END  -->
 <%= content_for :after_js do %>
