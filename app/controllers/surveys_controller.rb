@@ -39,9 +39,9 @@ class SurveysController < ApplicationController
   end
 
   def show
-    # @survey = Survey.find(params[:id])
-    # @questions = Survey.find(params[:id]).display_responses
-    redirect_to surveys_path(id: params[:id])
+    @questions = Survey.find(params[:id]).display_responses
+    render json: { html: render_to_string(partial: "question_responses", locals: {all_questions: @questions}) }
+    # redirect_to surveys_path(id: params[:id])
   end
 
   def edit

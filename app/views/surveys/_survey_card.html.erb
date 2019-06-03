@@ -76,7 +76,26 @@
   <script type="text/javascript">
     $('.surv-id-<%= survey.id %>').click( function(event) {
         const clickSurvId<%= survey.id %> = () => {
-          document.querySelector('.surv-id-<%= survey.id %>').classList.toggle("surv-card-active");
+          document.querySelectorAll('.surv-card').forEach(function(element) { element.classList.remove('surv-card-active') });
+          document.querySelector('.surv-id-<%= survey.id %>').classList.add("surv-card-active");
+
+          // AJAX Loader:
+          Rails.ajax({
+            url: "/surveys/<%= survey.id %>",
+            type: "get",
+            data: "",
+            success: function(data) {
+              Rails.$('.right-page')[0].innerHTML = data.html
+            },
+            error: function(data) {
+              alert("Failed to Load Critiq id: <%= survey.id %> :(")
+            }
+          })
+
+
+
+
+
         };
 
         clickSurvId<%= survey.id %>();
