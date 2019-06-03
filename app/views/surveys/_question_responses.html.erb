@@ -39,15 +39,15 @@
 
         <div class="chart">
 
-          <canvas id="<%= question.name.gsub(/[^\w]/,"").downcase.slice(0..15) %>Chart" class="chart-canvas"></canvas>
+          <canvas id="<%= question.id %>_Chart" class="chart-canvas"></canvas>
         </div>
 
-        <div id="<%= question.name.gsub(/[^\w]/,"").downcase.slice(0..15) %>ChartLegend" class="chart-legend"></div>
+        <div id="<%= question.id %>_ChartLegend" class="chart-legend"></div>
 
         <%= content_for :after_js do %>
           <script>
             const makeChart = () => {
-              new Chart('<%= question.name.gsub(/[^\w]/,"").downcase.slice(0..15) %>Chart', {
+              new Chart('<%= question.id %>_Chart', {
                 type: 'pie',
                 data: {
                   labels: <%= raw question.choices.map { |x| x.name } %>,
@@ -90,11 +90,6 @@
         </div>
       </div>
       <% end %>
-      <% end %>
-
-
-
-
-
+    <% end %>
   <% end %>
 <% end %>
