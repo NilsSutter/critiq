@@ -1,90 +1,61 @@
-<div class="full-page">
-  <!-- render goes here -->
-  <%= render partial: "shared/sidebar" %>
-  <div class="survey-list">
-    <div class="index-title-section">
-      <h1 style="padding-left: 18px;">Dashboard</h1>
-    </div>
-    <div class="survey-wrapper">
-      <div class="left-page">
+<%= render partial: "shared/sidebar" %>
+<div class="main-content">
+  
+  <!-- This partial containes stuff that was in the template but I have no -->
+  <!-- idea what its for, so it's commented out -->
+  <%#= render partial: "shared/dashkit_top_navbar" %>
 
-        <!-- START searchbar -->
-        <div class="search-bar-index">
-          <%= form_tag surveys_path, method: :get do %>
-            <%= text_field_tag :query, params[:query], class: "form-control",
-            placeholder: "Find Critiq"%>
-          <% end %>
-        </div>
-        <!-- END searchbar -->
+  <!-- HEADER -->
+  <div class="header no-b-margin">
+    <div class="container-fluid">
 
-        <div class="all-surveys">
-        <!-- Display all surveys of the current user if surveys
-         have been created -->
-           <% if @surveys.count != 0 %>
-           <% @surveys.reverse.each do |survey| %>
-            <%= link_to surveys_path(id: survey.id) do %>
-              <div class="card">
-                <div class="card-body">
-                  <div class="row align-items-center">
+      <!-- Body -->
+      <div class="header-body">
+        <div class="row align-items-end">
+          <div class="col-8">
 
-                    <div class="col ml-n2">
-                      <!-- survey title -->
-                      <h4 class="card-title mb-1 name">
-                        <h3><%= link_to survey.title, surveys_path(id: survey.id) %></h3>
-                      </h4>
-                        <!-- survey description -->
-                      <% if survey.description.size > 130 %>
-                        <p class="card-text small text-muted mb-1"> <%= survey.description.first(130).insert(-1, "...") %> </p>
-                      <% else %>
-                        <p class="card-text small text-muted mb-1"> <%= survey.description %> </p>
-                      <% end %>
+            <!-- Pretitle -->
+            <h6 class="header-pretitle">
+              CRITIQ
+            </h6>
 
-                      <div class="row align-items-center no-gutters">
-                        <div class="col-auto">
+            <!-- Title -->
+            <h1 class="header-title">
+              Dashboard
+            </h1>
 
-                          <div class="small mr-2">29%</div>
-
-                        </div>
-                        <div class="col">
-                          <!-- START progess bar -->
-                          <div class="progress progress-sm">
-                            <div class="progress-bar" role="progressbar" style="width: 10%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
-                          </div>
-                          <!-- END progress bar -->
-
-                          <!-- START survey sent status -->
-                          <% if survey.published == false %>
-                            <p style="color:grey;margin-bottom: none;font-weight:lighter; font-size:10px;">Attention! Survey has NOT been sent out. <%= link_to "Send now?", edit_survey_path(survey), class: 'survey-card-index-resend' %></p>
-                          <% end %>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-auto">
-                      <p> <%= survey.created_at.strftime(" %e %b ") %></p>
-                      <% if survey.published %>
-                        <p><i class="fas fa-check"></i></p>
-                      <% else %>
-                        <p><i class="fas fa-times" style="color: darkred;"></i></p>
-                      <% end %>
-                      <!-- END survey sent status -->
-                      <div class="delete-index">
-                        <%= link_to '<i class="far fa-trash-alt"></i>'.html_safe, survey_path(survey), method: :delete%>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            <% end %>
-            <% end %>
-            <% else %>
-              <h3> No surveys created so far </h3>
-            <% end %>
           </div>
-          <%= render partial: "modal_create_survey" %>
+          <div class="col-4">
+
+            <!-- Button -->
+            <%= form_tag surveys_path, method: :get do %>
+              <%= text_field_tag :query, params[:query], class: "form-control form-control-rounded",
+              placeholder: "Find Critiq"%>
+            <% end %>
+
+          </div>
         </div>
-        <div class="right-page">
-        <%= render partial: "question_responses", locals: {all_questions: @questions} %>
+        <!-- / .row -->
       </div>
-      </div>
+      <!-- / .header-body -->
+
+    </div>
+  </div>
+  <!-- / .header -->
+
+  <!-- LEFT and RIGHT panes -->
+  <div class="container-fluid d-flex overflow-a">
+    <div class="left-page">
+         <% unless @surveys.empty? %>
+           <% @surveys.reverse.each do |survey| %>
+             <%= render partial: "survey_card", locals: {survey: survey} %>
+          <% end %>
+        <% else %>
+          <h3> Ask your coleagues for a Critiq! </h3>
+        <% end %>
+      <%= render partial: "modal_create_survey" %>
+    </div>
+    <div class="right-page">
+      <%= render partial: "question_responses", locals: {all_questions: @questions} %>
     </div>
   </div>

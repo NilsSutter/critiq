@@ -23,7 +23,7 @@ class Survey < ApplicationRecord
   def display_responses
     survey = Survey.find(self.id)
     unless survey.questions.empty?
-      if survey.questions.last.responses.count > ((survey.questions.first.sent_question_ids.count - 1) * 0.7).round
+      if survey.questions.last.responses.count > ((survey.questions.first.sent_question_ids.count - 1) * 0.7).floor
         return survey.questions
       else
         stripped_questions = []

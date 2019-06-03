@@ -1,16 +1,66 @@
 // Import Google fonts
-@import url("https://fonts.googleapis.com/css?family=Open+Sans:400,300,700|Raleway:400,100,300,700,500");
-@import url('https://fonts.googleapis.com/css?family=Oswald:300,400,700&display=swap');
+@import url("https://fonts.googleapis.com/css?family=Josefin+Sans&display=swap");
+// @import url('https://fonts.googleapis.com/css?family=Oswald:300,400,700&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Ubuntu&display=swap');
+
+@import 'feather/feather';
 
 // Define fonts for body and headers
-$body-font: "Open Sans", "Helvetica", "sans-serif";
-$headers-font: "Raleway", "Helvetica", "sans-serif";
+$body-font: "Josefin Sans", "Helvetica", "sans-serif";
+$headers-font: "Ubuntu", "Helvetica", "sans-serif";
+
+
 // To use a font file (.woff) uncomment following lines
-// @font-face {
-//   font-family: "Font Name";
-//   src: font-url('FontFile.eot');
-//   src: font-url('FontFile.eot?#iefix') format('embedded-opentype'),
-//        font-url('FontFile.woff') format('woff'),
-//        font-url('FontFile.ttf') format('truetype')
-// }
 // $my-font: "Font Name";
+@font-face {
+  font-family: 'Feather';
+  src:
+    font-url('feather/Feather.ttf?sdxovp') format('truetype'),
+    font-url('feather/Feather.woff?sdxovp') format('woff'),
+    font-url('feather/Feather.svg?sdxovp#Feather') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Cerebri Sans";
+	font-weight: 350;
+  src: font-url('cerebrisans/cerebrisans-book.eot');
+  src: font-url('cerebrisans/cerebrisans-book.eot?#iefix') format('embedded-opentype'),
+       font-url('cerebrisans/cerebrisans-book.woff') format('woff'),
+       font-url('cerebrisans/cerebrisans-book.ttf') format('truetype')
+}
+@font-face {
+  font-family: "Cerebri Sans";
+	font-weight: 400;
+  font-style: normal;
+  src: font-url('cerebrisans/cerebrisans-regular.eot');
+  src: font-url('cerebrisans/cerebrisans-regular.eot?#iefix') format('embedded-opentype'),
+       font-url('cerebrisans/cerebrisans-regular.woff') format('woff'),
+       font-url('cerebrisans/cerebrisans-regular.ttf') format('truetype')
+}
+@font-face {
+  font-family: "Cerebri Sans";
+  font-weight: 500;
+  font-style: normal;
+  src: font-url('cerebrisans/cerebrisans-medium.eot');
+  src: font-url('cerebrisans/cerebrisans-medium.eot?#iefix') format('embedded-opentype'),
+       font-url('cerebrisans/cerebrisans-medium.woff') format('woff'),
+       font-url('cerebrisans/cerebrisans-medium.ttf') format('truetype')
+}
+@font-face {
+  font-family: "Cerebri Sans";
+	font-weight: 600;
+  font-style: normal;
+  src: font-url('cerebrisans/cerebrisans-semibold.eot');
+  src: font-url('cerebrisans/cerebrisans-semibold.eot?#iefix') format('embedded-opentype'),
+       font-url('cerebrisans/cerebrisans-semibold.woff') format('woff'),
+       font-url('cerebrisans/cerebrisans-semibold.ttf') format('truetype')
+}
+@font-face {
+  font-family: "Cerebri Sans";
+  font-weight: 700;
+  src: font-url('cerebrisans/cerebrisans-bold.eot');
+  src: font-url('cerebrisans/cerebrisans-bold.eot?#iefix') format('embedded-opentype'),
+       font-url('cerebrisans/cerebrisans-bold.woff') format('woff'),
+       font-url('cerebrisans/cerebrisans-bold.ttf') format('truetype')
+}

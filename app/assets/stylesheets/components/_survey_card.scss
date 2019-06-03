@@ -1,0 +1,22 @@
+.surv-date-box {
+  border-right: 1px solid #edf2f9;
+  height: 55px;
+  margin-right: 10px;
+  padding-right: 24px;
+}
+
+
+.surv-card:hover {
+    background-color: hsla(210, 50%, 94%, 1);;
+}
+
+
+.surv-card-active {
+  background-color: #3271c3;
+  color: #f9fbfd;
+}
+
+.surv-card-active:hover {
+  background-color: hsla(214, 59%, 40%, 1) !important;
+  color: #f9fbfd !important;
+}

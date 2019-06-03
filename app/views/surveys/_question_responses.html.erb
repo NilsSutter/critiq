@@ -4,20 +4,30 @@
     <p style="color: grey;">No Critiq Selected</p>
   </div>
 <% else %>
+
   <% all_questions.each_with_index do |question, q_index| %>
-  <div class="response-card">
-    <p><%= q_index + 1 %>. <%= question[:name] %></p>
-    <ul>
+
+  <div class="card">
+    <h5 class="card-header"><%= q_index + 1 %>. <%= question[:name] %></h5>
+    <div class="card-body" style="text-align: left;">
       <% if question[:question_type] == "text" %>
 
         <% if !question[:responses].nil? && question[:responses].empty? %>
-          <li>Not Enough Responses Yet</li>
+        <h5 class="card-title">
+          We'll send you a slack message when there are enough responses.
+        </h5>
         <% else %>
-          <% question.responses.each do |response| %>
-            <li><%= response.content %></li>
+          <% question.responses.each_with_index do |response, index| %>
+          <h5 class="card-title">
+            Response no.<%= index + 1 %>
+          </h5>
+          <p class="card-text" style="padding-left: 10px;">
+            <%= response.content %>
+          </p>
           <% end %>
         <% end %>
-
+      </div>
+    </div>
       <% else %>
 
         <% if !question[:responses].nil? && question[:responses].empty? %>
@@ -27,14 +37,64 @@
 
         <% else %>
 
-          <% question.choices.each_with_index do |choice, c_index| %>
-            <li><%= choice.name %></li>
-            <%= " * " * question.responses.select { |x| x.content.to_i == (c_index + 1) }.count %>
-          <% end %>
+        <div class="chart">
 
-        <% end %>
+          <canvas id="<%= question.name.gsub(/[^\w]/,"").downcase.slice(0..15) %>Chart" class="chart-canvas"></canvas>
+        </div>
+
+        <div id="<%= question.name.gsub(/[^\w]/,"").downcase.slice(0..15) %>ChartLegend" class="chart-legend"></div>
+
+        <%= content_for :after_js do %>
+          <script>
+            const makeChart = () => {
+              new Chart('<%= question.name.gsub(/[^\w]/,"").downcase.slice(0..15) %>Chart', {
+                type: 'pie',
+                data: {
+                  labels: <%= raw question.choices.map { |x| x.name } %>,
+                  datasets: [{
+                    data: <%= raw question.array_of_choice_percentages %>,
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255,99,132,1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)'
+                    ],
+                    borderWidth: 1
+                  }]
+                },
+                options: {
+                  legend: {
+                      display: true,
+                      position: 'left',
+                      labels: {
+                          fontSize: 18,
+                      }
+                    }
+                  }
+              });
+            }
+
+            makeChart();
+          </script>
+          <% end %>
+        </div>
+      </div>
       <% end %>
-    </ul>
-    </div>
+      <% end %>
+
+
+
+
+
   <% end %>
 <% end %>
