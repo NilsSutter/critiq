@@ -7,7 +7,7 @@
         </p>
         <!-- Adds some padding to the right. When you want to add an icon, do it inside this div -->
         <% if survey.published == false %>
-          <p style="margin-bottom: 0 !important;"><i class="fas fa-exclamation-triangle"></i></p>
+          <p style="margin-bottom: 0 !important;"><i class="fas fa-exclamation-triangle" data-toggle="tooltip" data-html="true" title="Survey has not been sent out"id="warning-icon"></i></p>
         <% else %>
            <p style="margin-bottom: 0 !important; visibility: hidden;"><i class="fas fa-exclamation-triangle"></i></p>
         <% end %>
@@ -84,5 +84,6 @@
 
         clickSurvId<%= survey.id %>();
     });
+    // $('#warning-icon').tooltip()
   </script>
 <% end %>
