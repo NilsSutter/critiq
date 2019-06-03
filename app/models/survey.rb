@@ -13,7 +13,7 @@ class Survey < ApplicationRecord
   has_many :responses, through: :questions
   has_many :questions, dependent: :destroy
   has_many :choices, through: :questions
-  has_many :recipients
+  has_many :recipients, dependent: :destroy
   belongs_to :user
   # validations
   validates :title, presence: true

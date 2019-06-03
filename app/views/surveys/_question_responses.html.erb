@@ -8,19 +8,22 @@
   <% all_questions.each_with_index do |question, q_index| %>
   <div class="card">
     <div class="card-header">
-      <h4 class="card-header-title"> Card title </h4>
-    </div>
-    <div class="card-body">
+      <h3 class="card-header-title">
       <% survey = Survey.find(params[:id]) %>
+        <%= survey.title %>
+      </h3>
+     <!--  <p style="text-align: left;"> <%= survey.description %></p> -->
+    </div>
+    <div class="card-body" style="text-align: left; font-size:13px;">
+      <p style="font-size:10px; color: grey; margin-bottom: 5px;">SELECTED RECIPIENTS:</p>
       <% recipients = survey.recipients.each do |recipient| %>
-        <% unless recipient.first_name == "tinker" %>
-          <%= recipient.first_name %>
-        <% end %>
-        <% unless recipient.last_name.nil? %>
-          <%= recipient.last_name %>
-        <% end %>
+          <% unless recipient.first_name == "tinker" %>
+            <%= recipient.first_name %>
+          <% end %>
+          <% unless recipient.last_name.nil? %>
+            <%= recipient.last_name %>
+          <% end %>
       <% end %>
-
     </div>
   </div>
 
