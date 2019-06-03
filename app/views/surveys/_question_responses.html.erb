@@ -38,15 +38,16 @@
         <% else %>
 
         <div class="chart">
-
           <canvas id="<%= question.id %>_Chart" class="chart-canvas"></canvas>
         </div>
 
         <div id="<%= question.id %>_ChartLegend" class="chart-legend"></div>
 
-        <%= content_for :after_js do %>
-          <script>
-            const makeChart = () => {
+        <%# <%= content_for :after_js do %>
+        <div class="exec-chart-js">
+          <script type="text/javascript">
+            const makeChart<%= question.id %> = () => {
+              // console.log("makeChart<%= question.id %> inside const")
               new Chart('<%= question.id %>_Chart', {
                 type: 'pie',
                 data: {
@@ -84,9 +85,11 @@
               });
             }
 
-            makeChart();
+            console.log("calling makeChart<%= question.id %>();")
+            makeChart<%= question.id %>();
           </script>
-          <% end %>
+        </div>
+          <%# <% end %>
         </div>
       </div>
       <% end %>
