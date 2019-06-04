@@ -43,22 +43,29 @@
   <!-- LEFT and RIGHT panes -->
   <div class="container-fluid d-flex overflow-a" style="max-width:900px;">
     <div class="all-questions">
-      <div class="title_and_description mb-5">
-        <div class="header-title-survey">
-          <h1 style="margin-top:20px;"><%= @survey.title %></h1>
-          <p style="margin-top:20px;"><%= @survey.created_at.strftime("%e %B %Y")%></p>
+      <div class="title_and_description mb-3">
+        <div class="header-section-survey">
+          <div class="header-title-survey">
+            <h1 style="margin-top:20px;"><%= @survey.title %></h1>
+            <p style="margin-top:20px;"><%= @survey.created_at.strftime("%e %B %Y")%></p>
+          </div>
         </div>
-        <h3 style="color: grey;"><%= @survey.description %></h3>
+        <div class="description-and-button">
+          <h3 style="color: grey;"><%= @survey.description %></h3>
+          <p class=" btn btn-light display-header-button">Edit Title</p>
+        </div>
       </div>
       <%= simple_form_for @survey do |f| %>
-        <div class="wrapper-title-survey">
-          <%= f.input :title,
-                      wrapper_html: { class: 'title-input-text' }%>
-          <%= f.input :description,
-                      wrapper_html: { class: 'description-input-text' } %>
+      <div class="wrapper-titel-survey-header">
+          <div class="wrapper-title-survey">
+            <%= f.input :title,
+                        wrapper_html: { class: 'title-input-text' }%>
+            <%= f.input :description,
+                        wrapper_html: { class: 'description-input-text' } %>
+        </div>
         <div class="slack-channels">
           <div class="w-50">
-            <h4>Get Critiq from your colleagues in:</h4>
+            <h4 style="padding-top:10px;">Get Critiq from your colleagues in:</h4>
           </div>
           <div class="w-50">
 
@@ -121,8 +128,16 @@
           document.querySelector('.create-form-choices').classList.remove("mc-choice-bump-height");
         };
       });
-
     })
+    const buttonEdit = document.querySelector(".display-header-button");
+    const formEdit = document.querySelector(".wrapper-title-survey");
+    const staticTitle = document.querySelector(".title_and_description")
+
+    buttonEdit.addEventListener('click', (event) => {
+      // formEdit.classList.toggle("invisible")
+      staticTitle.classList.toggle("invisible");
+      formEdit.style.display = "inherit";
+  });
 
   </script>
 <% end %>
