@@ -90,8 +90,8 @@
                <%= link_to_add_association '<i class="fas fa-plus-circle"></i>'.html_safe, f, :questions, class:"question-icon" %>
             </div>
             <div class="send-save-buttons text-right" style="margin-bottom: 70px;">
-              <%= f.submit "Send", class:"btn btn-primary create-survey-button-edit" %>
-              <%= f.submit "Save", class:"btn btn-white create-survey-button-edit" %>
+              <%= f.submit "Send", class:"btn btn-primary create-survey-button-edit create-survey-button-edit-send" %>
+              <%= f.submit "Save", class:"btn btn-light create-survey-button-edit" %>
 
               <%#= link_to 'Save and SendCritiq', send_path(@survey), method: :patch, class:"btn btn-white create-survey-button-edit"%>
             </div>
