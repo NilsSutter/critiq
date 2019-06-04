@@ -84,7 +84,7 @@
 
           // AJAX Loader:
           Rails.ajax({
-            url: "https://www.critiq.dev/surveys/<%= survey.id %>",
+            url: "/surveys/<%= survey.id %>",
             type: "get",
             data: "ajax=1",
             success: function(data) {
