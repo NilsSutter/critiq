@@ -1,5 +1,4 @@
 class SurveysController < ApplicationController
-
   def index
     # search functionality => queries
     if params[:query].present?

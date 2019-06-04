@@ -39,20 +39,40 @@
 .wrapper-title-survey {
   margin-top: 20px;
   border-bottom: 1px solid #E3EBF6;
+  display: none;
 }
 
 .title-input-text {
   font-size:20px;
   font-weight: bold;
   color: black;
-  display: none;
+  // display: none;
 }
 
 .description-input-text {
   font-size: 18px;
   font-weight: lighter;
   color: grey;
+  // display: none;
+}
+
+.invisible {
   display: none;
+}
+
+.description-and-button {
+  display: flex;
+  justify-content: space-between;
+  p {
+    font-size: 12px;
+    padding-left: 17px;
+    padding-right: 17px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    position: relative;
+    top: -6px;
+    cursor: pointer;
+  }
 }
 
 .choice-type-and-question {
