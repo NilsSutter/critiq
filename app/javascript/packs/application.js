@@ -30,13 +30,14 @@ import '../components/popover';
 import '../components/quill';
 // import '../components/select2';
 import '../components/tooltip';
-import addListenerDropdown from '../components/add_id_to_dropdowns';
+
 
 
 import $ from 'jquery';
 import 'select2';                       // globally assign select2 fn to $ element
 import 'select2/dist/css/select2.css';  // optional if you have css loader
 import scrollTo from '../components/smooth_scroll';
+
 
 
 $(() => {

@@ -109,15 +109,11 @@
 
 
     $( document ).ready(function(){
-
       clickPlus();
-
     })
 
     $('#questions').on('cocoon:after-insert', function(e, insertedItem) {
-
-      if (insertedItem.length === 5) {
-        console.log(insertedItem);
+      if (insertedItem.length === 5 && insertedItem[4].id === "choices") {
         let addedDropdown = insertedItem[2].lastElementChild.children["0"].children[1]
         let associatedChoiceBtn = insertedItem[4].lastElementChild
         let n = document.querySelectorAll('.select.optional.form-control').length
