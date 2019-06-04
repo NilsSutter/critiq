@@ -21,4 +21,23 @@
        <% end %>
       <% end %>
     </div>
+    <div class="progress-bar-big">
+    <% unless survey.questions.empty?  %>
+      <% total_respondees = survey.questions.first.sent_questions.count %>
+      <% respondees_finished = survey.questions.last.responses.count %>
+      <% percent_bar = ((respondees_finished.to_f / total_respondees) * 100).to_i unless total_respondees.zero? %>
+    <% end %>
+
+
+    <div class="progress progress-sm" data-toggle="tooltip" data-placement="bottom" title="<%= percent_bar %>% Responded">
+      <div class="progress-bar" role="progressbar"
+      style="width: <%= percent_bar %>%; border-top-left-radius: 0; border-bottom-left-radius: 6px"
+      aria-valuenow="<%= respondees_finished %>"
+      aria-valuemin="0"
+      aria-valuemax="<%= total_respondees %>"></div>
+
+        <p class="progress-bar-text"><%= respondees_finished %> / <%=  total_respondees%></p>
+
+    </div>
+  </div>
   </div>
