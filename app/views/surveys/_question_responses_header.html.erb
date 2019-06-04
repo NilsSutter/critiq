@@ -1,0 +1,24 @@
+<div class="card">
+    <div class="card-header info-card-response-header">
+      <h3 class="card-header-title">
+      <% survey = Survey.find(params[:id]) %>
+        <%= survey.title %>
+      </h3>
+      <h5 style="padding-top: 17px;">
+        <%= survey.description %>
+      </h5>
+     <!--  <p style="text-align: left;"> <%= survey.description %></p> -->
+    </div>
+      <p class="recipients-info-text"> RECIPIENTS:</p>
+    <div class="card-body info-card-response">
+      <% survey.recipients.each do |recipient| %>
+      <% unless recipient.first_name == "tinker"%>
+        <div class="card-recipient-name" style="text-align: center;">
+          <p>
+             <%= recipient.first_name %> <%= recipient.last_name %>
+          </p>
+        </div>
+       <% end %>
+      <% end %>
+    </div>
+  </div>
