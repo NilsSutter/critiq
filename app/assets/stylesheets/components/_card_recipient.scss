@@ -1,3 +1,31 @@
 .card-recipient-name {
   padding: 5px;
 }
+
+.info-card-response{
+  text-align: left;
+  font-size:13px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  justify-items: left;
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+.info-card-response-header {
+  display:block;
+  text-align: left;
+  h3 {
+    padding-top: 8px;
+  }
+}
+
+
+.recipients-info-text {
+font-size:10px;
+color: grey;
+margin-bottom: 5px;
+text-align: left;
+padding-left: 30px;
+padding-top: 31px;
+}
