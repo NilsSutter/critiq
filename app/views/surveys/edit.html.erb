@@ -163,8 +163,14 @@
         let addedDropdown = insertedItem[2].lastElementChild.children["0"].children[1]
         let associatedChoiceBtn = insertedItem[4].lastElementChild
         let n = document.querySelectorAll('.select.optional.form-control').length
+        console.log(insertedItem);
         insertedItem[4].classList.add(`mc-choices-${n}`);
         insertedItem[2].classList.add(`mc-choices-${n}`);
+
+        if (insertedItem[2].classList[1] === "mc-choices-1"){
+          insertedItem[2].children["0"].children[3].remove();
+        }
+
         addedDropdown.addEventListener('change', function(event) {
           if (this.value === "radio"){
             associatedChoiceBtn.classList.remove("mc-hidden");
