@@ -80,14 +80,14 @@
   display: flex;
   justify-content: space-between;
   p {
-    width: 100px;
+    width: 84px;
     font-size: 12px;
     padding-left: 17px;
     padding-right: 17px;
-    padding-top: 7px;
+    padding-top: 4px;
     padding-bottom: 2px;
     position: relative;
-    top: -6px;
+    top: -15px;
     cursor: pointer;
   }
 }
@@ -159,11 +159,9 @@
   max-width: 350px;
 }
 
-.slack-channels > p {
-    margin-top: 10px;
-    margin-bottom: 1rem;
-    color: grey;
-    font-size: 11px;
+.slack-channels  p {
+  margin-top: 4px !important;
+  font-size: 0.7rem;
 }
 
 .header-title-survey {
@@ -206,12 +204,3 @@
   left: 0;
   top: 0;
 };
-
-
-
-
-
-
-
-
-

@@ -3,9 +3,14 @@
   background-color: #1cce7e;
   border-color: #1cce7e;
 }
+
+.btn-start-crit:hover {
+  color: #ffffff;
+  background-color: #1ac176;
+  border-color: #1ac176;
+}
+
 @media (min-width: 768px) {
-
-
   .sidebar-footer-name {
     color: hsl(210, 25%, 52%);
   }

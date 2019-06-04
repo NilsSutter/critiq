@@ -1,10 +1,5 @@
 <%= render partial: "shared/sidebar" %>
 <div class="main-content">
-
-  <!-- This partial containes stuff that was in the template but I have no -->
-  <!-- idea what its for, so it's commented out -->
-  <%#= render partial: "shared/dashkit_top_navbar" %>
-
   <!-- HEADER -->
   <div class="header no-b-margin">
     <div class="container-fluid">
@@ -52,7 +47,7 @@
         </div>
         <div class="description-and-button">
           <h3 style="color: grey;"><%= @survey.description %></h3>
-          <p class=" btn btn-light display-header-button">Edit Title</p>
+          <p class="btn btn-light display-header-button">Edit Title</p>
         </div>
       </div>
       <%= simple_form_for @survey do |f| %>
@@ -75,10 +70,10 @@
                   ->(item) { item[:name].capitalize }
                   %>
 
+                  <p class="text-center my-4 text-muted">A message will be sent to <strong>each member</strong> of the group <strong>individually</strong>.</p>
           </div>
         </div>
-        <h5 class="text-center my-4 text-muted">A message will be sent to <strong>each member</strong> of the group <strong>individually</strong>.</h5>
-        </div>
+      </div>
         <!-- nested form for creating questions -->
         <div id="questions">
           <%= f.simple_fields_for :questions do |f| %>
@@ -86,14 +81,6 @@
           <% end %>
 
             <div class="links">
-                   <!-- IS THIS NEEDED?
-              <%#= link_to_add_association 'add question', f, :questions, class:"btn btn-primary" %>
-               <%= link_to_add_association '<i class="fas fa-plus-circle"></i>'.html_safe, f, :questions, class:"question-icon" %>
-            </div>
-            <div class="send-save-buttons text-right" style="margin-bottom: 70px;">
-              <%= f.submit "Send", class:"btn btn-primary create-survey-button-edit create-survey-button-edit-send" %>
-              <%= f.submit "Save", class:"btn btn-light create-survey-button-edit" %> -->
-
                <%= link_to_add_association '<i class="fas fa-plus-circle"></i>'.html_safe, f, :questions, class:"question-icon plusButtonMover" %>
             </div>
 
@@ -104,8 +91,8 @@
           <span class="text-left">
           </span>
           <span class="text-right">
-            <%= f.submit "Save", class:"btn btn-primary create-survey-button-edit send-button-mover btn-ease" %>
-            <%= f.submit "Send & Save", class:"btn btn-start-crit create-survey-button-edit sendAndSavebtn btn-ease" %>
+            <%= f.submit "Save", class:"btn btn-primary create-survey-button-edit send-button-mover btn-ease", disabled: true %>
+            <%= f.submit "Send & Save", class:"btn btn-start-crit create-survey-button-edit sendAndSavebtn btn-ease", disabled: true %>
           </span>
         </div>
       <% end %>
@@ -119,20 +106,13 @@
 <!-- END  -->
 <%= content_for :after_js do %>
   <script>
+    // Simulates a 'click' on the add question button
+    // on page load so there is a first question
     const clickPlus = () => {
       document.querySelector('.question-icon').click()
     };
 
-    const disableButtonOnLoad = () => {
-      const inputField = document.querySelectorAll('input[id*=survey_questions]')[0];
-      if (inputField) {
-        if (inputField.value.length == 0) {
-          document.querySelectorAll('.create-survey-button-edit')[0].disabled = true;
-          document.querySelectorAll('.create-survey-button-edit')[1].disabled = true;
-        }
-      }
-    };
-
+    // Disables the save/send buttons if the value of the first question input is empty
     const disableButtons = () => {
       const buttonSave = document.querySelectorAll('.create-survey-button-edit')[0];
       const buttonSend = document.querySelectorAll('.create-survey-button-edit')[1];
@@ -151,26 +131,29 @@
       }
     };
 
-
     $( document ).ready(function(){
       clickPlus();
-      disableButtonOnLoad();
       disableButtons();
     })
 
+    // NEEDS to be jQuery to work with Cocoon. Bleh.
     $('#questions').on('cocoon:after-insert', function(e, insertedItem) {
+      // Just a filter so it's the right object to act on
       if (insertedItem.length === 5 && insertedItem[4].id === "choices") {
         let addedDropdown = insertedItem[2].lastElementChild.children["0"].children[1]
         let associatedChoiceBtn = insertedItem[4].lastElementChild
         let n = document.querySelectorAll('.select.optional.form-control').length
-        console.log(insertedItem);
+        // add unique class to the first item so it can be used in the delete callback
+        // to find the second item
         insertedItem[4].classList.add(`mc-choices-${n}`);
         insertedItem[2].classList.add(`mc-choices-${n}`);
 
+        // Remove Minus button from first question so it cannot be removed
         if (insertedItem[2].classList[1] === "mc-choices-1"){
           insertedItem[2].children["0"].children[3].remove();
         }
 
+        // Add event listener to each dropdown to toggle "add choice" button
         addedDropdown.addEventListener('change', function(event) {
           if (this.value === "radio"){
             associatedChoiceBtn.classList.remove("mc-hidden");
@@ -183,6 +166,7 @@
       }
     });
     $('#questions').on('cocoon:after-remove', function(e, insertedItem) {
+      // find the so-classed div and remove it.
       let kill = `.${insertedItem["0"].classList[1]}`
       document.querySelector(kill).remove();
     });

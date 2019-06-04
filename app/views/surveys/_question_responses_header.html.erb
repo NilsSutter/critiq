@@ -11,14 +11,10 @@
     </div>
       <p class="recipients-info-text"> RECIPIENTS:</p>
     <div class="card-body info-card-response">
-      <% survey.recipients.each do |recipient| %>
-      <% unless recipient.first_name == "tinker"%>
-        <div class="card-recipient-name" style="text-align: center;">
-          <p>
-             <%= recipient.first_name %> <%= recipient.last_name %>
-          </p>
+      <% survey.recipients.reject{ |x| x.first_name == "tinker" }.each do |recipient| %>
+        <div class="card-recipient-name">
+          <p><%= recipient.first_name %> <%= recipient.last_name %></p>
         </div>
-       <% end %>
       <% end %>
     </div>
     <div class="progress-bar-big">
@@ -34,10 +30,13 @@
       style="width: <%= percent_bar %>%; border-top-left-radius: 0; border-bottom-left-radius: 6px"
       aria-valuenow="<%= respondees_finished %>"
       aria-valuemin="0"
-      aria-valuemax="<%= total_respondees %>"></div>
-
-        <p class="progress-bar-text"><%= respondees_finished %> / <%=  total_respondees%></p>
-
+      aria-valuemax="<%= total_respondees %>">
+      </div>
+        <% if percent_bar.nil? %>
+          <p class="progress-bar-text">No Responses Yet</p>
+        <% else %>
+          <p class="progress-bar-text"><%= percent_bar %>% Responded</p>
+        <% end %>
     </div>
   </div>
   </div>

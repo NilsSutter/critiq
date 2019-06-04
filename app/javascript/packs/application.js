@@ -28,7 +28,7 @@ import '../components/navbar';
 // import '../components/polyfills';
 import '../components/popover';
 // import '../components/quill';
-// import '../components/select2';
+import '../components/select2';
 import '../components/tooltip';
 
 
@@ -46,12 +46,8 @@ import { editTitleField } from '../components/edit_page_loader';
 
 
 $(() => {
-  $('#survey_channel_id').select2({
-    theme: "classic"
-  });
+  $('#survey_channel_id').select2();
 });
 
-
-// cocoonCallbacks();
 scrollTo();
 editTitleField();

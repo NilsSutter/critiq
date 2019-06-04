@@ -9,10 +9,10 @@ class SurveysController < ApplicationController
       "
       # get surveys that belong to the current user AND fit the search params
       @surveys = current_user.surveys
-                             .sort_by(&:created_at)
                              .left_outer_joins(:questions)
                              .where(sql_query, query: "%#{params[:query]}%")
                              .distinct
+                             .sort_by(&:created_at).reverse
     else
       @surveys = current_user.surveys.sort_by(&:created_at).reverse
     end
