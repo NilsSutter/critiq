@@ -1,2 +1,10 @@
-document.querySelector(".surv-id-<%=@survey.id%>").remove();
+
+  let cardDiv<%=@survey.id%> = document.querySelector(".surv-id-<%=@survey.id%>");
+  cardDiv<%=@survey.id%>.classList.add("slide-out-left");
+
+
+
+  // document.querySelector(".surv-id-<%=@survey.id%>").remove();
+// swipeLeft();
+
 
