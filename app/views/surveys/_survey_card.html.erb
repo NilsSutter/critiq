@@ -60,8 +60,8 @@
             <i class="fe fe-more-vertical"></i>
           </a>
           <div class="dropdown-menu dropdown-menu-right">
-            <%= link_to survey_path(survey), class: "dropdown-item", method: :delete do %>
-             <i class="far fa-trash-alt"></i><span class="pl-4">Delete</span>
+            <%= link_to survey_path(survey), class: "dropdown-item", remote: true, method: :delete do %>
+              <i class="far fa-trash-alt"></i><span class="pl-4">Delete</span>
             <% end %>
             <% unless survey.published == true %>
               <%= link_to edit_survey_path(survey), class: "dropdown-item" do  %>
