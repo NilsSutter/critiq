@@ -98,9 +98,13 @@ class SurveysController < ApplicationController
   # end
 
   def destroy
+    # raise
     @survey = Survey.find(params[:id])
     @survey.destroy
-    redirect_to surveys_path
+    respond_to do |format|
+      format.html { redirect_to surveys_path }
+      format.js
+    end
   end
 
   private
