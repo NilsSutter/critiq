@@ -4,44 +4,68 @@
   <title>The page you were looking for doesn't exist (404)</title>
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <style>
-  .rails-default-error-page {
-    background-image: linear-gradient(90deg, #42275a 0%, #734b6d 90%);
-  }
+    .wrapper {
+      width: 80%;
+      margin: 0 auto;
+      background: white;
+    }
 
-  .error-page-text {
-    margin: 0 auto;
-    width: 80%;
-    text-align: center;
-    margin-top: 10rem;
-  }
+    .error-content{
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
 
-  .error-page-text h1 {
-    font-size: 50px;
-    color: white;
-    margin-bottom: 40px;
-  }
+    .error-text {
+      width: 25%;
+      font-size: 50px;
+      text-align: center;
+    }
 
-  .hp-button {
-    color: white;
-    font-weight: bold;
-    padding: 10px 15px;
-    background: #9893DA;
-    border-radius: 5px;
-    text-decoration: none;
-    font-size: 20px;
-  }
+    .error-image {
+      height: 600px;
+      width: 800px;
+    }
 
-  .hp-button:hover {
-    text-decoration: none;
-    color: white;
-  }
+    .error-image img {
+      max-height: 100%;
+      max-width: 100%;
+      margin-top: 40px;
+    }
+
+    .error-cta {
+      text-decoration: none;
+      padding: 15px 25px;
+      border-radius: 5px;
+      color: white;
+      font-weight: bold;
+      font-size: 20px;
+      background: #1ACE7E;
+    }
+
+    .error-cta:hover {
+      text-decoration: none;
+      opacity: 0.8;
+    }
+
   </style>
 </head>
 
-<body class="rails-default-error-page">
+<body class="wrapper">
   <!-- This file lives in public/404.html -->
-  <div class="error-page-text">
-    <h1>The page you were looking for doesn't exist.</h1>
+  <div class="error-content">
+    <!-- left: text -->
+    <div class="error-text">
+      <h3>404 - Page could not be found</h3>
+      <!-- BEFORE DEPLOYMENT LINK TO CRITIQ HOMEPAGE -->
+      <a href="#" class="error-cta">To Homepage</a>
+    </div>
+
+    <!-- right: image -->
+    <div class="error-image">
+      <img src="images/404.png" alt="">
+    </div>
   </div>
 </body>
 </html>
