@@ -115,14 +115,17 @@
     };
 
     const newFunction = () => {
-      const buttonSave = document.querySelector('.create-survey-button-edit');
+      const buttonSave = document.querySelectorAll('.create-survey-button-edit')[0];
+      const buttonSend = document.querySelectorAll('.create-survey-button-edit')[1];
       const inputField = document.querySelectorAll('input[id*=survey_questions]')[0];
 
       inputField.addEventListener('keyup', (event) => {
         if (inputField.value.length > 0) {
           buttonSave.disabled = false;
+          buttonSend.disabled = false;
         } else {
           buttonSave.disabled = true;
+          buttonSend.disabled = true;
         }
       });
     };
@@ -132,28 +135,27 @@
       newFunction();
 
     })
-
+    // code to enable edit field for header section (title & description)
     const buttonEdit = document.querySelector(".display-header-button");
     const formEdit = document.querySelector(".wrapper-title-survey");
     const staticTitle = document.querySelector(".title_and_description")
 
     buttonEdit.addEventListener('click', (event) => {
-      // formEdit.classList.toggle("invisible")
       staticTitle.classList.toggle("invisible");
       formEdit.style.display = "inherit";
   });
+    // function to disable the buttons
     const disableButton = () => {
 
             const inputField = document.querySelectorAll('input[id*=survey_questions]')[0].value;
 
             if (inputField.length == 0) {
-                document.querySelector('.create-survey-button-edit').disabled = true;
+                document.querySelectorAll('.create-survey-button-edit')[0].disabled = true;
+                document.querySelectorAll('.create-survey-button-edit')[1].disabled = true;
             }
-            else {
-                document.querySelector('.create-survey-button-edit').disabled = false;
-            };
         };
 
+    // disable buttons on load of page
     window.onload = function() {
       disableButton();
     };
