@@ -9,11 +9,12 @@ class SurveysController < ApplicationController
       "
       # get surveys that belong to the current user AND fit the search params
       @surveys = current_user.surveys
+                             .sort_by(&:created_at)
                              .left_outer_joins(:questions)
                              .where(sql_query, query: "%#{params[:query]}%")
                              .distinct
     else
-      @surveys = current_user.surveys
+      @surveys = current_user.surveys.sort_by(&:created_at)
     end
     @survey = Survey.new
     if params[:id].present?
