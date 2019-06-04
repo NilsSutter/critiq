@@ -105,24 +105,63 @@
   <script>
     const clickPlus = () => {
       document.querySelector('.question-icon').click()
+      document.querySelector('.form-control.select.optional').classList.add('mc-dropdown-0')
     };
 
-    $( document ).ready(function(){
-      clickPlus();
 
+    const addListenerPlusButton = () => {
+      console.log('Listening to Plus Button');
       const mcFormDropdown = document.querySelector('.form-control.select.optional');
+      const plusButton = document.querySelector('.question-icon.add_fields');
+      const mcDropdownRegex = new RegExp(/mc-dropdown-[0-9]*$/, 'g');
 
-      mcFormDropdown.addEventListener('change', function (event) {
-        if (this.value === "radio"){
-          document.querySelector('.mc-form-create-link').classList.remove("mc-hidden");
-          document.querySelector('.create-form-choices').classList.add("mc-choice-bump-height");
-        } else {
-          document.querySelector('.mc-form-create-link').classList.add("mc-hidden");
-          document.querySelector('.create-form-choices').classList.remove("mc-choice-bump-height");
+      plusButton.addEventListener('click', function(event) {
+        // Find existing number classes and remove them
+        console.log('Removing all mc-dropdown-n classes')
+        document.querySelectorAll("select[class*=mc-dropdown-]").forEach(function(item) {
+          item.className = item.className.replace(mcDropdownRegex, '')
+        });
+
+        const current_elements = document.querySelectorAll('.form-control.select.optional')
+        console.log('Length of List: ' + current_elements.length)
+
+        let n = 0
+        for (var dropdown of current_elements) {
+          console.log(dropdown);
+          console.log(`Adding 'mc-dropdown-${n}' back to dropdown`);
+          dropdown.classList.add(`mc-dropdown-${n}`)
+          n++
         };
-      });
+      })
+    };
 
+    // const addListenerDropdown = () => {
+    //   mcFormDropdown.addEventListener('change', function (event) {
+    //     let current_elements = document.querySelectorAll('.form-control.select.optional');
+    //     for (let n = 0; n === current_elements.length - 1; n++) {
+    //
+    //       current_elements[n].classList.add(`mc-dropdown-${n}`)
+    //
+    //       let thisDropdown = document.querySelector(`.mc-dropdown-${n}`)
+    //
+    //       if (thisDropdown.value === "radio"){
+    //         document.querySelector('.mc-form-create-link').classList.remove("mc-hidden");
+    //         document.querySelector('.create-form-choices').classList.add("mc-choice-bump-height");
+    //       } else {
+    //         document.querySelector('.mc-form-create-link').classList.add("mc-hidden");
+    //         document.querySelector('.create-form-choices').classList.remove("mc-choice-bump-height");
+    //       };
+    //
+    //     }
+    //   });
+    // };
+
+    $( document ).ready(function(){
+      console.log('ClickPlus');
+      clickPlus();
+      console.log('Add Listener');
+      addListenerPlusButton();
+      //addListenerDropdown();
     })
-
   </script>
 <% end %>
