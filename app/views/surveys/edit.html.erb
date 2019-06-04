@@ -114,21 +114,25 @@
       document.querySelector('.question-icon').click()
     };
 
+    const newFunction = () => {
+      const buttonSave = document.querySelector('.create-survey-button-edit');
+      const inputField = document.querySelectorAll('input[id*=survey_questions]')[0];
+
+      inputField.addEventListener('keyup', (event) => {
+        if (inputField.value.length > 0) {
+          buttonSave.disabled = false;
+        } else {
+          buttonSave.disabled = true;
+        }
+      });
+    };
+
     $( document ).ready(function(){
       clickPlus();
+      newFunction();
 
-      const mcFormDropdown = document.querySelector('.form-control.select.optional');
-
-      mcFormDropdown.addEventListener('change', function (event) {
-        if (this.value === "radio"){
-          document.querySelector('.mc-form-create-link').classList.remove("mc-hidden");
-          document.querySelector('.create-form-choices').classList.add("mc-choice-bump-height");
-        } else {
-          document.querySelector('.mc-form-create-link').classList.add("mc-hidden");
-          document.querySelector('.create-form-choices').classList.remove("mc-choice-bump-height");
-        };
-      });
     })
+
     const buttonEdit = document.querySelector(".display-header-button");
     const formEdit = document.querySelector(".wrapper-title-survey");
     const staticTitle = document.querySelector(".title_and_description")
@@ -138,6 +142,21 @@
       staticTitle.classList.toggle("invisible");
       formEdit.style.display = "inherit";
   });
+    const disableButton = () => {
+
+            const inputField = document.querySelectorAll('input[id*=survey_questions]')[0].value;
+
+            if (inputField.length == 0) {
+                document.querySelector('.create-survey-button-edit').disabled = true;
+            }
+            else {
+                document.querySelector('.create-survey-button-edit').disabled = false;
+            };
+        };
+
+    window.onload = function() {
+      disableButton();
+    };
 
   </script>
 <% end %>
