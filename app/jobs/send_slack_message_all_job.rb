@@ -17,15 +17,18 @@ class SendSlackMessageAllJob < ApplicationJob
     puts "> Finding Question with id #{args[0][:question_id]}"
     question = Question.find(args[0][:question_id])
 
-    puts "> Fetching member list from SLACK API"
-    member_list = HTTParty.get("https://slack.com/api/channels.info",
-                    query: {
-                      token: ENV["SLACK_API_TOKEN"],
-                      channel: survey.channel_id })
 
-    member_list["channel"]["members"].reject { |x| x == User.find(survey.user_id).uid }.each do |uid|
-      GetSlackUserInfoJob.perform_later(uid: uid, surv_id: args[0][:survey_id])
-    end
+
+    puts "> Fetching member list from SLACK API (no job)"
+    member_list = HTTParty.get("https://slack.com/api/channels.info",
+                  query: {
+                    token: ENV["SLACK_API_TOKEN"],
+                    channel: survey.channel_id })
+
+    # Now handled in Controller
+    # member_list["channel"]["members"].reject { |x| x == User.find(survey.user_id).uid }.each do |uid|
+    #   GetSlackUserInfoJob.perform_later(uid: uid, surv_id: args[0][:survey_id])
+    # end
 
 
     sender = "#{User.find(survey.user_id).first_name.capitalize} #{User.find(survey.user_id).last_name.capitalize}"

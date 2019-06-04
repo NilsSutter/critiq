@@ -14,7 +14,7 @@ class SurveysController < ApplicationController
                              .where(sql_query, query: "%#{params[:query]}%")
                              .distinct
     else
-      @surveys = current_user.surveys.sort_by(&:created_at)
+      @surveys = current_user.surveys.sort_by(&:created_at).reverse
     end
     @survey = Survey.new
     if params[:id].present?
@@ -69,6 +69,7 @@ class SurveysController < ApplicationController
     if params[:commit] == "Send & Save"
       # update and send
       if @survey.update(survey_params)
+        SaveNotSendRecipListJob.perform_later(channel_id: @survey.channel_id, surv_id: @survey.id)
         @survey.send_first_question
         redirect_to survey_path(@survey)
       else
@@ -77,6 +78,7 @@ class SurveysController < ApplicationController
     elsif params[:commit] == "Save"
       # only save
       if @survey.update(survey_params)
+        SaveNotSendRecipListJob.perform_later(channel_id: @survey.channel_id, surv_id: @survey.id)
         @survey.published = false
         @survey.save
         redirect_to survey_path(@survey)

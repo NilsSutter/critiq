@@ -2,7 +2,7 @@ class GetSlackUserInfoJob < ApplicationJob
   queue_as :default
 
   def perform(*args)
-    puts "Fetching recipient INFO from SLACK API for #{args[0][:uid]}"
+    puts "Fetching recipient INFO from SLACK API for UID:#{args[0][:uid]}"
     info = HTTParty.get("https://slack.com/api/users.info",
                         query: {
                           token: ENV["SLACK_API_TOKEN"],
