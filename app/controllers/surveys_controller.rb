@@ -4,9 +4,9 @@ class SurveysController < ApplicationController
     # search functionality => queries
     if params[:query].present?
       sql_query = " \
-        surveys.title @@ :query \
-        OR surveys.description @@ :query \
-        OR questions.name @@ :query
+        surveys.title ILIKE :query \
+        OR surveys.description ILIKE :query \
+        OR questions.name ILIKE :query
       "
       # get surveys that belong to the current user AND fit the search params
       @surveys = current_user.surveys
