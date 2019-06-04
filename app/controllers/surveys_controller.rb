@@ -3,17 +3,18 @@ class SurveysController < ApplicationController
     # search functionality => queries
     if params[:query].present?
       sql_query = " \
-        surveys.title @@ :query \
-        OR surveys.description @@ :query \
-        OR questions.name @@ :query
+        surveys.title ILIKE :query \
+        OR surveys.description ILIKE :query \
+        OR questions.name ILIKE :query
       "
       # get surveys that belong to the current user AND fit the search params
       @surveys = current_user.surveys
+                             .sort_by(&:created_at)
                              .left_outer_joins(:questions)
                              .where(sql_query, query: "%#{params[:query]}%")
                              .distinct
     else
-      @surveys = current_user.surveys
+      @surveys = current_user.surveys.sort_by(&:created_at)
     end
     @survey = Survey.new
     if params[:id].present?
@@ -97,9 +98,13 @@ class SurveysController < ApplicationController
   # end
 
   def destroy
+    # raise
     @survey = Survey.find(params[:id])
     @survey.destroy
-    redirect_to surveys_path
+    respond_to do |format|
+      format.html { redirect_to surveys_path }
+      format.js
+    end
   end
 
   private

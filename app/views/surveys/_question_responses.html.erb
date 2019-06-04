@@ -5,55 +5,30 @@
   </div>
 <% else %>
 
+  <%= render partial: "question_responses_header.html.erb" %>
   <% all_questions.each_with_index do |question, q_index| %>
-  <div class="card">
-    <div class="card-header info-card-response-header">
-      <h3 class="card-header-title">
-      <% survey = Survey.find(params[:id]) %>
-        <%= survey.title %>
-      </h3>
-      <h5 style="padding-top: 17px;">
-        <%= survey.description %>
-      </h5>
-     <!--  <p style="text-align: left;"> <%= survey.description %></p> -->
-    </div>
-      <p class="recipients-info-text"> RECIPIENTS:</p>
-    <div class="card-body info-card-response">
-      <% survey.recipients.each do |recipient| %>
-      <% unless recipient.first_name == "tinker"%>
-        <div class="card-recipient-name" style="text-align: center;">
-          <p>
-             <%= recipient.first_name %> <%= recipient.last_name %>
-          </p>
-        </div>
-       <% end %>
-      <% end %>
-    </div>
-  </div>
+    <div class="card">
+      <h5 class="card-header"><%= q_index + 1 %>. <%= question[:name] %></h5>
+      <div class="card-body" style="text-align: left;">
+        <% if question[:question_type] == "text" %>
 
-  <div class="card">
-    <h5 class="card-header"><%= q_index + 1 %>. <%= question[:name] %></h5>
-    <div class="card-body" style="text-align: left;">
-      <% if question[:question_type] == "text" %>
-
-        <% if !question[:responses].nil? && question[:responses].empty? %>
-        <h5 class="card-title">
-          We'll send you a slack message when there are enough responses.
-        </h5>
-        <% else %>
-          <% question.responses.each_with_index do |response, index| %>
+          <% if !question[:responses].nil? && question[:responses].empty? %>
           <h5 class="card-title">
-            Response no.<%= index + 1 %>
+            We'll send you a slack message when there are enough responses.
           </h5>
-          <p class="card-text" style="padding-left: 10px;">
-            <%= response.content %>
-          </p>
+          <% else %>
+            <% question.responses.each_with_index do |response, index| %>
+            <h5 class="card-title">
+              Response no.<%= index + 1 %>
+            </h5>
+            <p class="card-text" style="padding-left: 10px;">
+              <%= response.content %>
+            </p>
+            <% end %>
           <% end %>
-        <% end %>
+        </div>
       </div>
-    </div>
       <% else %>
-
         <% if !question[:responses].nil? && question[:responses].empty? %>
           <% question[:choices].each do |choice| %>
             <li><%= choice.name %></li>

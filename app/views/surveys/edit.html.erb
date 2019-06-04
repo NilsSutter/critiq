@@ -86,6 +86,13 @@
           <% end %>
 
             <div class="links">
+                   <!-- IS THIS NEEDED?
+              <%#= link_to_add_association 'add question', f, :questions, class:"btn btn-primary" %>
+               <%= link_to_add_association '<i class="fas fa-plus-circle"></i>'.html_safe, f, :questions, class:"question-icon" %>
+            </div>
+            <div class="send-save-buttons text-right" style="margin-bottom: 70px;">
+              <%= f.submit "Send", class:"btn btn-primary create-survey-button-edit create-survey-button-edit-send" %>
+              <%= f.submit "Save", class:"btn btn-light create-survey-button-edit" %> -->
 
                <%= link_to_add_association '<i class="fas fa-plus-circle"></i>'.html_safe, f, :questions, class:"question-icon plusButtonMover" %>
             </div>
@@ -150,7 +157,6 @@
       disableButtonOnLoad();
       disableButtons();
     })
-
 
     $('#questions').on('cocoon:after-insert', function(e, insertedItem) {
       if (insertedItem.length === 5 && insertedItem[4].id === "choices") {
