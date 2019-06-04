@@ -105,7 +105,6 @@
   <script>
     const clickPlus = () => {
       document.querySelector('.question-icon').click()
-      document.querySelector('.form-control.select.optional').classList.add('mc-dropdown-0')
     };
 
 
@@ -157,11 +156,26 @@
     // };
 
     $( document ).ready(function(){
-      console.log('ClickPlus');
+
       clickPlus();
-      console.log('Add Listener');
-      addListenerPlusButton();
-      //addListenerDropdown();
+
     })
+    $('#questions').on('cocoon:after-insert', function(e, insertedItem) {
+      console.log(insertedItem);
+      let addedDropdown = insertedItem[2].lastElementChild.children["0"].children[1]
+      let associatedChoiceBtn = insertedItem[4].lastElementChild
+      let n = document.querySelectorAll('.form-control.select.optional').length
+      associatedChoiceBtn.classList.add(`mc-choice-btn-${n}`);
+
+      addedDropdown.addEventListener('change', function(event) {
+        if (this.value === "radio"){
+          document.querySelector(`.mc-choice-btn-${n}`).classList.remove("mc-hidden");
+          document.querySelector('.create-form-choices').classList.add("mc-choice-bump-height");
+        } else {
+          document.querySelector(`.mc-choice-btn-${n}`).classList.add("mc-hidden");
+          document.querySelector('.create-form-choices').classList.remove("mc-choice-bump-height");
+        };
+      })
+    });
   </script>
 <% end %>
