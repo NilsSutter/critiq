@@ -24,4 +24,4 @@ function scrollAnchors(e, respond = null) {
   }, 100);
 }
 
-export default scrollTo
+export { scrollTo }

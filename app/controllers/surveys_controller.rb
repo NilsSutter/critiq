@@ -66,7 +66,7 @@ class SurveysController < ApplicationController
   # updates and sends out survey
   def update
     @survey = Survey.find(params[:id])
-    if params[:commit] == "Send"
+    if params[:commit] == "Send & Save"
       # update and send
       if @survey.update(survey_params)
         @survey.send_first_question
