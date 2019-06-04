@@ -42,7 +42,7 @@
 
   <!-- LEFT and RIGHT panes -->
   <div class="container-fluid d-flex overflow-a" style="max-width:900px;">
-    <div class="all-questions">
+    <div class="all-questions no-scrollbar">
       <div class="title_and_description mb-3">
         <div class="header-section-survey">
           <div class="header-title-survey">
@@ -63,7 +63,7 @@
             <%= f.input :description,
                         wrapper_html: { class: 'description-input-text' } %>
         </div>
-        <div class="slack-channels">
+        <div class="slack-channels d-flex">
           <div class="w-50">
             <h4 style="padding-top:10px;">Get Critiq from your colleagues in:</h4>
           </div>
@@ -76,8 +76,8 @@
                   %>
 
           </div>
-          <p>The survey will be sent out to <strong>each member</strong> of the group <strong>individually</strong>.</p>
         </div>
+        <p class="text-center my-4">The survey will be sent out to <strong>each member</strong> of the group <strong>individually</strong>.</p>
         </div>
         <!-- nested form for creating questions -->
         <div id="questions">
@@ -86,19 +86,21 @@
           <% end %>
 
             <div class="links">
-              <%#= link_to_add_association 'add question', f, :questions, class:"btn btn-primary" %>
-               <%= link_to_add_association '<i class="fas fa-plus-circle"></i>'.html_safe, f, :questions, class:"question-icon" %>
-            </div>
-            <div class="send-save-buttons text-right" style="margin-bottom: 70px;">
-              <%= f.submit "Save", class:"btn btn-primary create-survey-button-edit" %>
-              <%= f.submit "Send", class:"btn btn-primary create-survey-button-edit" %>
 
-              <%#= link_to 'Save and SendCritiq', send_path(@survey), method: :patch, class:"btn btn-white create-survey-button-edit"%>
+               <%= link_to_add_association '<i class="fas fa-plus-circle"></i>'.html_safe, f, :questions, class:"question-icon plusButtonMover" %>
             </div>
+
         </div>
         <%= f.input :published, :as => :hidden, :input_html => { :value => "true" } %>
-        <!-- footer commented out: blocks create new quesion button after 3 questions -->
-        <!-- <div class="form-create-footer text-right px-5"></div> -->
+
+        <div class="form-create-footer text-right px-5">
+          <span class="text-left">
+          </span>
+          <span class="text-right">
+            <%= f.submit "Save", class:"btn btn-primary create-survey-button-edit send-button-mover" %>
+            <%= f.submit "Send & Save", class:"btn btn-start-crit create-survey-button-edit sendAndSavebtn" %>
+          </span>
+        </div>
       <% end %>
     </div>
 
@@ -113,52 +115,42 @@
     const clickPlus = () => {
       document.querySelector('.question-icon').click()
     };
-    
+
+    const disableButtonOnLoad = () => {
+      const inputField = document.querySelectorAll('input[id*=survey_questions]')[0];
+      if (inputField) {
+        if (inputField.value.length == 0) {
+          document.querySelectorAll('.create-survey-button-edit')[0].disabled = true;
+          document.querySelectorAll('.create-survey-button-edit')[1].disabled = true;
+        }
+      }
+    };
+
     const disableButtons = () => {
       const buttonSave = document.querySelectorAll('.create-survey-button-edit')[0];
       const buttonSend = document.querySelectorAll('.create-survey-button-edit')[1];
       const inputField = document.querySelectorAll('input[id*=survey_questions]')[0];
 
-      inputField.addEventListener('keyup', (event) => {
-        if (inputField.value.length > 0) {
-          buttonSave.disabled = false;
-          buttonSend.disabled = false;
-        } else {
-          buttonSave.disabled = true;
-          buttonSend.disabled = true;
-        }
-      });
+      if (buttonSave && buttonSend && inputField) {
+        inputField.addEventListener('keyup', (event) => {
+          if (inputField.value.length > 0) {
+            buttonSave.disabled = false;
+            buttonSend.disabled = false;
+          } else {
+            buttonSave.disabled = true;
+            buttonSend.disabled = true;
+          }
+        });
+      }
     };
+
 
     $( document ).ready(function(){
       clickPlus();
+      disableButtonOnLoad();
       disableButtons();
     })
-    
-    // code to enable edit field for header section (title & description)
-    const buttonEdit = document.querySelector(".display-header-button");
-    const formEdit = document.querySelector(".wrapper-title-survey");
-    const staticTitle = document.querySelector(".title_and_description")
 
-    buttonEdit.addEventListener('click', (event) => {
-      staticTitle.classList.toggle("invisible");
-      formEdit.style.display = "inherit";
-  });
-    // function to disable the buttons
-    const disableButton = () => {
-
-            const inputField = document.querySelectorAll('input[id*=survey_questions]')[0].value;
-
-            if (inputField.length == 0) {
-                document.querySelectorAll('.create-survey-button-edit')[0].disabled = true;
-                document.querySelectorAll('.create-survey-button-edit')[1].disabled = true;
-            }
-        };
-
-    // disable buttons on load of page
-    window.onload = function() {
-      disableButton();
-    };
 
     $('#questions').on('cocoon:after-insert', function(e, insertedItem) {
       if (insertedItem.length === 5 && insertedItem[4].id === "choices") {
@@ -167,7 +159,6 @@
         let n = document.querySelectorAll('.select.optional.form-control').length
         insertedItem[4].classList.add(`mc-choices-${n}`);
         insertedItem[2].classList.add(`mc-choices-${n}`);
-
         addedDropdown.addEventListener('change', function(event) {
           if (this.value === "radio"){
             associatedChoiceBtn.classList.remove("mc-hidden");
@@ -179,7 +170,6 @@
         })
       }
     });
-
     $('#questions').on('cocoon:after-remove', function(e, insertedItem) {
       let kill = `.${insertedItem["0"].classList[1]}`
       document.querySelector(kill).remove();

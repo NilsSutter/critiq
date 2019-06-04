@@ -1,9 +1,21 @@
-.choice-counter {
-  
+.links {
+  position:relative;
+}
+
+.plusButtonMover {
+  position: absolute;
+}
+
+.sendAndSavebtn:hover {
+    color: white !important;
+}
+
+.send-button-mover {
+  margin-right: 20px;
 }
 
 .form-create-footer {
-   position: absolute;
+   // position: absolute;
    bottom: 0;
    left: 0;
    width: 100%;
@@ -64,10 +76,11 @@
   display: flex;
   justify-content: space-between;
   p {
+    width: 100px;
     font-size: 12px;
     padding-left: 17px;
     padding-right: 17px;
-    padding-top: 2px;
+    padding-top: 7px;
     padding-bottom: 2px;
     position: relative;
     top: -6px;
@@ -127,7 +140,7 @@
 }
 
 .create-survey-button-edit {
-  margin-bottom:40px;
+  margin-bottom: 40px;
 }
 
 .main-content-edit {
