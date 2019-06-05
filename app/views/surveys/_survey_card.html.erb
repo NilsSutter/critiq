@@ -41,14 +41,23 @@
                 <% percent_bar = ((respondees_finished.to_f / total_respondees) * 100).to_i unless total_respondees.zero? %>
               <% end %>
 
-
-            <div class="progress progress-sm" data-toggle="tooltip" data-placement="bottom" title="<%= percent_bar %>% Responded">
-              <div class="progress-bar" role="progressbar"
-              style="width: <%= percent_bar %>%"
-              aria-valuenow="<%= respondees_finished %>"
-              aria-valuemin="0"
-              aria-valuemax="<%= total_respondees %>"></div>
-            </div>
+            <% if percent_bar.nil? %>
+              <div class="progress progress-sm" data-toggle="tooltip" data-placement="bottom" title="No Responses Yet">
+                <div class="progress-bar" role="progressbar"
+                style="width: <%= percent_bar %>%"
+                aria-valuenow="<%= respondees_finished %>"
+                aria-valuemin="0"
+                aria-valuemax="<%= total_respondees %>"></div>
+              </div>
+            <% else %>
+              <div class="progress progress-sm" data-toggle="tooltip" data-placement="bottom" title="<%= percent_bar %>% Responded">
+                <div class="progress-bar" role="progressbar"
+                style="width: <%= percent_bar %>%"
+                aria-valuenow="<%= respondees_finished %>"
+                aria-valuemin="0"
+                aria-valuemax="<%= total_respondees %>"></div>
+              </div>
+            <% end %>
 
           </div>
         </div>
