@@ -1,0 +1,8 @@
+<% @questions = Survey.find(params[:id]).display_responses %>
+
+document.querySelector('.right-page').innerHTML = "<%= escape_javascript(render partial: 'question_responses', locals: { all_questions: @questions } ) %>"
+// SCRIPT TAG not evaluated on innerHTML injection
+// eval() does that below
+document.querySelectorAll('.exec-chart-js').forEach(function(element) {
+  eval(element.firstElementChild.innerHTML)
+})

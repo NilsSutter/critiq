@@ -1,4 +1,4 @@
-<div class="surv-card card surv-id-<%= survey.id %>">
+<div class="surv-card card surv-id-<%= survey.id %>" id="surv-id-<%= survey.id %>">
   <div class="card-body">
     <div class="row align-items-center">
       <div class="col-auto surv-date-box">
@@ -15,7 +15,8 @@
       <div class="col ml-n2">
 
         <h4 class="card-title mb-1 name">
-          <%= survey.title %>
+          <%= link_to survey.title, survey_path(survey), remote: true %>
+          <%# <%= survey.title %>
         </h4>
 
         <p class="card-text small text-muted mb-1">
@@ -77,33 +78,13 @@
 
 <%= content_for :after_js do %>
   <script type="text/javascript">
-    $('.surv-id-<%= survey.id %>').click( function(event) {
-        const clickSurvId<%= survey.id %> = () => {
-          document.querySelectorAll('.surv-card').forEach(function(element) { element.classList.remove('surv-card-active') });
-          document.querySelector('.surv-id-<%= survey.id %>').classList.add("surv-card-active");
+     document.querySelector('#surv-id-<%= survey.id %>').addEventListener('click', function(event) {
+       const clickSurvId<%= survey.id %> = () => {
+         document.querySelectorAll('.surv-card').forEach(function(element) { element.classList.remove('surv-card-active') });
+         document.querySelector('#surv-id-<%= survey.id %>').classList.add("surv-card-active");
+       };
 
-          // AJAX Loader:
-          Rails.ajax({
-            url: "/surveys/<%= survey.id %>",
-            type: "get",
-            data: "ajax=1",
-            success: function(data) {
-              Rails.$('.right-page')[0].innerHTML = data.html
-              // SCRIPT TAG not evaluated on innerHTML injection
-              // eval() does that below
-              document.querySelectorAll('.exec-chart-js').forEach(function(element) {
-                eval(element.firstElementChild.innerHTML)
-              })
-
-            },
-            error: function(data) {
-              alert("Failed to Load Critiq id: <%= survey.id %> :(")
-            }
-          })
-        };
-
-        clickSurvId<%= survey.id %>();
-    });
-    // $('#warning-icon').tooltip()
+       clickSurvId<%= survey.id %>();
+     });
   </script>
 <% end %>
