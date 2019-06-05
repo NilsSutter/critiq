@@ -8,7 +8,7 @@ class GetSlackUserInfoJob < ApplicationJob
                           token: ENV["SLACK_API_TOKEN"],
                           user: args[0][:uid]
                         })
-    if info["ok"] == true
+    if info["ok"] == true && info["user"]["real_name"].split(" ")[0] != "tinker"
       Recipient.create(survey_id: args[0][:surv_id], uid: args[0][:uid], first_name: info["user"]["real_name"].split(" ")[0], last_name: info["user"]["real_name"].split(" ")[1])
     end
   end
