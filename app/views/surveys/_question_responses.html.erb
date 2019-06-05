@@ -8,7 +8,7 @@
   <%= render partial: "question_responses_header.html.erb" %>
   <% all_questions.each_with_index do |question, q_index| %>
     <div class="card">
-      <h5 class="card-header"><%= q_index + 1 %>. <%= question[:name] %></h5>
+      <h5 class="card-header question-title-right-page"><%= q_index + 1 %>. <%= question[:name] %></h5>
       <div class="card-body" style="text-align: left;">
         <% if question[:question_type] == "text" %>
 

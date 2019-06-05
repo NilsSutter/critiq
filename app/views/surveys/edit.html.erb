@@ -46,8 +46,8 @@
           </div>
         </div>
         <div class="description-and-button">
-          <h3 style="color: grey;"><%= @survey.description %></h3>
-          <p class="btn btn-light display-header-button">Edit Title</p>
+          <h3><%= @survey.description %></h3>
+          <p class="btn btn-light display-header-button" style="max-height:26px !important;">Edit Title</p>
         </div>
       </div>
       <%= simple_form_for @survey do |f| %>

@@ -33,9 +33,9 @@
       aria-valuemax="<%= total_respondees %>">
       </div>
         <% if percent_bar.nil? %>
-          <p class="progress-bar-text">No Responses Yet</p>
+          <p class="progress-bar-text" style="font-weight: 100;">No Responses Yet</p>
         <% else %>
-          <p class="progress-bar-text"><%= percent_bar %>% Responded</p>
+          <p class="progress-bar-text" style="font-weight: 100;"><%= percent_bar %>% Responded</p>
         <% end %>
     </div>
   </div>
