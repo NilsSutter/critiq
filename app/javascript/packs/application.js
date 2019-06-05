@@ -40,6 +40,7 @@ import { scrollTo } from '../components/smooth_scroll';
 
 // JS for Edit Page
 import { editTitleField } from '../components/edit_page_loader';
+// import { survAddClick } from '../components/surv_card_onclick';
 
 
 
@@ -48,6 +49,7 @@ import { editTitleField } from '../components/edit_page_loader';
 $(() => {
   $('#survey_channel_id').select2();
 });
+
 
 scrollTo();
 editTitleField();

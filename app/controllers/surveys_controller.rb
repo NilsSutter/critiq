@@ -39,11 +39,10 @@ class SurveysController < ApplicationController
   end
 
   def show
-    if params[:ajax].present?
-      @questions = Survey.find(params[:id]).display_responses
-      render json: { html: render_to_string(partial: "question_responses", locals: {all_questions: @questions}) }
-    else
-      redirect_to surveys_path(id: params[:id])
+    # @questions = Survey.find(params[:id]).display_responses
+    respond_to do |format|
+        format.html { redirect_to surveys_path(id: params[:id]) }
+        format.js
     end
   end
 
