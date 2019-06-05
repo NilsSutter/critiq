@@ -118,7 +118,14 @@
       const buttonSend = document.querySelectorAll('.create-survey-button-edit')[1];
       const inputField = document.querySelectorAll('input[id*=survey_questions]')[0];
 
+
       if (buttonSave && buttonSend && inputField) {
+        // Check for edit page
+        if (inputField.value.length > 0) {
+          buttonSave.disabled = false;
+          buttonSend.disabled = false;
+        }
+        // Event Listener for Create path
         inputField.addEventListener('keyup', (event) => {
           if (inputField.value.length > 0) {
             buttonSave.disabled = false;
@@ -180,8 +187,10 @@
     });
     $('#questions').on('cocoon:after-remove', function(e, insertedItem) {
       // find the so-classed div and remove it.
-      let kill = `.${insertedItem["0"].classList[1]}`
-      document.querySelector(kill).remove();
+      if (insertedItem["0"].classList[1]) {
+        let kill = `.${insertedItem["0"].classList[1]}`
+        document.querySelector(kill).remove();
+      }
     });
   </script>
 <% end %>

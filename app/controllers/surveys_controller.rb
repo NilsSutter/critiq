@@ -28,6 +28,14 @@ class SurveysController < ApplicationController
     @survey = Survey.new
   end
 
+  def show
+    # @questions = Survey.find(params[:id]).display_responses
+    respond_to do |format|
+      format.html { redirect_to surveys_path(id: params[:id]) }
+      format.js
+    end
+  end
+
   def create
     @survey = Survey.new(survey_params)
     @survey.user = current_user
@@ -35,14 +43,6 @@ class SurveysController < ApplicationController
       redirect_to edit_survey_path(@survey)
     else
       render :new
-    end
-  end
-
-  def show
-    # @questions = Survey.find(params[:id]).display_responses
-    respond_to do |format|
-        format.html { redirect_to surveys_path(id: params[:id]) }
-        format.js
     end
   end
 
@@ -65,25 +65,22 @@ class SurveysController < ApplicationController
   # updates and sends out survey
   def update
     @survey = Survey.find(params[:id])
-    if params[:commit] == "Send & Save"
-      # update and send
-      if @survey.update(survey_params)
-        SaveNotSendRecipListJob.perform_later(channel_id: @survey.channel_id, surv_id: @survey.id)
-        @survey.send_first_question
-        redirect_to survey_path(@survey)
-      else
-        render :edit
+    if @survey.update(survey_params)
+
+      if @survey.recipients.empty?
+        SaveNotSendRecipListJob.perform_now(channel_id: @survey.channel_id, surv_id: @survey.id)
       end
-    elsif params[:commit] == "Save"
-      # only save
-      if @survey.update(survey_params)
-        SaveNotSendRecipListJob.perform_later(channel_id: @survey.channel_id, surv_id: @survey.id)
+
+      if params[:commit] == "Send & Save"
+        @survey.send_first_question
+      elsif params[:commit] == "Save"
         @survey.published = false
         @survey.save
-        redirect_to survey_path(@survey)
-      else
-        render :edit
       end
+
+      redirect_to survey_path(@survey)
+    else
+      render :edit
     end
   end
 
@@ -99,7 +96,6 @@ class SurveysController < ApplicationController
   # end
 
   def destroy
-    # raise
     @survey = Survey.find(params[:id])
     @survey.destroy
     respond_to do |format|
@@ -111,6 +107,6 @@ class SurveysController < ApplicationController
   private
 
   def survey_params
-    params.require(:survey).permit(:title, :description, :published, :channel_id, questions_attributes: [:name, :question_type, :multiple_choice, choices_attributes: [:name, :_destroy]])
+    params.require(:survey).permit(:title, :description, :published, :channel_id, questions_attributes: [:name, :id, :question_type, :multiple_choice, choices_attributes: [:name, :_destroy, :id]])
   end
 end
