@@ -36,7 +36,10 @@ import '../components/tooltip';
 import $ from 'jquery';
 import 'select2';                       // globally assign select2 fn to $ element
 import 'select2/dist/css/select2.css';  // optional if you have css loader
+
+// JS for Landingpage
 import { scrollTo } from '../components/smooth_scroll';
+import { showNav } from '../components/show_navbar'
 
 // JS for Edit Page
 import { editTitleField } from '../components/edit_page_loader';
@@ -52,4 +55,5 @@ $(() => {
 
 
 scrollTo();
+showNav();
 editTitleField();
