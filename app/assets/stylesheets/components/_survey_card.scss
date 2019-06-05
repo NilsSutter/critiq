@@ -52,10 +52,19 @@
     opacity: 0.4;
   }
 }
+ .info-card-response-header {
+  h5 {
+    font-weight: 400;
+  }
 
+ }
 
 .progress {
   background-color: hsla(215, 50%, 90%, 1) !important;
+}
+
+.progress-bar-text {
+  font-weight: 100;
 }
 
 .surv-card {
