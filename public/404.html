@@ -12,8 +12,11 @@
 
     .error-content{
       width: 100%;
+      position: absolute;
+      top: 20%;
+      right: 1%;
       display: flex;
-      justify-content: space-around;
+      justify-content: center;
       align-items: center;
     }
 
@@ -24,17 +27,17 @@
     }
 
     .error-text h3 {
-      text-align: center;
+      font-size: 100px;
+      margin: 0;
     }
 
-    .error-image {
-      height: 400px;
-      width: 600px;
+    .error-text p {
+      font-size: 20px;
     }
 
-    .error-image img {
+    img {
       max-height: 100%;
-      max-width: 100%;
+      width: 250px;
       margin-top: 40px;
     }
 
@@ -62,15 +65,13 @@
     <!-- left: text -->
     <div class="error-text">
       <h3>404</h3>
-      <h5>Page could not be found</h5>
+      <p>Page could not be found</p>
       <!-- BEFORE DEPLOYMENT LINK TO CRITIQ HOMEPAGE -->
       <a href="#" class="error-cta">To Homepage</a>
     </div>
 
     <!-- right: image -->
-    <div class="error-image">
-      <img src="images/broken_tinker.png" alt="">
-    </div>
+    <img src="images/broken_tinker.png" alt="">
   </div>
 </body>
 </html>
