@@ -7,13 +7,20 @@
       <h5 style="padding-top: 17px;">
         <%= survey.description %>
       </h5>
-     <!--  <p style="text-align: left;"> <%= survey.description %></p> -->
     </div>
-      <p class="recipients-info-text"> RECIPIENTS:</p>
+      <p class="recipients-info-text">RECIPIENTS:</p>
     <div class="card-body info-card-response">
       <% survey.recipients.reject{ |x| x.first_name == "tinker" }.each do |recipient| %>
         <div class="card-recipient-name">
-          <p><%= recipient.first_name %> <%= recipient.last_name.first %>.</p>
+          <% if recipient.first_name && recipient.last_name %>
+            <p><%= recipient.first_name.capitalize %> <%= recipient.last_name.chars.first.upcase %>.</p>
+          <% elsif recipient.first_name && !recipient.last_name %>
+            <p><%= recipient.first_name.capitalize %></p>
+          <% elsif !recipient.first_name && recipient.last_name %>
+            <p><%= recipient.last_name.capitalize %></p>
+          <% else %>
+            <p>[no name]</p>
+          <% end %>
         </div>
       <% end %>
     </div>
