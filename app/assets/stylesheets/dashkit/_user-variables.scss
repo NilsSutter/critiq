@@ -15,3 +15,14 @@
 .navbar-nav {
   margin-right: 3px !important;
 }
+
+.nav-item {
+  padding: 0 10px;
+}
+
+.nav-item:hover {
+  opacity: 0.5;
+  &:last-child {
+    opacity: 1.0;
+    }
+}
