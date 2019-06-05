@@ -77,7 +77,7 @@
 }
 
 .description-and-button {
-  overflow-wrap: break-word;
+  //overflow-wrap: break-word;
   display: flex;
   justify-content: space-between;
   p {
@@ -93,7 +93,7 @@
   }
   h3 {
     color: grey;
-    max-width: 80%;
+    //max-width: 80%;
   }
 }
 
