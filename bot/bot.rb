@@ -43,7 +43,11 @@ class Unknown < SlackRubyBot::Commands::Base
         end
       end
     else
-      reply.save!
+      if attached_sent_question.question.responses.where(slack_uid: data.user).exists?
+        client.say(channel: data.channel, text: "I didn't say anything.")
+      else
+        reply.save!
+      end
     end
   end
 end

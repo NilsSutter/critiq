@@ -51,7 +51,9 @@
              <%= render partial: "survey_card", locals: {survey: survey} %>
           <% end %>
         <% else %>
-          <h3> Ask your coleagues for a Critiq! </h3>
+        <div class="no-crit">
+          <h3> Ask your colleagues for a Critiq! </h3>
+        </div>
         <% end %>
       <%= render partial: "modal_create_survey" %>
     </div>
