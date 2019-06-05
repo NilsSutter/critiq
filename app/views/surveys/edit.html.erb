@@ -58,7 +58,7 @@
             <%= f.input :description,
                         wrapper_html: { class: 'description-input-text' } %>
         </div>
-        <div class="slack-channels d-flex">
+        <div class="slack-channels">
           <div class="w-50">
             <h4 style="padding-top:10px;">Get Critiq from your colleagues in:</h4>
           </div>
@@ -70,7 +70,7 @@
                   ->(item) { item[:name].capitalize }
                   %>
 
-                  <p class="text-center my-4 text-muted">A message will be sent to <strong>each member</strong> of the group <strong>individually</strong>.</p>
+                  <p class="text-left my-4 text-muted">A message will be sent to <strong>each member</strong> of the group <strong>individually</strong>.</p>
           </div>
         </div>
       </div>
@@ -87,7 +87,7 @@
         </div>
         <%= f.input :published, :as => :hidden, :input_html => { :value => "true" } %>
 
-        <div class="form-create-footer text-right px-5">
+        <div class="form-create-footer text-right px-5 mb-5">
           <span class="text-left">
           </span>
           <span class="text-right">
