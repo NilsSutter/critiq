@@ -23,15 +23,16 @@ class Survey < ApplicationRecord
 
   def display_responses
     survey = Survey.find(self.id)
-    unless survey.questions.empty?
-      if survey.questions.last.responses.count > ((survey.questions.first.sent_question_ids.count - 1) * 0.7).floor
-        return survey.questions
-      else
-        stripped_questions = []
-        survey.questions.each { |x| stripped_questions << {name: x.name, question_type: x.question_type, responses: [], choices: x.choices} }
-        return stripped_questions
-      end
-    end
+    return survey.questions
+    # unless survey.questions.empty?
+    #   if survey.questions.last.responses.count > ((survey.questions.first.sent_question_ids.count - 1) * 0.7).floor
+    #     return survey.questions
+    #   else
+    #     stripped_questions = []
+    #     survey.questions.each { |x| stripped_questions << {name: x.name, question_type: x.question_type, responses: [], choices: x.choices} }
+    #     return stripped_questions
+    #   end
+    # end
   end
 
   def send_first_question
