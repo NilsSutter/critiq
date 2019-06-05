@@ -35,8 +35,8 @@ ActiveRecord::Schema.define(version: 2019_06_03_132959) do
 
   create_table "recipients", force: :cascade do |t|
     t.string "uid"
-    t.string "first_name"
-    t.string "last_name"
+    t.string "first_name", default: ""
+    t.string "last_name", default: ""
     t.bigint "survey_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
