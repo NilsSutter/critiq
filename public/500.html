@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>The page you were looking for doesn't exist (404)</title>
+  <title>An internal error occured (500)</title>
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <style>
     .wrapper {
@@ -12,8 +12,11 @@
 
     .error-content{
       width: 100%;
+      position: absolute;
+      top: 20%;
+      right: 1%;
       display: flex;
-      justify-content: space-between;
+      justify-content: center;
       align-items: center;
     }
 
@@ -23,14 +26,18 @@
       text-align: center;
     }
 
-    .error-image {
-      height: 600px;
-      width: 800px;
+    .error-text h3 {
+      font-size: 100px;
+      margin: 0;
     }
 
-    .error-image img {
+    .error-text p {
+      font-size: 20px;
+    }
+
+    img {
       max-height: 100%;
-      max-width: 100%;
+      width: 250px;
       margin-top: 40px;
     }
 
@@ -53,19 +60,18 @@
 </head>
 
 <body class="wrapper">
-  <!-- This file lives in public/404.html -->
+  <!-- This file lives in public/500.html -->
   <div class="error-content">
     <!-- left: text -->
     <div class="error-text">
-      <h3>We're sorry, but something went wrong</h3>
+      <h3>500</h3>
+      <p>An internal error occured</p>
       <!-- BEFORE DEPLOYMENT LINK TO CRITIQ HOMEPAGE -->
       <a href="#" class="error-cta">To Homepage</a>
     </div>
 
     <!-- right: image -->
-    <div class="error-image">
-      <img src="images/404.png" alt="">
-    </div>
+    <img src="images/broken_tinker.png" alt="">
   </div>
 </body>
 </html>
