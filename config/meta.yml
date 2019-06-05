@@ -1,0 +1,6 @@
+meta_product_name: "Critiq"
+meta_title: "Critiq - Anonymous & Meaningful Feedback"
+meta_description: "Critiq is Slackbot that allows you to gather customized, anonymized feedback from your peers directly via Slack."
+# needs to be changed
+meta_image: "robot.svg" # should exist in `app/assets/images/`
+# twitter_account: "@product_twitter_account"   # required for Twitter Cards
