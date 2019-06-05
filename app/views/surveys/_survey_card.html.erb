@@ -1,3 +1,4 @@
+<%# <%= link_to survey_path(survey), remote: true do %>
 <div class="surv-card card surv-id-<%= survey.id %>" id="surv-id-<%= survey.id %>">
   <div class="card-body">
     <div class="row align-items-center">
@@ -15,7 +16,7 @@
       <div class="col ml-n2">
 
         <h4 class="card-title mb-1 name">
-          <%= link_to survey.title, survey_path(survey), remote: true %>
+          <%= link_to survey.title, survey_path(survey), id: "surv-#{survey.id}-link", remote: true %>
           <%# <%= survey.title %>
         </h4>
 
@@ -89,8 +90,14 @@
   <script type="text/javascript">
      document.querySelector('#surv-id-<%= survey.id %>').addEventListener('click', function(event) {
        const clickSurvId<%= survey.id %> = () => {
-         document.querySelectorAll('.surv-card').forEach(function(element) { element.classList.remove('surv-card-active') });
+         // Removes active class from all cards
+         document.querySelectorAll('.surv-card').forEach(function(element) {
+           element.classList.remove('surv-card-active')
+         });
+         // Adds active class to the tile that was just clicked
          document.querySelector('#surv-id-<%= survey.id %>').classList.add("surv-card-active");
+         // Simulates click of link
+         document.querySelector("#surv-<%= survey.id %>-link").click()
        };
 
        clickSurvId<%= survey.id %>();
