@@ -13,7 +13,7 @@
     <div class="card-body info-card-response">
       <% survey.recipients.reject{ |x| x.first_name == "tinker" }.each do |recipient| %>
         <div class="card-recipient-name">
-          <p><%= recipient.first_name %> <%= recipient.last_name %></p>
+          <p><%= recipient.first_name %> <%= recipient.last_name.first %>.</p>
         </div>
       <% end %>
     </div>
