@@ -156,9 +156,22 @@
         // Add event listener to each dropdown to toggle "add choice" button
         addedDropdown.addEventListener('change', function(event) {
           if (this.value === "radio"){
+            // Add classes for Spacing
             associatedChoiceBtn.classList.remove("mc-hidden");
             insertedItem[4].classList.add("mc-choice-bump-height");
           } else {
+
+            // Remove Choices if the question goes back to "open Text"
+            let list = insertedItem[4].children;
+            for (let item of list) {
+              if (item.classList[0] === "nested-fields"){
+                item.classList.add('KillMeNow');
+              }
+            }
+            document.querySelectorAll('.KillMeNow').forEach(function(item) {
+              item.remove();
+            })
+            // Remove classes associated with Spacing
             associatedChoiceBtn.classList.add("mc-hidden");
             insertedItem[4].classList.remove("mc-choice-bump-height");
           };
