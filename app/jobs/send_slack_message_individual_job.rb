@@ -11,10 +11,10 @@ class SendSlackMessageIndividualJob < ApplicationJob
     next_question = find_next_question(args[0][:question_id], args[0][:uid])
 
     # Set Message text: if there are no more questions to ask, send a thank you message
+    sender = "#{next_question.survey.user.first_name.capitalize}"
     if next_question.nil?
-      question_text = "Thats all, thanks!"
+      question_text = "Thats all, thanks 👋  We'll anonymize your response and send it to #{sender} once enough people have replied!"
     else
-      sender = "#{next_question.survey.user.first_name.capitalize}"
       question_text = "#{sender} asks: #{next_question.name}"
     end
 

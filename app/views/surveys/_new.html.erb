@@ -4,9 +4,10 @@
   <div class="survey-modal-content">
     <%= simple_form_for survey do |f| %>
       <%= f.input :title,
+                  label: "Critiq Title",
                   placeholder: "" %>
       <%= f.input :description,
-                  placeholder: ""%>
+                  placeholder: "Describe your project or presentation." %>
       <%= f.button :submit, class:"btn btn-primary w-100" %>
     <% end %>
   </div>

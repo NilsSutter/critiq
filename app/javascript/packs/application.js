@@ -53,6 +53,9 @@ $(() => {
   $('#survey_channel_id').select2();
 });
 
+// Not working yet
+// autosize(document.querySelectorAll('textarea'));
+
 // function calls for landingpage
 scrollTo();
 showNav();
