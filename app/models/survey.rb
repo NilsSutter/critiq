@@ -21,6 +21,7 @@ class Survey < ApplicationRecord
   accepts_nested_attributes_for :questions, reject_if: :all_blank, allow_destroy: true
   # after_update :send_first_question
 
+    # FIX question_responses_html.erb:35 after you reimpliment
   def display_responses
     survey = Survey.find(self.id)
     return survey.questions
@@ -28,9 +29,9 @@ class Survey < ApplicationRecord
     #   if survey.questions.last.responses.count > ((survey.questions.first.sent_question_ids.count - 1) * 0.7).floor
     #     return survey.questions
     #   else
-    #     stripped_questions = []
-    #     survey.questions.each { |x| stripped_questions << {name: x.name, question_type: x.question_type, responses: [], choices: x.choices} }
-    #     return stripped_questions
+        # stripped_questions = []
+        # survey.questions.each { |x| stripped_questions << {name: x.name, question_type: x.question_type, responses: [], choices: x.choices} }
+        # return stripped_questions
     #   end
     # end
   end
