@@ -35,7 +35,8 @@ class SendSlackMessageAllJob < ApplicationJob
     sender_fn = "#{User.find(survey.user_id).first_name.capitalize}"
     sender_ln = "#{User.find(survey.user_id).last_name.capitalize}"
     others = member_list["channel"]["members"].count - 1
-    message_text = "Hi! #{sender_fn} #{sender_ln} wants a Critiq. #{others} other people have been messaged and everyone's responses will be anonymized. #{sender_fn} asks:\n"
+
+    message_text = "Hi! #{sender_fn} #{sender_ln} wants a Critiq. #{others.to_words.capitalize} other people have been messaged and everyone's responses will be anonymized. #{sender_fn} asks:\n"
 
     puts "> Beginning to iterate over member list..."
     member_list["channel"]["members"].each do |member_uid|

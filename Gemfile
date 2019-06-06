@@ -16,6 +16,7 @@ gem 'simple_form'
 gem 'uglifier'
 gem 'webpacker'
 gem "pg_search"
+gem "numbers_and_words"
 
 
 # OAuth Related:
