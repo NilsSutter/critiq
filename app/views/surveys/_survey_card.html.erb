@@ -88,6 +88,11 @@
 
 <%= content_for :after_js do %>
   <script type="text/javascript">
+    <% if params["id"].present? && params["id"].to_i == survey.id %>
+    // Adds 'active' class to a surv card if there is a parameter in the URL selecting that specific survey
+      document.querySelector('#surv-id-<%= survey.id %>').classList.add("surv-card-active");
+    <% end %>
+
      document.querySelector('#surv-id-<%= survey.id %>').addEventListener('click', function(event) {
        const clickSurvId<%= survey.id %> = () => {
          // Removes active class from all cards
