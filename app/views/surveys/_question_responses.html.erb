@@ -28,69 +28,79 @@
           <% end %>
         </div>
       </div>
+
+      <!-- else => if question_type == radio -->
       <% else %>
-        <% if !question[:responses].nil? && question[:responses].empty? %>
-          <% question[:choices].each do |choice| %>
+
+        <!-- REDO .CHOICES AFTER YOU PUT THE THRESHOLD BACK -->
+        <% if question.responses.empty? %>
+        <% if question.choices %>
+          <% question.choices.each do |choice| %>
             <li><%= choice.name %></li>
           <% end %>
+          </div>
 
+          </div>
+
+
+        <% end %>
         <% else %>
 
-        <div class="chart">
-          <canvas id="<%= question.id %>_Chart" class="chart-canvas"></canvas>
-        </div>
+          <div class="chart">
+            <canvas id="<%= question.id %>_Chart" class="chart-canvas"></canvas>
+          </div>
 
-        <div id="<%= question.id %>_ChartLegend" class="chart-legend"></div>
+          <div id="<%= question.id %>_ChartLegend" class="chart-legend"></div>
 
-        <%# <%= content_for :after_js do %>
-        <div class="exec-chart-js">
-          <script type="text/javascript">
-            const makeChart<%= question.id %> = () => {
-              // console.log("makeChart<%= question.id %> inside const")
-              new Chart('<%= question.id %>_Chart', {
-                type: 'pie',
-                data: {
-                  labels: <%= raw question.choices.map { |x| x.name } %>,
-                  datasets: [{
-                    data: <%= raw question.array_of_choice_percentages %>,
-                    backgroundColor: [
-                        'rgba(255, 99, 132, 0.2)',
-                        'rgba(54, 162, 235, 0.2)',
-                        'rgba(255, 206, 86, 0.2)',
-                        'rgba(75, 192, 192, 0.2)',
-                        'rgba(153, 102, 255, 0.2)',
-                        'rgba(255, 159, 64, 0.2)'
-                    ],
-                    borderColor: [
-                        'rgba(255,99,132,1)',
-                        'rgba(54, 162, 235, 1)',
-                        'rgba(255, 206, 86, 1)',
-                        'rgba(75, 192, 192, 1)',
-                        'rgba(153, 102, 255, 1)',
-                        'rgba(255, 159, 64, 1)'
-                    ],
-                    borderWidth: 1
-                  }]
-                },
-                options: {
-                  legend: {
-                      display: true,
-                      position: 'left',
-                      labels: {
-                          fontSize: 18,
+          <%# <%= content_for :after_js do %>
+          <div class="exec-chart-js">
+            <script type="text/javascript">
+              const makeChart<%= question.id %> = () => {
+                // console.log("makeChart<%= question.id %> inside const")
+                new Chart('<%= question.id %>_Chart', {
+                  type: 'pie',
+                  data: {
+                    labels: <%= raw question.choices.map { |x| x.name } %>,
+                    datasets: [{
+                      data: <%= raw question.array_of_choice_percentages %>,
+                      backgroundColor: [
+                          'rgba(255, 99, 132, 0.2)',
+                          'rgba(54, 162, 235, 0.2)',
+                          'rgba(255, 206, 86, 0.2)',
+                          'rgba(75, 192, 192, 0.2)',
+                          'rgba(153, 102, 255, 0.2)',
+                          'rgba(255, 159, 64, 0.2)'
+                      ],
+                      borderColor: [
+                          'rgba(255,99,132,1)',
+                          'rgba(54, 162, 235, 1)',
+                          'rgba(255, 206, 86, 1)',
+                          'rgba(75, 192, 192, 1)',
+                          'rgba(153, 102, 255, 1)',
+                          'rgba(255, 159, 64, 1)'
+                      ],
+                      borderWidth: 1
+                    }]
+                  },
+                  options: {
+                    legend: {
+                        display: true,
+                        position: 'left',
+                        labels: {
+                            fontSize: 18,
+                        }
                       }
                     }
-                  }
-              });
-            }
+                });
+              }
 
-            console.log("calling makeChart<%= question.id %>();")
-            makeChart<%= question.id %>();
-          </script>
+              console.log("calling makeChart<%= question.id %>();")
+              makeChart<%= question.id %>();
+            </script>
+          </div>
+            <%# <% end %>
+          </div>
         </div>
-          <%# <% end %>
-        </div>
-      </div>
       <% end %>
     <% end %>
   <% end %>

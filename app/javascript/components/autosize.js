@@ -6,12 +6,13 @@
 'use strict';
 
 (function() {
-  
+
   //
   // Variables
   //
 
-  var toggle = document.querySelectorAll('[data-toggle="autosize"]');
+  // var toggle = document.querySelectorAll('[data-toggle="autosize"]');
+  var toggle = document.querySelectorAll('#survey_description');
 
 
   //
